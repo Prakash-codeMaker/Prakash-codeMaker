@@ -1,9 +1,110 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Netlify Site</title>
+  <meta charset="UTF-8">
+  <title>CryptoWeather Nexus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-  <h1>Hello from Prakash!</h1>
+<body class="bg-gray-100">
+ 
+  <header class="bg-white shadow">
+    <div class="container mx-auto px-4 py-6">
+      <h1 class="text-3xl font-bold text-gray-900">CryptoWeather Nexus</h1>
+    </div>
+  </header>
+
+  
+  <main class="container mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      
+      <!-- Weather Section -->
+      <section class="bg-white rounded-lg shadow-md p-6">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-xl font-semibold text-gray-800">Weather</h2>
+          <button class="text-blue-500 hover:text-blue-700">
+            🔄
+          </button>
+        </div>
+
+        <div class="space-y-4">
+          <div class="border p-4 rounded hover:shadow-md">
+            <div class="flex justify-between">
+              <a href="#" class="text-lg font-medium text-blue-600 hover:text-blue-800">New York</a>
+              <button class="text-gray-400 hover:text-yellow-500">⭐</button>
+            </div>
+            <div class="mt-2 flex items-center">
+              <span class="text-3xl font-semibold">23°C</span>
+              <div class="ml-4">
+                <div class="text-gray-600">Clear</div>
+                <div class="text-sm text-gray-500">Humidity: 45%</div>
+              </div>
+            </div>
+          </div>
+          <!-- Repeat for other cities -->
+        </div>
+      </section>
+
+      <!-- Crypto Section -->
+      <section class="bg-white rounded-lg shadow-md p-6">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-xl font-semibold text-gray-800">Cryptocurrency</h2>
+          <button class="text-blue-500 hover:text-blue-700">🔄</button>
+        </div>
+
+        <div class="space-y-4">
+          <div class="border p-4 rounded hover:shadow-md">
+            <div class="flex justify-between">
+              <a href="#" class="text-lg font-medium text-blue-600 hover:text-blue-800 capitalize">Bitcoin</a>
+              <button class="text-gray-400 hover:text-yellow-500">⭐</button>
+            </div>
+            <div class="mt-2">
+              <div class="text-2xl font-semibold">$64,000.00</div>
+              <div class="text-green-600 mt-1">+4.23% <span class="text-xs">(24h)</span></div>
+              <div class="text-sm text-gray-500 mt-2">Market Cap: $1.2T</div>
+            </div>
+          </div>
+         
+        </div>
+      </section>
+
+      
+      <section class="bg-white rounded-lg shadow-md p-6">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-xl font-semibold text-gray-800">Crypto News</h2>
+          <button class="text-blue-500 hover:text-blue-700">🔄</button>
+        </div>
+
+        <div class="space-y-4">
+          <div class="border p-4 rounded hover:shadow-md">
+            <a href="#" target="_blank" class="block">
+              <h3 class="text-blue-600 font-medium hover:text-blue-800">Bitcoin breaks all-time high</h3>
+              <p class="text-sm text-gray-600 mt-1">Bitcoin surpasses previous records with massive rally...</p>
+              <div class="text-xs text-gray-500 mt-2">April 5, 2025</div>
+            </a>
+          </div>
+         
+        </div>
+      </section>
+    </div>
+  </main>
+
+ 
+  <div class="fixed bottom-4 right-4 space-y-2 z-50">
+    <div class="bg-blue-100 text-blue-800 border-l-4 border-blue-500 p-4 rounded-md shadow-lg flex items-start space-x-3">
+      <span>🚨</span>
+      <div>
+        <p class="font-medium">Price Alert</p>
+        <p>Bitcoin just crossed $70,000!</p>
+      </div>
+    </div>
+    <div class="bg-yellow-100 text-yellow-800 border-l-4 border-yellow-500 p-4 rounded-md shadow-lg flex items-start space-x-3">
+      <span>🌦️</span>
+      <div>
+        <p class="font-medium">Weather Alert</p>
+        <p>Storm warning in Tokyo</p>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
