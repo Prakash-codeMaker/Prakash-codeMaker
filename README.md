@@ -18,11 +18,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/Prakash-codeMaker/Prakash-codeMaker/raw/main/Jain_Prakash_Resume.pdf" target="_blank">
+  <a href="https://drive.google.com/file/d/1GZdPMD7R2uHYyJFzmHe8HmPVpZN4UiR_/view?usp=sharing" target="_blank">
     <img src="https://img.shields.io/badge/Download_Resume-PDF-blue?style=for-the-badge&logo=adobeacrobatreader&logoColor=white"/>
-  </a>&nbsp;
-  <a href="https://github.com/Prakash-codeMaker/Prakash-codeMaker/releases/latest" target="_blank">
-    <img src="https://img.shields.io/badge/Force_Download_Resume-GitHub_Releases-orange?style=for-the-badge&logo=github"/>
   </a>
 </p>
 
@@ -68,6 +65,43 @@
 
 <!--
 ===========================================================
+              ⚡ LEETCODE & KAGGLE STATS (WITH IMAGE)
+===========================================================
+-->
+
+<h2 align="center">⚡ LeetCode & Kaggle</h2>
+
+<table align="center">
+  <tr>
+    <td align="center" width="50%">
+      <a href="https://leetcode.com/Prakashchandjain">
+        <img src="https://user-images.githubusercontent.com/Prakash-codeMaker/leetcode_screenshot.png" alt="LeetCode Stats" width="95%"/>
+        <br>View Profile
+      </a>
+    </td>
+    <td align="center" width="50%">
+      <a href="https://kaggle.com/prakashchandjain">
+        <img src="https://user-images.githubusercontent.com/Prakash-codeMaker/kaggle_screenshot.png" alt="Kaggle Stats" width="95%"/>
+        <br>View Profile
+      </a>
+    </td>
+  </tr>
+</table>
+
+<p align="center">
+  <a href="https://leetcode.com/Prakashchandjain">
+    <img src="https://img.shields.io/badge/LeetCode-Prakashchandjain-E46642?style=for-the-badge&logo=leetcode">
+  </a>
+  &nbsp;
+  <a href="https://kaggle.com/prakashchandjain">
+    <img src="https://img.shields.io/badge/Kaggle-Prakashchandjain-20BEFF?style=for-the-badge&logo=kaggle" />
+  </a>
+</p>
+
+---
+
+<!--
+===========================================================
                 📈 GITHUB STATS & CARDS
 ===========================================================
 -->
@@ -81,28 +115,6 @@
 <p align="center">
   <img src="https://streak-stats.demolab.com?user=Prakash-codeMaker&theme=tokyonight&hide_border=true&type=svg" height="180"/>
 </p>
-
----
-
-<!--
-===========================================================
-                ⚡ LEETCODE & KAGGLE STATS
-===========================================================
--->
-
-<h2 align="center">⚡ LeetCode & Kaggle</h2>
-
-<p align="center">
-<a href="https://leetcode.com/Prakashchandjain">
-  <img src="https://leetcode-stats-six.vercel.app/api?username=Prakashchandjain&theme=dark" height="180"/>
-</a>
-&emsp;
-<a href="https://kaggle.com/prakashchandjain">
-  <img src="https://img.shields.io/badge/Kaggle-prakashchandjain-20BEFF?style=for-the-badge&logo=kaggle"/>
-</a>
-</p>
-
-> If your LeetCode/Kaggle badge is empty, [Screenshot your stats from LeetCode/Kaggle and add them as an image here!]
 
 ---
 
@@ -145,7 +157,6 @@
 <h2 align="center">🚀 Featured Projects</h2>
 
 <div align="center">
-
 <table>
   <tr>
     <td width="33%">
@@ -156,7 +167,6 @@
         <li><b>Tech:</b> Python, FastAPI, PyTorch, HuggingFace, Docker</li>
         <li>Real adversarial attack set, CSV/JSON logging, multi-metric scoring</li>
         <li>Used by research teams for robustness benchmarks</li>
-        <li><b>Live Demo:</b> <a href="#">Coming Soon</a></li>
         <li><b>Repo:</b> <a href="https://github.com/Prakash-codeMaker/llm-safety-evaluator">llm-safety-evaluator</a></li>
       </ul>
       <pre>
@@ -223,7 +233,6 @@
         <li>Interactive 3D UI using Three.js for ML dashboards.</li>
         <li><b>Tech:</b> Three.js, React, D3.js</li>
         <li>Real-time model output visualization.</li>
-        <li><b>Demo:</b> <a href="#">[Demo]</a></li>
         <li><b>Repo:</b> <a href="https://github.com/Prakash-codeMaker/3d-visualizer">3d-visualizer</a></li>
       </ul>
     </td>
@@ -245,7 +254,7 @@
 - 🏢 **Internships:** Backend Developer at Research Org, SDE Intern at FinTech Startup
 - 📄 **Research:** Paper in Preprint on AI Robustness ([arXiv link])
 - 🎖️ **Certifications:** AWS Solutions Architect, TensorFlow Developer
-- 🟧 **LeetCode:** 400+ Problems Solved, 30-Days Streak
+- 🟧 **LeetCode:** 448 Problems Solved, 30-Days Streak
 - 🏅 **Kaggle:** 1x Silver, 3x Bronze Medals
 - 🤝 **Open Source:** Contributor to openapi.tools and LLMEvalHub
 - 🛡️ **AI Safety:** Built & shared open-source eval tools for global community
@@ -273,26 +282,6 @@ A core focus of mine is advancing responsible AI—especially safeguarding LLMs 
 </ul>
 <b>Let's build safe, creative, high-impact tech—together!</b>
 </p>
-
----
-
-<!--
-===========================================================
-                   📄 RESUME DOWNLOAD BUTTON
-===========================================================
--->
-
-<h2 align="center">📄 Download My Resume</h2>
-
-<div align="center">
-<a href="https://github.com/Prakash-codeMaker/Prakash-codeMaker/raw/main/Jain_Prakash_Resume.pdf" download>
-  <img src="https://img.shields.io/badge/Download_Resume-PDF-blue?style=for-the-badge&logo=adobe" height="50"/>
-</a>
-<br>
-<sub>
-Or for a <b>force-download</b> link, <a href="https://github.com/Prakash-codeMaker/Prakash-codeMaker/releases/latest">use GitHub Release</a>.
-</sub>
-</div>
 
 ---
 
