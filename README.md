@@ -1,6 +1,6 @@
 <!-- Animated Banner -->
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=900&size=30&pause=1200&color=FFDE59&background=000000F1&center=true&vCenter=true&multiline=true&width=900&height=90&lines=Hi+there!+I'm+Prakash+Chand+Jain+%F0%9F%91%8B;Developer+%7C+DevOps+Enthusiast+%7C+OSS+Maker" alt="Typing SVG">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=900&size=30&pause=1200&color=FFDE59&background=000000F1&center=true&vCenter=true&multiline=true&width=900&height=90&lines=Hi+there!+I'm+Prakash+🚀;Your+Fullstack+and+AI+Engineer+%F0%9F%98%83;Building+technology+one+project+at+a+time!">
 </p>
 
 <!-- Blurred Card with Quote -->
@@ -28,6 +28,8 @@
   <summary><strong>📑 Table of Contents</strong></summary>
   <ul>
     <li>👤 <a href="#about-me">About Me</a></li>
+    <li>🚀 <a href="#top-projects">Top Projects</a></li>
+    <li>🌀 <a href="#3d-interactive-animation">3D Interactive Animation</a></li>
     <li>🚩 <a href="#projects">Projects</a></li>
     <li>🛠️ <a href="#technical-skills">Technical Skills</a></li>
     <li>📈 <a href="#github-dynamic-stats">GitHub Dynamic Stats</a></li>
@@ -53,10 +55,9 @@ I'm **Prakash**, an energetic full-stack engineer driven by curiosity and proble
 > “Do it with passion or not at all.”  
 > <img src="https://img.shields.io/badge/-Keep%20Learning!-ffc93c?style=flat-square">
 
-
 <details>
   <summary>⏳ <strong>My Developer Timeline</strong> <em>(mermaid)</em></summary>
-  
+
   ```mermaid
   timeline
       title: My Developer Journey
@@ -70,11 +71,39 @@ I'm **Prakash**, an energetic full-stack engineer driven by curiosity and proble
 
 ---
 
+## 🚀 Top Projects
+
+<p align="center">
+  <a href="https://github.com/Prakash-codeMaker/nexus-gyan-quest"><b>nexus-gyan-quest</b></a> &nbsp;|&nbsp;
+  <a href="https://github.com/Prakash-codeMaker/Notice-Board"><b>Notice-Board</b></a> &nbsp;|&nbsp;
+  <a href="https://github.com/Prakash-codeMaker/Portfolio"><b>Portfolio</b></a> &nbsp;|&nbsp;
+  <a href="https://github.com/Prakash-codeMaker/llm-safety-evaluator"><b>llm-safety-evaluator</b></a>
+</p>
+
+---
+
+## 🌀 3D Interactive Animation
+
+<p align="center">
+  <img src="threejs-demo.gif" alt="Three.js Animation Demo" width="500"/>
+  <br><br>
+  <a href="https://prakash-codemaker.github.io/threejs-animation/" target="_blank">
+    <img src="https://img.shields.io/badge/Live%20Three.js%20Demo-Click%20Here-31C48D?style=for-the-badge&logo=three.js" height="32"/>
+  </a>
+</p>
+
+<p align="center">
+  <sub>
+    <i>Built with <a href="https://threejs.org/">Three.js</a> — Experience the animation live or check the code!</i>
+  </sub>
+</p>
+
+---
+
 ## 🚩 Projects
 
 <!-- Glassmorphism Card Grid -->
 <div align="center">
-
 <table>
   <tr>
     <td align="center" width="220px">
@@ -131,7 +160,7 @@ I'm **Prakash**, an energetic full-stack engineer driven by curiosity and proble
 <img src="https://komarev.com/ghpvc/?username=Prakash-codeMaker&color=orange&style=for-the-badge&label=Profile%20Views" height="28">
 </div>
 <p align="center">
-  <a href="https://github.com/search?q=author:Prakash-codeMaker&sort=author-date&order=desc&type=commits"><img alt="All Commits" src="https://img.shields.io/badge/View%20All%20Commits-Click%20Here-blue?logo=github&style=flat-square"/></a>
+  <a href="https://github.com/search?q=author:Prakash-codeMaker&sort=author-date&order=desc&type=commits"><img alt="All Commits" src="https://img.shields.io/badge/View%20All%20Commits-Click%20Here-blue?style=flat-square"></a>
 </p>
 
 ---
@@ -140,7 +169,7 @@ I'm **Prakash**, an energetic full-stack engineer driven by curiosity and proble
 
 <p align="center">
   <a href="https://leetcode.com/Prakashchandjain" target="_blank">
-    <img src="https://leetcode-stats-six.vercel.app/api?username=Prakashchandjain&theme=algolia" height="170"/>
+    <img src="https://leetcode-stats-six.vercel.app/api?username=Prakashchandjain&theme=algolia&show_icons=true" height="175" alt="LeetCode Stats">
   </a>
   <a href="https://leetcode.com/Prakashchandjain" target="_blank">
     <img src="https://img.shields.io/badge/LeetCode-Prakashchandjain-E46642?style=for-the-badge&logo=leetcode">
