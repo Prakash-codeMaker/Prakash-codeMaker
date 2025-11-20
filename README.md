@@ -1,224 +1,344 @@
-<!-- Animated Banner -->
+<!--
+===========================================================
+                 🔥  GITHUB PROFILE README  🔥
+===========================================================
+-->
+
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=900&size=30&pause=1200&color=FFDE59&background=000000F1&center=true&vCenter=true&multiline=true&width=900&height=90&lines=Hi+there!+I'm+Prakash+🚀;Your+Fullstack+and+AI+Engineer+%F0%9F%98%83;Building+technology+one+project+at+a+time!">
+  <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" width="70%">
 </p>
 
-<!-- Blurred Card with Quote -->
-<blockquote align="center">
-  <img src="https://img.shields.io/badge/Focus-Scalable%20Solutions%20%26%20Innovation-%23006A71?style=flat-square">
-  <br>
-  <strong>Passionate about turning ideas into impactful products and always striving to learn & share knowledge.</strong>
-</blockquote>
+<h1 align="center">Hey, I'm <span style="color:#00C3FF;"><strong>YOUR_NAME</strong></span> 👋</h1>
+<h3 align="center">AI Safety Researcher | Full-Stack Developer | ML Engineer</h3>
 
-<!-- Social + Resume -->
 <p align="center">
-  <a href="https://linkedin.com/in/prakash-chand-jain-coder015675328"><img src="https://skillicons.dev/icons?i=linkedin" height="35" alt="LinkedIn" /></a>
-  &nbsp;
-  <a href="mailto:prakashcodemaker@gmail.com"><img src="https://skillicons.dev/icons?i=gmail" height="35" alt="Gmail"></a>
-  &nbsp;
-  <a href="https://github.com/Prakash-codeMaker"><img src="https://img.shields.io/github/followers/Prakash-codeMaker?label=Follow&logo=github&style=for-the-badge" height="35"></a>
-  &nbsp;
-  <a href="Jain_Prakash_Resume.pdf"><img src="https://img.shields.io/badge/Resume-View%20PDF-FF725C?style=for-the-badge&logo=adobeacrobatreader" height="35"></a>
+  💡 Passionate about building safe, impactful AI.<br>
+  🔭 Enthusiast in research, open source and cloud.<br>
+  🚀 Mission: Create robust systems for positive change.
 </p>
 
----
-
-<!-- Table of Contents with Emoji Bullets -->
-<details open>
-  <summary><strong>📑 Table of Contents</strong></summary>
-  <ul>
-    <li>👤 <a href="#about-me">About Me</a></li>
-    <li>🚀 <a href="#top-projects">Top Projects</a></li>
-    <li>🌀 <a href="#3d-interactive-animation">3D Interactive Animation</a></li>
-    <li>🚩 <a href="#projects">Projects</a></li>
-    <li>🛠️ <a href="#technical-skills">Technical Skills</a></li>
-    <li>📈 <a href="#github-dynamic-stats">GitHub Dynamic Stats</a></li>
-    <li>⚡ <a href="#leetcode--kaggle-live-stats">LeetCode & Kaggle Stats</a></li>
-    <li>📚 <a href="#citations--references">References</a></li>
-    <li>✉️ <a href="#contact">Contact</a></li>
-  </ul>
-</details>
-
----
-
-## 👤 About Me
-
-<div align="center">
-  <img src="https://media.giphy.com/media/SSpOtLxt8u4Zk/giphy.gif" height="120"/> <!-- Fun developer GIF -->
-</div>
-
-I'm **Prakash**, an energetic full-stack engineer driven by curiosity and problem-solving.  
-- Currently deep-diving into **Cloud**, **DevOps**, and **UI/UX**.
-- Love open source, hackathons & automating the boring stuff.
-- **Fun Fact:** I build tools to save time, so I have more time to... build more tools!
-
-> “Do it with passion or not at all.”  
-> <img src="https://img.shields.io/badge/-Keep%20Learning!-ffc93c?style=flat-square">
-
-<details>
-  <summary>⏳ <strong>My Developer Timeline</strong> <em>(mermaid)</em></summary>
-
-  ```mermaid
-  timeline
-      title: My Developer Journey
-      2020 : Started with Python & Web Dev 🚀
-      2021 : First Open Source REST API 🌐
-      2022 : Mastered React & Node.js ⚛️
-      2023 : Led full-stack SaaS Projects 🧑‍💻
-      2024 : DevOps, Cloud, and UI/UX Wizard ✨
-  ```
-</details>
-
----
-
-## 🚀 Top Projects
-
 <p align="center">
-  <a href="https://github.com/Prakash-codeMaker/nexus-gyan-quest"><b>nexus-gyan-quest</b></a> &nbsp;|&nbsp;
-  <a href="https://github.com/Prakash-codeMaker/Notice-Board"><b>Notice-Board</b></a> &nbsp;|&nbsp;
-  <a href="https://github.com/Prakash-codeMaker/Portfolio"><b>Portfolio</b></a> &nbsp;|&nbsp;
-  <a href="https://github.com/Prakash-codeMaker/llm-safety-evaluator"><b>llm-safety-evaluator</b></a>
-</p>
-
----
-
-## 🌀 3D Interactive Animation
-
-<p align="center">
-  <img src="threejs-demo.gif" alt="Three.js Animation Demo" width="500"/>
-  <br><br>
-  <a href="https://prakash-codemaker.github.io/threejs-animation/" target="_blank">
-    <img src="https://img.shields.io/badge/Live%20Three.js%20Demo-Click%20Here-31C48D?style=for-the-badge&logo=three.js" height="32"/>
+  <a href="https://github.com/GITHUB_USERNAME/REPO/raw/main/RESUME_FILE.pdf" target="_blank">
+    <img src="https://img.shields.io/badge/Download_Resume-PDF-blue?style=for-the-badge&logo=adobeacrobatreader&logoColor=white"/>
+  </a>&nbsp;
+  <a href="https://github.com/GITHUB_USERNAME/REPO/releases/latest" target="_blank">
+    <img src="https://img.shields.io/badge/Force_Download_Resume-GitHub_Releases-orange?style=for-the-badge&logo=github"/>
   </a>
 </p>
 
 <p align="center">
-  <sub>
-    <i>Built with <a href="https://threejs.org/">Three.js</a> — Experience the animation live or check the code!</i>
-  </sub>
+  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWNaMWR2MG1ycTJjM3JmeHI3Z2JnaWNsYTlzd3B4d3Qwcnkwc2w1aSzN2ZlMzFkcGFldjlycGswMHFnNjJwaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/WUlplcZkWwaHFV9ZUS/giphy.gif" alt="Banner" width="400"/>
 </p>
 
 ---
 
-## 🚩 Projects
+<!--
+===========================================================
+                📱 SOCIAL LINKS + CONTACT
+===========================================================
+-->
 
-<!-- Glassmorphism Card Grid -->
+<h2 align="center">🌐 Connect with Me</h2>
+
+<p align="center">
+  <a href="mailto:EMAIL">
+    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white"/>
+  </a>
+  <a href="https://linkedin.com/in/LINKEDIN_URL">
+    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
+  </a>
+  <a href="https://github.com/GITHUB_USERNAME">
+    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github"/>
+  </a>
+  <a href="PORTFOLIO_URL">
+    <img src="https://img.shields.io/badge/Portfolio-FFA500?style=for-the-badge&logo=vercel"/>
+  </a>
+  <a href="https://leetcode.com/LEETCODE_USERNAME">
+    <img src="https://img.shields.io/badge/LeetCode-FFCC00?style=for-the-badge&logo=leetcode&logoColor=white"/>
+  </a>
+  <a href="https://kaggle.com/KAGGLE_USERNAME">
+    <img src="https://img.shields.io/badge/Kaggle-20BEFF?style=for-the-badge&logo=kaggle&logoColor=white"/>
+  </a>
+  <a href="https://twitter.com/USERNAME">
+    <img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter"/>
+  </a>
+</p>
+
+---
+
+<!--
+===========================================================
+                📈 GITHUB STATS & CARDS
+===========================================================
+-->
+
+<h2 align="center">📈 My GitHub Stats</h2>
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=GITHUB_USERNAME&count_private=true&show_icons=true&theme=tokyonight" height="180"/>
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=GITHUB_USERNAME&layout=compact&theme=tokyonight&hide=html,css,shell" height="180"/>
+</p>
+<p align="center">
+  <img src="https://streak-stats.demolab.com?user=GITHUB_USERNAME&theme=tokyonight&hide_border=true&type=svg" height="180"/>
+</p>
+
+---
+
+<!--
+===========================================================
+                ⚡ LEETCODE & KAGGLE STATS
+===========================================================
+-->
+
+<h2 align="center">⚡ LeetCode & Kaggle</h2>
+
+<p align="center">
+<a href="https://leetcode.com/LEETCODE_USERNAME">
+  <img src="https://leetcode-stats-six.vercel.app/api?username=LEETCODE_USERNAME&theme=dark" height="180"/>
+</a>
+&emsp;
+<a href="https://kaggle.com/KAGGLE_USERNAME">
+  <img src="https://img.shields.io/badge/Kaggle-KAGGLE_USERNAME-20BEFF?style=for-the-badge&logo=kaggle"/>
+</a>
+</p>
+
+> If your LeetCode/Kaggle badge is empty, [Screenshot your stats from LeetCode/Kaggle and add them as an image here!]
+
+---
+
+<!--
+===========================================================
+                🧰 TECH STACK & TOOLS CLOUD
+===========================================================
+-->
+
+<h2 align="center">🧰 Tech Stack & Tools</h2>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white"/>
+  <img src="https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/>
+  <img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"/>
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"/>
+  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Express-000?style=for-the-badge&logo=express&logoColor=white"/>
+  <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white"/>
+  <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white"/>
+  <img src="https://img.shields.io/badge/HuggingFace-FFBF00?style=for-the-badge&logo=huggingface&logoColor=black"/>
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black"/>
+  <img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black"/>
+  <img src="https://img.shields.io/badge/Vercel-000?style=for-the-badge&logo=vercel&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white"/>
+</p>
+
+---
+
+<!--
+===========================================================
+               🚀 FEATURED PROJECTS SECTION
+===========================================================
+-->
+
+<h2 align="center">🚀 Featured Projects</h2>
+
+<!-- 
+Template for projects:
+- Name
+- Description
+- Tech stack
+- Key features
+- Achievements
+- Links (live + repo)
+- Screenshot placeholder
+-->
+
 <div align="center">
+
 <table>
   <tr>
-    <td align="center" width="220px">
-      <img src="project1.png" width="120" style="border-radius:12px;box-shadow:0 3px 12px #F5D30070">
-      <br/>
-      <strong>AI-powered Search Assistant</strong><br/>
-      <span style="color:#FFD700">Python, GPT</span><br/>
-      <a href="https://github.com/link1"><img src="https://img.shields.io/badge/Repo-Open-black?style=flat-square&logo=github"></a>
+    <td width="33%">
+      <img src="project_safety_evaluator.gif" width="100%" alt="LLM Safety Evaluator"/>
+      <h3>💡 Automated Safety Evaluator – LLM Red-Teaming Tool</h3>
+      <ul>
+        <li>Red-teaming tool for large language models (LLMs): automates injection of adversarial prompts and evaluates responses.</li>
+        <li><b>Tech stack:</b> Python, FastAPI, PyTorch, HuggingFace, Docker</li>
+        <li><b>Features:</b> Real adversarial attack set, modular pipeline, multi-metric scoring, CSV/JSON logging</li>
+        <li><b>Impact:</b> Used by research teams for robustness benchmarks, helps surface harmful model behaviors</li>
+        <li><b>Live Demo:</b> <a href="#">[Demo Coming Soon]</a></li>
+        <li><b>Repo:</b> <a href="https://github.com/GITHUB_USERNAME/llm-safety-evaluator">llm-safety-evaluator</a></li>
+      </ul>
+      <pre>
+            [Adversarial Prompts]
+                    ↓
+            [LLM Query Engine]
+                    ↓
+            [Evaluation Pipeline]
+        Toxicity | Jailbreak | Hallucination | Harmful Intent
+                    ↓
+                [Risk Scorer]
+                    ↓
+              [JSON/CSV Logs]
+                  + Dashboard
+      </pre>
     </td>
-    <td align="center" width="220px">
-      <img src="project2.png" width="120" style="border-radius:12px;box-shadow:0 3px 12px #2BABFFD0">
-      <br/>
-      <strong>Real-time Chat Platform</strong><br/>
-      <span style="color:#00BFFF">React, Firebase</span><br/>
-      <a href="https://link.to.demo"><img src="https://img.shields.io/badge/Demo-View-brightgreen?style=flat-square&logo=vercel"></a>
+    <td width="33%">
+      <img src="project2.gif" width="100%" alt="Project Title"/>
+      <h3>Smart Notice Board</h3>
+      <ul>
+        <li>Broadcast platform for campus and organizations.</li>
+        <li><b>Tech:</b> Node.js, React, MongoDB</li>
+        <li>Role-based posting, real-time updates.</li>
+        <li><b>Repo:</b> <a href="https://github.com/GITHUB_USERNAME/Notice-Board">Notice-Board</a></li>
+      </ul>
     </td>
-    <td align="center" width="220px">
-      <img src="project3.png" width="120" style="border-radius:12px;box-shadow:0 3px 12px #28FFD200">
-      <br/>
-      <strong>Automated CI/CD Pipeline</strong><br/>
-      <span style="color:#00C853">Node.js, Docker</span><br/>
-      <a href="https://github.com/link3"><img src="https://img.shields.io/badge/Repo-Open-black?style=flat-square&logo=github"></a>
+    <td width="33%">
+      <img src="project3.gif" width="100%" alt="Project Title"/>
+      <h3>Portfolio Website</h3>
+      <ul>
+        <li>Modern, responsive, rich portfolio & blog.</li>
+        <li><b>Tech:</b> Next.js, TypeScript, Vercel</li>
+        <li>Custom design, dark mode, MDX blog posts.</li>
+        <li><b>Live:</b> <a href="PORTFOLIO_URL">portfolio</a></li>
+        <li><b>Repo:</b> <a href="https://github.com/GITHUB_USERNAME/Portfolio">Portfolio</a></li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td width="33%">
+      <img src="project4.gif" width="100%" alt="Project Title"/>
+      <h3>Nexus Gyan Quest</h3>
+      <ul>
+        <li>Quiz app for upskilling and competitions.</li>
+        <li><b>Tech:</b> Python, Django, PostgreSQL</li>
+        <li>Timed quizzes, leaderboards, analytics.</li>
+        <li><b>Repo:</b> <a href="https://github.com/GITHUB_USERNAME/nexus-gyan-quest">nexus-gyan-quest</a></li>
+      </ul>
+    </td>
+    <td width="33%">
+      <img src="project5.gif" width="100%" alt="Project Title"/>
+      <h3>Sebi Learn</h3>
+      <ul>
+        <li>Educational resource recommender platform.</li>
+        <li><b>Tech:</b> React, Firebase, Node.js</li>
+        <li>Personalized content feed, progress tracking.</li>
+        <li><b>Repo:</b> <a href="https://github.com/GITHUB_USERNAME/sebi-learn">sebi-learn</a></li>
+      </ul>
+    </td>
+    <td width="33%">
+      <img src="project6.gif" width="100%" alt="Project Title"/>
+      <h3>AI 3D Visualizer</h3>
+      <ul>
+        <li>Interactive 3D UI using Three.js for ML dashboards.</li>
+        <li><b>Tech:</b> Three.js, React, D3.js</li>
+        <li>Real-time model output visualization, animations.</li>
+        <li><b>Demo:</b> <a href="#">[Demo]</a></li>
+        <li><b>Repo:</b> <a href="https://github.com/GITHUB_USERNAME/3d-visualizer">3d-visualizer</a></li>
+      </ul>
     </td>
   </tr>
 </table>
-<br>
-  <a href="https://github.com/Prakash-codeMaker?tab=repositories" style="font-weight:bold;">
-    <img src="https://img.shields.io/badge/Browse%20All%20Projects-Click%20Here-82AAE3?style=for-the-badge&logo=github"/>
-  </a>
 </div>
 
 ---
 
-## 🛠️ Technical Skills
+<!--
+===========================================================
+                        🏆 ACHIEVEMENTS
+===========================================================
+-->
 
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=python,react,nodejs,docker,mongodb,git,github,typescript,aws,linux&perline=7" height="46" />
-</p>
-<p align="center">
-  <a href="#"><img src="https://img.shields.io/badge/And%20more...-grey?style=flat-square"></a>
+<h2 align="center">🏆 Achievements</h2>
+
+- 🥇 **Hackathon Winner:** [Event Name], [Year] ([Link])
+- 🏢 **Internships:** [Company 1], [Company 2]
+- 📄 **Research Paper:** "[Paper Title]" ([arXiv link])
+- 🎖️ **Certifications:** AWS Solutions Architect, TensorFlow Developer
+- 🟧 **LeetCode 300+ Solved:** Your milestone here!
+- 🏅 **Kaggle:** [X] Silver Medals, [Y] Bronze Medals
+- 🤝 **Open Source:** Contributor to [repo/project names]
+- 🛡️ **AI Safety:** Built & shared open-source evaluation tools
+
+---
+
+<!--
+===========================================================
+                        📖 ABOUT ME
+===========================================================
+-->
+
+<h2 align="center">📖 About Me</h2>
+
+<p>
+I’m a passionate engineer and researcher driven by curiosity about AI Safety and the potential positive impact of intelligent systems. With a foundation in full-stack development and experience in machine learning, I’ve worked on diverse projects from automated red-teaming for LLMs, to educational apps and visualization dashboards.
+
+My journey began with web development, and quickly evolved into the realm of artificial intelligence and responsible AI research. I love hackathons, open-source, and contributing tools that empower the tech and research community. I’m currently exploring robust LLM evaluation pipelines, scalable data engineering with the cloud, and new frontiers in interactive 3D visualization.
+
+<b>Current learning:</b> Multi-agent systems, Prompt Engineering, Differential Privacy.<br>
+<b>Future goals:</b> Research assistantships, journal publications, impactful internships, and open collaboration on AI safety.
 </p>
 
 ---
 
-## 📈 GitHub Dynamic Stats
+<!--
+===========================================================
+                   📄 RESUME DOWNLOAD BUTTON
+===========================================================
+-->
+
+<h2 align="center">📄 Download My Resume</h2>
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=Prakash-codeMaker&show_icons=true&hide=prs&count_private=true&theme=chartreuse-dark" alt="GitHub Stats" height="175">
-<img src="https://streak-stats.demolab.com?user=Prakash-codeMaker&theme=highcontrast&hide_border=true" alt="GitHub Streak" height="175">
-<img src="https://github-readme-stats.vercel.app/api/top-langs?username=Prakash-codeMaker&layout=compact&theme=vision-friendly-dark&hide_progress=false" alt="Top Languages" height="160">
-<br/>
-<img src="https://img.shields.io/github/repos-raw/Prakash-codeMaker?label=Total%20Repos&color=%23f516b6&logo=github&style=for-the-badge" height="28">
-<img src="https://komarev.com/ghpvc/?username=Prakash-codeMaker&color=orange&style=for-the-badge&label=Profile%20Views" height="28">
+<a href="https://github.com/GITHUB_USERNAME/REPO/raw/main/RESUME_FILE.pdf" download>
+  <img src="https://img.shields.io/badge/Download_Resume-PDF-blue?style=for-the-badge&logo=adobe" height="50"/>
+</a>
+<br>
+<sub>
+Or for a <b>force-download</b> link, upload your PDF to a <b>GitHub Release</b>.<br>
+Example:<br>
+<a href="https://github.com/GITHUB_USERNAME/REPO/releases/latest">
+  <img src="https://img.shields.io/badge/Resume_via_GitHub_Releases-orange?style=for-the-badge&logo=github"/>
+</a>
+</sub>
 </div>
+
+---
+
+<!--
+===========================================================
+          ☕️ SUPPORT ME / LET'S CONNECT SECTION
+===========================================================
+-->
+
+<h2 align="center">☕ Support &amp; Collaborate</h2>
+
 <p align="center">
-  <a href="https://github.com/search?q=author:Prakash-codeMaker&sort=author-date&order=desc&type=commits"><img alt="All Commits" src="https://img.shields.io/badge/View%20All%20Commits-Click%20Here-blue?style=flat-square"></a>
+  <a href="https://www.buymeacoffee.com/YOURNAME">
+    <img src="https://img.shields.io/badge/Buy_Me_a_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black"/>
+  </a>
+</p>
+
+<p align="center">
+  <b>“Let’s Collaborate! Open to research, internships, and global open-source projects.”</b>
 </p>
 
 ---
 
-## ⚡ LeetCode & Kaggle Live Stats
+<!--
+===========================================================
+                  🔖 FOOTER SECTION
+===========================================================
+-->
 
 <p align="center">
-  <a href="https://leetcode.com/Prakashchandjain" target="_blank">
-    <img src="https://leetcode-stats-six.vercel.app/api?username=Prakashchandjain&theme=algolia&show_icons=true" height="175" alt="LeetCode Stats">
-  </a>
-  <a href="https://leetcode.com/Prakashchandjain" target="_blank">
-    <img src="https://img.shields.io/badge/LeetCode-Prakashchandjain-E46642?style=for-the-badge&logo=leetcode">
-  </a>
+  <img src="https://komarev.com/ghpvc/?username=GITHUB_USERNAME&color=blueviolet&style=for-the-badge&label=Visitors"/>
+  <br><br>
+  <i>"The only limit to our realization of tomorrow will be our doubts of today." — Franklin D. Roosevelt</i>
   <br>
-  <a href="https://www.kaggle.com/prakashchandjain" target="_blank">
-    <img src="https://img.shields.io/badge/Kaggle-Prakashchandjain-20BEFF?style=for-the-badge&logo=kaggle" />
-  </a>
-  <a href="https://www.kaggle.com/code/prakashchandjain/notebook8db9fa0b06" target="_blank">
-    <img src="https://img.shields.io/badge/View%20Notebook-%F0%9F%93%9A-0F9D58?style=flat-square&logo=kaggle" />
-    <img src="https://kaggle-notebook-thumbnail.vercel.app/api/notebooks/prakashchandjain/notebook8db9fa0b06" alt="Kaggle Notebook Demo" height="100"/>
-  </a>
+  <b>© 2025 YOUR_NAME</b>
 </p>
 
----
-
-## 📚 Citations & References
-
-- <img src="https://img.shields.io/badge/-LinkedIn%20Recommendation-2867B2?logo=linkedin&style=flat-square"> <br>
-  “Prakash was instrumental in automating our deployment process…” — <em>Former Team Lead</em> ([Read More](https://linkedin.com/in/prakash-chand-jain-coder015675328))
-- <img src="https://img.shields.io/badge/-Dev.to%20Article-0A0A23?logo=devdotto&style=flat-square"> [Optimizing API Performance](https://dev.to/your-article-url)
-- <img src="https://img.shields.io/badge/-Research%20Paper-E94560?style=flat-square"> [Scalable Microservices in Cloud](https://arxiv.org/abs/xxxx.xxxx)
-
----
-
-## ✉️ Contact
-
-<p align="center">
-  <a href="mailto:prakashcodemaker@gmail.com"><img src="https://img.shields.io/badge/E--mail-Send-red?style=flat-square&logo=gmail"></a>
-  <a href="https://linkedin.com/in/prakash-chand-jain-coder015675328"><img src="https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=flat-square&logo=linkedin"></a>
-  <a href="https://github.com/Prakash-codeMaker"><img src="https://img.shields.io/badge/GitHub-Follow-black?style=flat-square&logo=github"></a>
-  <a href="https://twitter.com/YourTwitter"><img src="https://img.shields.io/badge/Twitter-Follow-1DA1F2?style=flat-square&logo=twitter"></a>
-</p>
-
----
-
-## 📄 Download My Resume
-
-<p align="center">
-  <a href="Jain_Prakash_Resume.pdf">
-    <img src="https://img.shields.io/badge/Download%20Resume-PDF-FF4C29?style=for-the-badge&logo=adobeacrobatreader">
-  </a>
-</p>
-
----
-
-<!-- Sparkling Footer -->
-<p align="center">
-  <img src="https://img.shields.io/badge/Made%20with-%E2%9D%A4%EF%B8%8F%20and%20TypeScript-4B9CD3?style=for-the-badge">
-  <br>
-  <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=18&pause=800&color=0FF95C&random=false&width=400&lines=Let%27s+Build+Something+Amazing!">
-</p>
+```
