@@ -1,6 +1,6 @@
 <!--
 ===========================================================
-                 🔥  GITHUB PROFILE README  🔥
+                  🔥  GITHUB PROFILE README  🔥
 ===========================================================
 -->
 
@@ -31,7 +31,7 @@
 
 <!--
 ===========================================================
-                📱 SOCIAL LINKS + CONTACT
+                 📱 SOCIAL LINKS + CONTACT
 ===========================================================
 -->
 
@@ -65,7 +65,7 @@
 
 <!--
 ===========================================================
-              ⚡ LEETCODE & KAGGLE STATS (WITH IMAGE)
+               ⚡ LEETCODE & KAGGLE STATS (WITH IMAGE)
 ===========================================================
 -->
 
@@ -102,7 +102,7 @@
 
 <!--
 ===========================================================
-                📈 GITHUB STATS & CARDS
+                 📈 GITHUB STATS & CARDS
 ===========================================================
 -->
 
@@ -120,7 +120,7 @@
 
 <!--
 ===========================================================
-                🧰 TECH STACK & TOOLS CLOUD
+                 🧰 TECH STACK & TOOLS CLOUD
 ===========================================================
 -->
 
@@ -150,7 +150,7 @@
 
 <!--
 ===========================================================
-               🚀 FEATURED PROJECTS SECTION
+                🚀 FEATURED PROJECTS SECTION
 ===========================================================
 -->
 
@@ -169,19 +169,6 @@
         <li>Used by research teams for robustness benchmarks</li>
         <li><b>Repo:</b> <a href="https://github.com/Prakash-codeMaker/llm-safety-evaluator">llm-safety-evaluator</a></li>
       </ul>
-      <pre>
-            [Adversarial Prompts]
-                    ↓
-            [LLM Query Engine]
-                    ↓
-            [Evaluation Pipeline]
-        Toxicity | Jailbreak | Hallucination | Harmful Intent
-                    ↓
-                [Risk Scorer]
-                    ↓
-              [JSON/CSV Logs]
-                  + Dashboard
-      </pre>
     </td>
     <td width="33%">
       <img src="project_noticeboard.gif" width="100%" alt="Notice Board"/>
@@ -244,13 +231,75 @@
 
 <!--
 ===========================================================
-                        🏆 ACHIEVEMENTS
+                📚 ALL PUBLIC REPOSITORIES
 ===========================================================
 -->
 
-<h2 align="center">🏆 Achievements</h2>
+<h2 align="center">📚 All Public Repositories</h2>
+
+<table align="center" width="95%">
+  <tr>
+    <th>Repository</th>
+    <th>Description</th>
+    <th>Tech Stack</th>
+    <th>Links</th>
+  </tr>
+  <tr>
+    <td><b>llm-safety-evaluator</b></td>
+    <td>Automated red-teaming & safety evaluation tool for LLMs</td>
+    <td>Python, FastAPI, PyTorch</td>
+    <td><a href="https://github.com/Prakash-codeMaker/llm-safety-evaluator">Repo</a></td>
+  </tr>
+  <tr>
+    <td><b>Notice-Board</b></td>
+    <td>Smart broadcast platform with role-based access</td>
+    <td>Node.js, React, MongoDB</td>
+    <td><a href="https://github.com/Prakash-codeMaker/Notice-Board">Repo</a></td>
+  </tr>
+  <tr>
+    <td><b>Portfolio</b></td>
+    <td>Modern portfolio website with MDX blog</td>
+    <td>Next.js, TypeScript, Vercel</td>
+    <td><a href="https://github.com/Prakash-codeMaker/Portfolio">Repo</a> | <a href="https://prakash-portfolio.vercel.app/">Live</a></td>
+  </tr>
+  <tr>
+    <td><b>nexus-gyan-quest</b></td>
+    <td>Quiz application with leaderboards & analytics</td>
+    <td>Python, Django, PostgreSQL</td>
+    <td><a href="https://github.com/Prakash-codeMaker/nexus-gyan-quest">Repo</a></td>
+  </tr>
+  <tr>
+    <td><b>sebi-learn</b></td>
+    <td>Educational resource recommender platform</td>
+    <td>React, Firebase, Node.js</td>
+    <td><a href="https://github.com/Prakash-codeMaker/sebi-learn">Repo</a></td>
+  </tr>
+  <tr>
+    <td><b>3d-visualizer</b></td>
+    <td>Interactive 3D visualization for ML dashboards</td>
+    <td>Three.js, React, D3.js</td>
+    <td><a href="https://github.com/Prakash-codeMaker/3d-visualizer">Repo</a></td>
+  </tr>
+  <tr>
+    <td><b>Prakash-codeMaker</b></td>
+    <td>GitHub profile configuration repository</td>
+    <td>JavaScript, HTML</td>
+    <td><a href="https://github.com/Prakash-codeMaker/Prakash-codeMaker">Repo</a></td>
+  </tr>
+</table>
+
+---
+
+<!--
+===========================================================
+                         🏆 ACHIEVEMENTS
+===========================================================
+-->
+
+<h2 align="center">🏆 Achievements & Milestones</h2>
 
 - 🥇 **Hackathon Winner:** SIH 2023 Finalist and Winner
+- 🏆 **Competition Success:** Multiple hackathon participations with top placements
 - 🏢 **Internships:** Backend Developer at Research Org, SDE Intern at FinTech Startup
 - 📄 **Research:** Paper in Preprint on AI Robustness ([arXiv link])
 - 🎖️ **Certifications:** AWS Solutions Architect, TensorFlow Developer
@@ -258,12 +307,15 @@
 - 🏅 **Kaggle:** 1x Silver, 3x Bronze Medals
 - 🤝 **Open Source:** Contributor to openapi.tools and LLMEvalHub
 - 🛡️ **AI Safety:** Built & shared open-source eval tools for global community
+- 💡 **Innovation:** Multiple projects deployed to production
+- 🌐 **Community:** Active contributor to tech communities and open-source projects
+- 📈 **Growth:** Continuous learning and skill development in emerging technologies
 
 ---
 
 <!--
 ===========================================================
-                        📖 ABOUT ME
+                         📖 ABOUT ME
 ===========================================================
 -->
 
@@ -271,7 +323,9 @@
 
 <p>
 I'm Prakash Chand Jain, a full-stack engineer, ML practitioner, and cloud enthusiast with deep interest in AI safety and robust system design. My journey started with building basic web utilities, evolved through hackathons, and matured in research internships and open-source collaboration.<br><br>
+
 A core focus of mine is advancing responsible AI—especially safeguarding LLMs using automated red-teaming and dynamic risk scoring. I thrive at the intersection of ML engineering and platform scalability.<br><br>
+
 <b>What I'm all about:</b>
 <ul>
 <li>🔬 AI Safety and Evaluation Pipelines, LLM Research</li>
@@ -279,7 +333,9 @@ A core focus of mine is advancing responsible AI—especially safeguarding LLMs 
 <li>🧑‍💻 Full-stack & Backend Engineering (React, Node.js, Python, TypeScript)</li>
 <li>🎯 Currently building risk-eval tools, upskilling on Multi-Agent Systems, dabbling with interactive 3D visualizations</li>
 <li>🎯 Open to research opportunities, fellowships, and awesome team-ups!</li>
+<li>🚀 Building products that make a real impact on society</li>
 </ul>
+
 <b>Let's build safe, creative, high-impact tech—together!</b>
 </p>
 
@@ -287,11 +343,11 @@ A core focus of mine is advancing responsible AI—especially safeguarding LLMs 
 
 <!--
 ===========================================================
-          ☕️ SUPPORT ME / LET'S CONNECT SECTION
+           ☕️ SUPPORT ME / LET'S CONNECT SECTION
 ===========================================================
 -->
 
-<h2 align="center">☕ Support &amp; Collaborate</h2>
+<h2 align="center">☕ Support & Collaborate</h2>
 
 <p align="center">
   <a href="https://www.buymeacoffee.com/prakash-codemaker">
@@ -300,14 +356,14 @@ A core focus of mine is advancing responsible AI—especially safeguarding LLMs 
 </p>
 
 <p align="center">
-  <b>“Let’s Collaborate! Open to research, internships, and global open-source projects.”</b>
+  <b>"Let's Collaborate! Open to research, internships, and global open-source projects."</b>
 </p>
 
 ---
 
 <!--
 ===========================================================
-                  🔖 FOOTER SECTION
+                   🔖 FOOTER SECTION
 ===========================================================
 -->
 
@@ -316,5 +372,5 @@ A core focus of mine is advancing responsible AI—especially safeguarding LLMs 
   <br><br>
   <i>"The only limit to our realization of tomorrow will be our doubts of today." — Franklin D. Roosevelt</i>
   <br>
-  <b>© 2025 Prakash Chand Jain</b>
+  <b>© 2026 Prakash Chand Jain</b>
 </p>
