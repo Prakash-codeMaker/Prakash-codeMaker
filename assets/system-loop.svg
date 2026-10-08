@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="270" viewBox="0 0 1200 270" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="line" x1="80" y1="135" x2="1120" y2="135" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE"/><stop offset=".5" stop-color="#8B5CF6"/><stop offset="1" stop-color="#F472B6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="270" rx="24" fill="#080C14" stroke="#1E293B"/>
+  <text x="44" y="44" fill="#E2E8F0" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="18" font-weight="700">A pattern across my systems</text>
+  <text x="44" y="70" fill="#64748B" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13">Use models for ambiguity. Keep consequential state deterministic, observable, and auditable.</text>
+
+  <path d="M112 143H1088" stroke="#1E293B" stroke-width="8" stroke-linecap="round"/>
+  <path d="M112 143H1088" stroke="url(#line)" stroke-width="2" stroke-linecap="round" stroke-dasharray="10 14">
+    <animate attributeName="stroke-dashoffset" values="0;-120" dur="5s" repeatCount="indefinite"/>
+  </path>
+
+  <g font-family="Inter,Segoe UI,Arial,sans-serif">
+    <g>
+      <circle cx="112" cy="143" r="34" fill="#0F172A" stroke="#22D3EE"/>
+      <text x="112" y="148" fill="#F8FAFC" font-size="13" text-anchor="middle">INPUT</text>
+      <text x="112" y="202" fill="#94A3B8" font-size="12" text-anchor="middle">messy signals</text>
+    </g>
+    <g>
+      <circle cx="350" cy="143" r="34" fill="#0F172A" stroke="#22D3EE"/>
+      <text x="350" y="148" fill="#F8FAFC" font-size="13" text-anchor="middle">MODEL</text>
+      <text x="350" y="202" fill="#94A3B8" font-size="12" text-anchor="middle">interpret</text>
+    </g>
+    <g>
+      <circle cx="600" cy="143" r="34" fill="#0F172A" stroke="#8B5CF6"/>
+      <text x="600" y="148" fill="#F8FAFC" font-size="13" text-anchor="middle">CONTROL</text>
+      <text x="600" y="202" fill="#94A3B8" font-size="12" text-anchor="middle">state + policy</text>
+    </g>
+    <g>
+      <circle cx="850" cy="143" r="34" fill="#0F172A" stroke="#8B5CF6"/>
+      <text x="850" y="148" fill="#F8FAFC" font-size="13" text-anchor="middle">ACT</text>
+      <text x="850" y="202" fill="#94A3B8" font-size="12" text-anchor="middle">approved action</text>
+    </g>
+    <g>
+      <circle cx="1088" cy="143" r="34" fill="#0F172A" stroke="#F472B6"/>
+      <text x="1088" y="148" fill="#F8FAFC" font-size="13" text-anchor="middle">VERIFY</text>
+      <text x="1088" y="202" fill="#94A3B8" font-size="12" text-anchor="middle">observe outcome</text>
+    </g>
+  </g>
+
+  <circle cx="112" cy="143" r="42" stroke="#22D3EE" opacity=".28">
+    <animate attributeName="r" values="40;52;40" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values=".35;.05;.35" dur="3s" repeatCount="indefinite"/>
+  </circle>
+</svg>
