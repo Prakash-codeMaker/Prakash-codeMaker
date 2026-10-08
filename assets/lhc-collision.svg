@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="430" viewBox="0 0 900 430">
+<defs>
+<radialGradient id="bg"><stop stop-color="#18203e"/><stop offset=".5" stop-color="#070b15"/><stop offset="1" stop-color="#03050a"/></radialGradient>
+<linearGradient id="beam"><stop stop-color="#22d3ee"/><stop offset=".5" stop-color="#a78bfa"/><stop offset="1" stop-color="#f472b6"/></linearGradient>
+<filter id="g"><feGaussianBlur stdDeviation="8"/></filter>
+</defs>
+<rect x="8" y="8" width="884" height="414" rx="28" fill="url(#bg)" stroke="#1e293b"/>
+<circle cx="450" cy="218" r="26" fill="#fff" filter="url(#g)" opacity=".4">
+<animate attributeName="r" values="18;38;18" dur="2.5s" repeatCount="indefinite"/>
+</circle>
+<g stroke="url(#beam)" stroke-linecap="round">
+<path d="M450 218L150 80" stroke-width="3"/><path d="M450 218L110 180" stroke-width="2"/><path d="M450 218L140 350" stroke-width="2"/>
+<path d="M450 218L760 75" stroke-width="2"/><path d="M450 218L800 210" stroke-width="3"/><path d="M450 218L760 360" stroke-width="2"/>
+<path d="M450 218L270 110" stroke-width="1.5"/><path d="M450 218L650 125" stroke-width="1.5"/>
+</g>
+<g fill="#e0f2fe">
+<circle cx="150" cy="80" r="4"><animate attributeName="r" values="3;6;3" dur="2s" repeatCount="indefinite"/></circle>
+<circle cx="110" cy="180" r="3"/><circle cx="140" cy="350" r="3"/>
+<circle cx="760" cy="75" r="3"/><circle cx="800" cy="210" r="4"><animate attributeName="r" values="3;7;3" dur="2.4s" repeatCount="indefinite"/></circle>
+<circle cx="760" cy="360" r="3"/><circle cx="650" cy="125" r="3"/>
+</g>
+<g font-family="Inter,Arial,sans-serif">
+<text x="52" y="50" fill="#94a3b8" font-family="ui-monospace,monospace" font-size="12" letter-spacing="2">SCIENTIFIC ML / ANOMALY DETECTION</text>
+<text x="52" y="340" fill="#f8fafc" font-size="22" font-weight="800">100K+ simulated collision events</text>
+<text x="52" y="370" fill="#94a3b8" font-size="14">Autoencoder + Isolation Forest → anomaly score</text>
+</g>
+<g transform="translate(610 275)">
+<rect width="220" height="90" rx="20" fill="#090f1d" stroke="#22d3ee"/>
+<text x="20" y="29" fill="#67e8f9" font-size="11" font-family="Inter,Arial,sans-serif" font-weight="700">ANOMALY</text>
+<text x="20" y="55" fill="#f8fafc" font-size="21" font-family="ui-monospace,monospace">0.982</text>
+<path d="M20 73H198" stroke="#334155"/><path d="M20 73H166" stroke="#22d3ee" stroke-width="4"><animate attributeName="d" values="M20 73H90;M20 73H166;M20 73H130;M20 73H166" dur="3s" repeatCount="indefinite"/></path>
+</g>
+</svg>
