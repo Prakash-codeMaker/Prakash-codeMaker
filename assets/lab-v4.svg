@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="390" viewBox="0 0 1400 390">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1400" y2="390"><stop stop-color="#05070d"/><stop offset=".5" stop-color="#0b1120"/><stop offset="1" stop-color="#0a0d15"/></linearGradient>
+  <linearGradient id="beam"><stop stop-color="#22d3ee"/><stop offset=".45" stop-color="#8b5cf6"/><stop offset="1" stop-color="#f472b6"/></linearGradient>
+  <filter id="glow"><feGaussianBlur stdDeviation="7"/></filter>
+</defs>
+<rect x="8" y="8" width="1384" height="374" rx="30" fill="url(#bg)" stroke="#1e293b"/>
+<text x="44" y="52" fill="#f8fafc" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="20" font-weight="750">The research → system loop</text>
+<text x="44" y="79" fill="#64748b" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13">A common architecture across AI safety, scientific ML, robot learning and workflow systems.</text>
+
+<path d="M130 198H1270" stroke="#1e293b" stroke-width="10" stroke-linecap="round"/>
+<path d="M130 198H1270" stroke="url(#beam)" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 18">
+  <animate attributeName="stroke-dashoffset" values="0;-140" dur="4s" repeatCount="indefinite"/>
+</path>
+
+<g font-family="Inter,Segoe UI,Arial,sans-serif">
+  <g><circle cx="130" cy="198" r="44" fill="#0f172a" stroke="#22d3ee" stroke-width="2"/><text x="130" y="193" fill="#f8fafc" font-size="13" font-weight="700" text-anchor="middle">QUESTION</text><text x="130" y="212" fill="#64748b" font-size="11" text-anchor="middle">what matters?</text></g>
+  <g><circle cx="350" cy="198" r="44" fill="#0f172a" stroke="#22d3ee" stroke-width="2"/><text x="350" y="193" fill="#f8fafc" font-size="13" font-weight="700" text-anchor="middle">SIGNAL</text><text x="350" y="212" fill="#64748b" font-size="11" text-anchor="middle">data + evidence</text></g>
+  <g><circle cx="570" cy="198" r="44" fill="#0f172a" stroke="#8b5cf6" stroke-width="2"/><text x="570" y="193" fill="#f8fafc" font-size="13" font-weight="700" text-anchor="middle">MODEL</text><text x="570" y="212" fill="#64748b" font-size="11" text-anchor="middle">learn / infer</text></g>
+  <g><circle cx="790" cy="198" r="44" fill="#0f172a" stroke="#8b5cf6" stroke-width="2"/><text x="790" y="193" fill="#f8fafc" font-size="13" font-weight="700" text-anchor="middle">CONTROL</text><text x="790" y="212" fill="#64748b" font-size="11" text-anchor="middle">rules + state</text></g>
+  <g><circle cx="1010" cy="198" r="44" fill="#0f172a" stroke="#f472b6" stroke-width="2"/><text x="1010" y="193" fill="#f8fafc" font-size="13" font-weight="700" text-anchor="middle">ACTION</text><text x="1010" y="212" fill="#64748b" font-size="11" text-anchor="middle">ship / act</text></g>
+  <g><circle cx="1270" cy="198" r="44" fill="#0f172a" stroke="#34d399" stroke-width="2"/><text x="1270" y="193" fill="#f8fafc" font-size="13" font-weight="700" text-anchor="middle">VERIFY</text><text x="1270" y="212" fill="#64748b" font-size="11" text-anchor="middle">observe reality</text></g>
+</g>
+
+<g font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="12" fill="#94a3b8">
+<text x="105" y="290">open-ended</text><text x="320" y="290">measure</text><text x="549" y="290">interpret</text><text x="765" y="290">constrain</text><text x="986" y="290">execute</text><text x="1238" y="290">learn</text>
+</g>
+
+<circle cx="130" cy="198" r="56" fill="none" stroke="#22d3ee" stroke-opacity=".25">
+  <animate attributeName="r" values="48;66;48" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values=".4;.02;.4" dur="3s" repeatCount="indefinite"/>
+</circle>
+</svg>
