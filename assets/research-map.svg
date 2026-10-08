@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="250" viewBox="0 0 1200 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="r" x1="0" y1="0" x2="1200" y2="250" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/><stop offset=".55" stop-color="#0B1220"/><stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="250" rx="24" fill="url(#r)" stroke="#1E293B"/>
+  <text x="42" y="42" fill="#E2E8F0" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="18" font-weight="700">Research map</text>
+  <text x="42" y="66" fill="#64748B" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13">Different domains, same habit: define the signal, test the failure mode, measure the result.</text>
+
+  <g font-family="Inter,Segoe UI,Arial,sans-serif">
+    <rect x="42" y="101" width="250" height="105" rx="16" fill="#0F172A" stroke="#22D3EE"/>
+    <text x="62" y="129" fill="#67E8F9" font-size="12" font-weight="700">ROBOT LEARNING</text>
+    <text x="62" y="154" fill="#F8FAFC" font-size="15" font-weight="700">VLA / Imitation Learning</text>
+    <text x="62" y="178" fill="#94A3B8" font-size="12">data collection · augmentation</text>
+
+    <rect x="322" y="101" width="250" height="105" rx="16" fill="#0F172A" stroke="#8B5CF6"/>
+    <text x="342" y="129" fill="#C4B5FD" font-size="12" font-weight="700">SCIENTIFIC ML</text>
+    <text x="342" y="154" fill="#F8FAFC" font-size="15" font-weight="700">Anomaly / signal systems</text>
+    <text x="342" y="178" fill="#94A3B8" font-size="12">HEP · autoencoders · ensembles</text>
+
+    <rect x="602" y="101" width="250" height="105" rx="16" fill="#0F172A" stroke="#F472B6"/>
+    <text x="622" y="129" fill="#F9A8D4" font-size="12" font-weight="700">AI RELIABILITY</text>
+    <text x="622" y="154" fill="#F8FAFC" font-size="15" font-weight="700">Evaluation / guardrails</text>
+    <text x="622" y="178" fill="#94A3B8" font-size="12">red-teaming · judges · workflows</text>
+
+    <rect x="882" y="101" width="276" height="105" rx="16" fill="#0F172A" stroke="#34D399"/>
+    <text x="902" y="129" fill="#6EE7B7" font-size="12" font-weight="700">SYSTEMS</text>
+    <text x="902" y="154" fill="#F8FAFC" font-size="15" font-weight="700">Durable product engineering</text>
+    <text x="902" y="178" fill="#94A3B8" font-size="12">APIs · state · idempotency · audit</text>
+  </g>
+</svg>
