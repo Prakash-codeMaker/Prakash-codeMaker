@@ -17,13 +17,28 @@
 
 ---
 
-<div align="center">
+<table align="center">
+<tr>
+<td width="22%" align="center">
 
-<strong>9.74 GPA</strong> · <strong>2K+ GAINN signups</strong> · <strong>1K+ StoryLens signups</strong> · <strong>85% evaluator detection</strong> · <strong>100K+ LHC-style samples</strong>
+<img src="https://raw.githubusercontent.com/Prakash-codeMaker/PCJ-Portfolio/main/Portfolio-main/photo.png.jpg" width="150" height="150" style="border-radius:50%;" alt="Prakash Chand Jain"/>
 
-</div>
+</td>
+<td width="78%" valign="middle">
 
-<br/>
+### Building at the intersection of **AI × research × systems**
+
+<strong>9.74 GPA</strong> · <strong>2K+ GAINN</strong> · <strong>1K+ StoryLens</strong> · <strong>85% evaluator detection</strong> · <strong>100K+ LHC-style samples</strong>
+
+<br/><br/>
+
+Research Intern at <strong>IDSIA / SUPSI</strong> · Penetration Tester at <strong>Ceeras</strong>
+
+</td>
+</tr>
+</table>
+
+---
 
 <table>
 <tr>
@@ -46,140 +61,150 @@
 </td>
 <td width="50%">
 
-<img src="./assets/robotics-oceara.svg" width="100%" alt="Oceara robotics visualization"/>
+<img src="./assets/robotics-oceara.svg" width="100%" alt="Oceara Robotics O-01 visualization"/>
 
 </td>
 </tr>
 </table>
 
-<p align="center"><sub>AI systems · scientific ML · reliable software · robotics</sub></p>
-
----
-
 <div align="center">
-<img src="./assets/lab-v4.svg" width="100%" alt="Animated research to system pipeline"/>
+<sub>multi-agent AI · safety evaluation · scientific ML · underwater robotics</sub>
 </div>
 
 ---
 
-## 🧠 Core
-
-<table align="center">
-<tr>
-<td align="center">
-<img src="https://skillicons.dev/icons?i=python,pytorch,sklearn&perline=3" width="115" alt="AI ML icons"/><br/>
-<strong>AI / ML</strong>
-</td>
-<td align="center">
-<img src="https://skillicons.dev/icons?i=fastapi,nodejs,postgres,docker,linux&perline=5" width="180" alt="Backend systems icons"/><br/>
-<strong>Systems</strong>
-</td>
-<td align="center">
-<img src="https://skillicons.dev/icons?i=react,nextjs,typescript,tailwind,threejs&perline=5" width="180" alt="Frontend product icons"/><br/>
-<strong>Product</strong>
-</td>
-</tr>
-</table>
-
 <div align="center">
-<code>VLA</code> · <code>Imitation Learning</code> · <code>LLM-as-a-Judge</code> · <code>Multi-Agent Systems</code> · <code>Anomaly Detection</code> · <code>REST APIs</code> · <code>PostgreSQL</code> · <code>Docker</code>
+<img src="./assets/lab-v4.svg" width="100%" alt="Animated research to system loop"/>
 </div>
 
 ---
 
-## 🚀 Selected work
+## 🧠 Stack
+
+<p align="center">
+<img src="https://skillicons.dev/icons?i=python,pytorch,sklearn,cpp,java,typescript,javascript,nodejs,fastapi,react,nextjs,postgres,mongodb,docker,linux,git,vercel&perline=9" alt="Technology icons"/>
+</p>
+
+<div align="center">
+<code>VLA</code> · <code>Imitation Learning</code> · <code>LLM-as-a-Judge</code> · <code>Multi-Agent Systems</code> · <code>Anomaly Detection</code> · <code>REST APIs</code> · <code>PostgreSQL</code>
+</div>
+
+---
+
+## 🚀 Work
 
 <table>
 <tr>
-<td valign="top" width="33%">
+<td width="33%" valign="top" align="center">
 
-<h3>GAINN</h3>
-<strong>Multi-agent AI news</strong><br/>
-<sub>2K+ signups</sub><br/><br/>
-Research → drafting → QC → product<br/><br/>
-<a href="https://github.com/Prakash-codeMaker">repo</a>
+### GAINN
+<strong>Multi-agent AI news</strong>
 
-</td>
-<td valign="top" width="33%">
+<img src="https://img.shields.io/badge/2K%2B_signups-111827?style=flat-square"/>
 
-<h3>LLM Safety</h3>
-<strong>Automated red-teaming</strong><br/>
-<sub>85% detection</sub><br/><br/>
-Adversarial prompts → judging → reports<br/><br/>
-<a href="https://github.com/Prakash-codeMaker/llm-safety-evaluator">repo</a>
+Research → draft → QC → ship
+
+<a href="https://github.com/Prakash-codeMaker">↗</a>
 
 </td>
-<td valign="top" width="33%">
 
-<h3>TeamForge</h3>
-<strong>Agent benchmark</strong><br/><br/>
-Planning → tools → tests → self-correction<br/><br/>
-<a href="https://github.com/Prakash-codeMaker/teamforge">repo</a>
+<td width="33%" valign="top" align="center">
+
+### LLM Safety
+<strong>Automated red-teaming</strong>
+
+<img src="https://img.shields.io/badge/85%25_detection-111827?style=flat-square"/>
+
+Adversarial prompts → judge → report
+
+<a href="https://github.com/Prakash-codeMaker/llm-safety-evaluator">↗</a>
+
+</td>
+
+<td width="33%" valign="top" align="center">
+
+### TeamForge
+<strong>Agent benchmark</strong>
+
+Plan → act → test → self-correct
+
+<a href="https://github.com/Prakash-codeMaker/teamforge">↗</a>
 
 </td>
 </tr>
+
 <tr>
-<td valign="top">
+<td valign="top" align="center">
 
-<h3>LHC ML</h3>
-<strong>Scientific anomaly detection</strong><br/>
-<sub>100K+ samples</sub><br/><br/>
-Autoencoder + Isolation Forest<br/><br/>
-<a href="https://github.com/Prakash-codeMaker/lhc-anomaly-detection">repo</a>
+### LHC ML
+<strong>Scientific anomaly detection</strong>
 
-</td>
-<td valign="top">
+100K+ samples · AE + IF
 
-<h3>Oceara O-01</h3>
-<strong>Underwater robotics</strong><br/><br/>
-Perception · localization · navigation<br/><br/>
-<a href="https://github.com/Prakash-codeMaker/oceara-robotics">repo</a>
+<a href="https://github.com/Prakash-codeMaker/lhc-anomaly-detection">↗</a>
 
 </td>
-<td valign="top">
 
-<h3>RecoverIT</h3>
-<strong>AI + deterministic control</strong><br/><br/>
-Evidence → verify → approve → act<br/><br/>
-<a href="https://github.com/Prakash-codeMaker/RecoverIT">repo</a>
+<td valign="top" align="center">
+
+### RecoverIT
+<strong>AI + deterministic control</strong>
+
+Evidence → verify → approve → act
+
+<a href="https://github.com/Prakash-codeMaker/RecoverIT">↗</a>
+
+</td>
+
+<td valign="top" align="center">
+
+### Oceara O-01
+<strong>Underwater robotics</strong>
+
+Perception · localization · navigation
+
+<a href="https://github.com/Prakash-codeMaker/oceara-robotics">↗</a>
 
 </td>
 </tr>
 </table>
+
+---
+
+<div align="center">
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=Prakash-codeMaker&theme=github_dark" width="96%" alt="GitHub contribution summary"/>
+</div>
+
+<div align="center">
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Prakash-codeMaker&layout=donut&hide_border=true&theme=transparent&langs_count=8" height="180" alt="Top languages"/>
+<img src="https://github-readme-stats.vercel.app/api?username=Prakash-codeMaker&show_icons=true&rank_icon=github&hide_border=true&theme=transparent" height="180" alt="GitHub stats"/>
+</div>
 
 ---
 
 ## 🔬 Research
 
-<strong>IDSIA / SUPSI</strong> · multimodal data collection + augmentation for VLA / Imitation Learning<br/>
-<strong>Scientific ML</strong> · anomaly detection + signal analysis on simulated HEP data<br/>
-<strong>AI reliability</strong> · adversarial testing + LLM-as-a-Judge
+<strong>IDSIA / SUPSI</strong> — multimodal data collection + augmentation for VLA / Imitation Learning.
+
+<strong>Scientific ML</strong> — anomaly detection + signal analysis on simulated high-energy-physics data.
+
+<strong>AI reliability</strong> — adversarial evaluation + LLM-as-a-Judge.
 
 ---
 
-## ⚙️ System principle
-
 <div align="center">
-<img src="./assets/constellation-v4.svg" width="100%" alt="Animated system constellation"/>
-</div>
-
-<div align="center">
-<strong>Interpret with models. Control with deterministic software. Verify the outcome.</strong>
+<img src="./assets/constellation-v4.svg" width="100%" alt="Animated research constellation"/>
 </div>
 
 ---
 
-## 📡 Activity
+<div align="center">
 
-<p align="center">
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=Prakash-codeMaker&bg_color=00000000&color=94a3b8&line=22d3ee&point=8b5cf6&area=true&hide_border=true" width="96%" alt="GitHub activity graph"/>
-</p>
+<strong>Interpret ambiguity with models.</strong><br/>
+<strong>Keep important state deterministic.</strong><br/>
+<strong>Verify what actually happened.</strong>
 
-<p align="center">
-<a href="https://github.com/Prakash-codeMaker?tab=repositories"><img src="https://img.shields.io/badge/51%20REPOSITORIES-111827?style=for-the-badge&logo=github&logoColor=white"/></a>
-<a href="https://github.com/Prakash-codeMaker/RecoverIT"><img src="https://img.shields.io/badge/RECOVERIT-LIVE-111827?style=for-the-badge&logo=vercel&logoColor=white"/></a>
-<a href="https://prakash-portfolio.vercel.app/"><img src="https://img.shields.io/badge/PORTFOLIO-LIVE-111827?style=for-the-badge&logo=vercel&logoColor=white"/></a>
-</p>
+</div>
 
 ---
 
@@ -188,13 +213,13 @@ Evidence → verify → approve → act<br/><br/>
 
 <br/>
 
-<strong>Agents / automation:</strong> PortalPilot · AgentDate · Empath · Loop Closer · MindTussle
+Agents / automation → PortalPilot · AgentDate · Empath · Loop Closer · MindTussle
 
-<strong>Verification / systems:</strong> Strategy Reality · Contract Reality · EVE Healthcare API · Policy · Conditional Execution Vault
+Verification / systems → Strategy Reality · Contract Reality · EVE Healthcare API · Policy · Conditional Execution Vault
 
-<strong>ML / data:</strong> VISIONGUARD · Fast Particle Simulation ML · HEP Detector Signal Reconstruction · CineMatch · Keyword Extraction
+ML / data → VISIONGUARD · Fast Particle Simulation ML · HEP Detector Signal Reconstruction · CineMatch · Keyword Extraction
 
-<strong>Product / Web3:</strong> IP Aura · VeriChain Vault · VeriChain 3D ID · 1fi Marketplace · TaskFlow · Notice Board
+Product / Web3 → IP Aura · VeriChain Vault · VeriChain 3D ID · 1fi Marketplace · TaskFlow · Notice Board
 
 </details>
 
@@ -206,10 +231,10 @@ Evidence → verify → approve → act<br/><br/>
 
 <br/><br/>
 
+<img src="https://komarev.com/ghpvc/?username=Prakash-codeMaker&style=for-the-badge&color=22d3ee&label=PROFILE+VIEWS" alt="Profile views"/>
+
+<br/><br/>
+
 <img src="./assets/footer-v4.svg" width="100%" alt=""/>
-
-<br/>
-
-<sub>Curiosity in. Evidence out.</sub>
 
 </div>
