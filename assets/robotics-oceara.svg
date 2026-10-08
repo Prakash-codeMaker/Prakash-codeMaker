@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="430" viewBox="0 0 900 430">
+<defs>
+<linearGradient id="water" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#07182c"/><stop offset="1" stop-color="#020812"/></linearGradient>
+<linearGradient id="neon"><stop stop-color="#22d3ee"/><stop offset=".5" stop-color="#34d399"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient>
+<filter id="glow"><feGaussianBlur stdDeviation="7"/></filter>
+</defs>
+<rect x="8" y="8" width="884" height="414" rx="28" fill="url(#water)" stroke="#17304a"/>
+<g opacity=".45" stroke="#1e88a8"><path d="M30 105C160 80 250 125 380 98S650 70 870 115"/><path d="M20 145C170 120 240 155 400 137S700 115 870 150"/></g>
+<g transform="translate(475 210)">
+<ellipse cx="0" cy="70" rx="165" ry="32" fill="#22d3ee" opacity=".12" filter="url(#glow)"/>
+<path d="M-120 10 Q0 -55 120 10 L105 85 Q0 130 -105 85Z" fill="#0b1425" stroke="url(#neon)" stroke-width="3"/>
+<circle cx="0" cy="15" r="30" fill="#07101f" stroke="#22d3ee" stroke-width="3"/>
+<circle cx="0" cy="15" r="11" fill="#67e8f9"/>
+<path d="M-85 20L-145 -28M85 20L145 -28M-78 72L-125 112M78 72L125 112" stroke="#64748b" stroke-width="8" stroke-linecap="round"/>
+<circle cx="-150" cy="-32" r="9" fill="#8b5cf6"/><circle cx="150" cy="-32" r="9" fill="#8b5cf6"/>
+<path d="M0 48L0 215" stroke="#22d3ee" stroke-opacity=".32" stroke-dasharray="7 12">
+<animate attributeName="stroke-dashoffset" from="0" to="-90" dur="2.3s" repeatCount="indefinite"/></path>
+</g>
+<g transform="translate(80 105)">
+<circle cx="95" cy="105" r="80" fill="none" stroke="#22d3ee" stroke-opacity=".22" stroke-width="2"/>
+<circle cx="95" cy="105" r="46" fill="none" stroke="#22d3ee" stroke-opacity=".35"/>
+<path d="M95 105L158 60" stroke="#22d3ee" stroke-width="3">
+<animateTransform attributeName="transform" type="rotate" from="0 95 105" to="360 95 105" dur="3.5s" repeatCount="indefinite"/>
+</path>
+<circle cx="158" cy="60" r="6" fill="#34d399" filter="url(#glow)">
+<animate attributeName="opacity" values=".2;1;.2" dur="1.8s" repeatCount="indefinite"/></circle>
+</g>
+<text x="48" y="50" fill="#94a3b8" font-family="ui-monospace,monospace" font-size="12" letter-spacing="2">OCEARA ROBOTICS / O-01</text>
+<text x="48" y="350" fill="#f8fafc" font-family="Inter,Arial,sans-serif" font-size="22" font-weight="800">Perception · localization · navigation</text>
+<text x="48" y="378" fill="#94a3b8" font-family="Inter,Arial,sans-serif" font-size="14">autonomous underwater robotics</text>
+</svg>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="430" viewBox="0 0 900 430">
+<defs>
+<radialGradient id="bg"><stop stop-color="#101936"/><stop offset=".55" stop-color="#060a16"/><stop offset="1" stop-color="#03050b"/></radialGradient>
+<linearGradient id="g"><stop stop-color="#22d3ee"/><stop offset=".5" stop-color="#7c3aed"/><stop offset="1" stop-color="#f472b6"/></linearGradient>
+<filter id="blur"><feGaussianBlur stdDeviation="20"/></filter>
+<filter id="glow"><feGaussianBlur stdDeviation="5"/></filter>
+</defs>
+<rect x="8" y="8" width="884" height="414" rx="28" fill="url(#bg)" stroke="#1e293b"/>
+<circle cx="680" cy="205" r="155" fill="#22d3ee" opacity=".10" filter="url(#blur)"/>
+<g transform="translate(610 210)">
+<ellipse rx="138" ry="56" fill="none" stroke="#22d3ee" stroke-opacity=".45">
+ <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="8s" repeatCount="indefinite"/>
+</ellipse>
+<ellipse rx="138" ry="56" fill="none" stroke="#f472b6" stroke-opacity=".35" transform="rotate(60)">
+ <animateTransform attributeName="transform" type="rotate" from="60" to="420" dur="11s" repeatCount="indefinite"/>
+</ellipse>
+<ellipse rx="138" ry="56" fill="none" stroke="#7c3aed" stroke-opacity=".4" transform="rotate(120)">
+ <animateTransform attributeName="transform" type="rotate" from="120" to="480" dur="9s" repeatCount="indefinite"/>
+</ellipse>
+<circle r="70" fill="#0b1022" stroke="url(#g)" stroke-width="3"/>
+<circle r="26" fill="#0ea5e9" opacity=".18" filter="url(#glow)"/>
+<text y="6" text-anchor="middle" fill="#f8fafc" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="800">GAINN</text>
+<text y="29" text-anchor="middle" fill="#64748b" font-family="ui-monospace,monospace" font-size="10">multi-agent pipeline</text>
+</g>
+<g font-family="Inter,Arial,sans-serif">
+<g><rect x="70" y="115" width="210" height="78" rx="18" fill="#0b1020" stroke="#22d3ee"/><text x="92" y="144" fill="#67e8f9" font-size="11" font-weight="700">RESEARCH</text><text x="92" y="169" fill="#e2e8f0" font-size="14">sources + extraction</text></g>
+<g><rect x="320" y="80" width="210" height="78" rx="18" fill="#0b1020" stroke="#7c3aed"/><text x="342" y="109" fill="#c4b5fd" font-size="11" font-weight="700">DRAFT</text><text x="342" y="134" fill="#e2e8f0" font-size="14">agent generation</text></g>
+<g><rect x="320" y="220" width="210" height="78" rx="18" fill="#0b1020" stroke="#f472b6"/><text x="342" y="249" fill="#f9a8d4" font-size="11" font-weight="700">QC</text><text x="342" y="274" fill="#e2e8f0" font-size="14">verification layer</text></g>
+<g><rect x="70" y="250" width="210" height="78" rx="18" fill="#0b1020" stroke="#34d399"/><text x="92" y="279" fill="#6ee7b7" font-size="11" font-weight="700">PRODUCT</text><text x="92" y="304" fill="#e2e8f0" font-size="14">2K+ signups</text></g>
+</g>
+<g stroke="url(#g)" stroke-width="2" stroke-dasharray="8 13">
+<path d="M280 154L320 119"><animate attributeName="stroke-dashoffset" from="0" to="-120" dur="3s" repeatCount="indefinite"/></path>
+<path d="M530 119L570 175"><animate attributeName="stroke-dashoffset" from="0" to="-120" dur="3s" repeatCount="indefinite"/></path>
+<path d="M530 259L570 235"><animate attributeName="stroke-dashoffset" from="0" to="-120" dur="3s" repeatCount="indefinite"/></path>
+<path d="M280 289L330 259"><animate attributeName="stroke-dashoffset" from="0" to="-120" dur="3s" repeatCount="indefinite"/></path>
+</g>
+<text x="48" y="48" fill="#94a3b8" font-family="ui-monospace,monospace" font-size="12" letter-spacing="2">LIVE PRODUCT / AGENT SYSTEMS</text>
+</svg>
