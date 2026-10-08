@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="140" viewBox="0 0 1400 140">
+<defs><linearGradient id="g"><stop stop-color="#22d3ee"/><stop offset=".5" stop-color="#8b5cf6"/><stop offset="1" stop-color="#f472b6"/></linearGradient></defs>
+<path d="M0 80 C180 20 300 130 480 70 S760 20 930 78 S1200 130 1400 55 V140 H0Z" fill="url(#g)" opacity=".08"/>
+<path d="M0 80 C180 20 300 130 480 70 S760 20 930 78 S1200 130 1400 55" fill="none" stroke="url(#g)" stroke-width="2">
+<animate attributeName="stroke-dasharray" values="0,1400;700,700;1400,0;0,1400" dur="9s" repeatCount="indefinite"/>
+</path>
+<text x="700" y="116" text-anchor="middle" fill="#64748b" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="12">curiosity in · evidence out</text>
+</svg>
