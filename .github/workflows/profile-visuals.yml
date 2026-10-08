@@ -1,0 +1,53 @@
+name: Profile visuals
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 18 * * *"
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: write
+
+jobs:
+  profile-3d:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Generate 3D contribution art
+        uses: yoshi389111/github-profile-3d-contrib@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USERNAME: ${{ github.repository_owner }}
+          MAX_REPOS: 100
+
+      - name: Commit generated profile art
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add -A profile-3d-contrib
+          if git diff --cached --quiet; then
+            echo "No 3D contribution changes."
+          else
+            git commit -m "chore: refresh 3D contribution profile"
+            git push
+          fi
+
+  snake:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            profile-snake.svg?color_snake=#22d3ee&color_dots=#0f172a,#164e63,#155e75,#0e7490,#0891b2
+
+      - name: Publish snake
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          build_dir: dist
+          jekyll: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BUILD_DIR: dist
