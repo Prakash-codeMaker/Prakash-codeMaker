@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="430" viewBox="0 0 900 430">
+<defs>
+<radialGradient id="bg"><stop stop-color="#1c1020"/><stop offset=".45" stop-color="#0b0d18"/><stop offset="1" stop-color="#03050a"/></radialGradient>
+<linearGradient id="safe"><stop stop-color="#22d3ee"/><stop offset=".5" stop-color="#8b5cf6"/><stop offset="1" stop-color="#fb7185"/></linearGradient>
+<filter id="glow"><feGaussianBlur stdDeviation="8"/></filter>
+</defs>
+<rect x="8" y="8" width="884" height="414" rx="28" fill="url(#bg)" stroke="#1e293b"/>
+<text x="48" y="50" fill="#94a3b8" font-family="ui-monospace,monospace" font-size="12" letter-spacing="2">AI RELIABILITY / RED TEAMING</text>
+
+<g transform="translate(455 215)">
+<path d="M0 -122 L105 -80 L90 40 Q65 100 0 128 Q-65 100 -90 40L-105 -80Z" fill="#080d18" stroke="url(#safe)" stroke-width="3"/>
+<path d="M-42 4L-12 34L50 -36" fill="none" stroke="#67e8f9" stroke-width="11" stroke-linecap="round" stroke-linejoin="round">
+<animate attributeName="stroke-dasharray" values="0 140;140 0" dur="2.2s" repeatCount="indefinite"/>
+</path>
+</g>
+
+<g font-family="Inter,Arial,sans-serif">
+<g><rect x="55" y="112" width="205" height="86" rx="18" fill="#0a0d18" stroke="#fb7185"/><text x="78" y="143" fill="#fb7185" font-size="11" font-weight="700">ATTACK SET</text><text x="78" y="171" fill="#e2e8f0" font-size="14">adversarial prompts</text></g>
+<g><rect x="640" y="112" width="205" height="86" rx="18" fill="#0a0d18" stroke="#22d3ee"/><text x="663" y="143" fill="#67e8f9" font-size="11" font-weight="700">JUDGE</text><text x="663" y="171" fill="#e2e8f0" font-size="14">multi-model scoring</text></g>
+<path d="M260 155H375M535 155H640" stroke="url(#safe)" stroke-width="3" stroke-dasharray="8 12">
+<animate attributeName="stroke-dashoffset" from="0" to="-120" dur="2.5s" repeatCount="indefinite"/></path>
+<text x="50" y="340" fill="#f8fafc" font-size="22" font-weight="800">85% detection accuracy</text>
+<text x="50" y="370" fill="#94a3b8" font-size="14">FastAPI · LiteLLM · LLM-as-a-Judge · reports</text>
+</g>
+
+<g fill="#fb7185"><circle cx="320" cy="95" r="3"><animate attributeName="cy" values="95;72;95" dur="2.2s" repeatCount="indefinite"/></circle><circle cx="585" cy="325" r="3"><animate attributeName="r" values="2;6;2" dur="1.9s" repeatCount="indefinite"/></circle></g>
+</svg>
