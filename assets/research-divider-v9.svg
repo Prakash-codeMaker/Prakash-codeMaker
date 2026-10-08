@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="100" viewBox="0 0 1600 100">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1600" y2="0"><stop stop-color="#7dd3fc" stop-opacity="0"/><stop offset=".5" stop-color="#e5e7eb" stop-opacity=".55"/><stop offset="1" stop-color="#a78bfa" stop-opacity="0"/></linearGradient></defs>
+<path d="M70 52H1530" stroke="url(#g)" stroke-width="1"/>
+<path d="M220 52 C420 20 560 84 760 52 S1120 22 1380 52" fill="none" stroke="#93c5fd" stroke-opacity=".18" stroke-width="2" stroke-dasharray="5 16">
+<animate attributeName="stroke-dashoffset" values="0;-160" dur="6s" repeatCount="indefinite"/>
+</path>
+<circle cx="800" cy="52" r="4" fill="#f8fafc" fill-opacity=".8">
+<animate attributeName="r" values="3;7;3" dur="3s" repeatCount="indefinite"/>
+</circle>
+</svg>
