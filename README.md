@@ -101,6 +101,8 @@
 
 ## Research
 
+**Qwen3 correctness probing** — [Exploratory research note](./research/qwen3-correctness-probing.md) on residual-stream probes versus a model-confidence baseline (200 MMLU questions; AUROC 0.6022 vs. 0.6568). The probe did not outperform the baseline; limitations and follow-up experiments are documented.
+
 **IDSIA / SUPSI** — multimodal data collection and augmentation for VLA / Imitation Learning.
 
 **Scientific ML** — anomaly detection and signal analysis on simulated high-energy-physics data.
