@@ -103,7 +103,9 @@
 
 **Qwen3 correctness probing** — [Exploratory research note](./research/qwen3-correctness-probing.md) on residual-stream probes versus a model-confidence baseline (200 MMLU questions; AUROC 0.6022 vs. 0.6568). The probe did not outperform the baseline; limitations and follow-up experiments are documented.
 
-**IDSIA / SUPSI** — multimodal data collection and augmentation for VLA / Imitation Learning.
+**VoxelPool Explorer** — [Research prototype](https://github.com/Prakash-codeMaker/voxelpool-explorer) for reproducible voxel-pooling experiments, correctness-gated CPU benchmarking, and workload-aware strategy selection. Its exploratory 3-nearest-neighbour selector reached 75.00% accuracy versus a 58.33% fixed-strategy baseline on 12 held-out configurations in one small split; this result needs repeated, larger-scale validation. See the [experiment report](https://github.com/Prakash-codeMaker/voxelpool-explorer/blob/main/research-results/RESEARCH_REPORT.md) and [research notes](https://github.com/Prakash-codeMaker/voxelpool-explorer/blob/main/RESEARCH_NOTES.md).
+
+**IDSIA / SUPSI** — robot-demonstration data augmentation, imitation-learning-based robotic-arm training, and independent exploration of VLA architectures.
 
 **Scientific ML** — anomaly detection and signal analysis on simulated high-energy-physics data.
 
