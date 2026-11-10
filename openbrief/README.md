@@ -16,16 +16,19 @@ The reference app currently supports:
 
 - Create and edit a structured assessment record.
 - Track 11 assessment terms, including expected effort and deadline, and clearly show which are missing.
-- Label populated disclosures as copied from an employer source, candidate-inferred/paraphrased, or unknown; the detail view keeps this source label visible.
+- Paste an assessment brief or load a text-based `.txt`, `.md` or `.html` file for local keyword-assisted extraction.
+- Review exact source excerpts matched to purpose, deliverables, rubric, AI/tool policy, compensation, IP/reuse, data use, feedback and contact fields; select which passages to use before they enter the record.
+- Suggest a numeric expected-effort value only when a single explicit number of hours is found; ranges and deadlines remain manual-review items.
+- Label imported passages as `candidate_transcribed`, not employer-certified facts. The parser is heuristic, not an AI model, and may miss or misclassify passages.
 - Record candidate work sessions and elapsed time.
 - Record candidate-reported submission, receipt acknowledgement, feedback, and outcome milestones. These are not treated as employer-verified events.
 - See a suggested next step based on the current assessment lifecycle.
 - Export one record or the full passport as JSON; import a backup without overwriting records already in the browser.
 - Copy a clarification request for missing terms and a follow-up message after submission.
 - Accept only HTTP(S) brief links and validate imported records before adding them.
-- Store data locally in the browser. No login, analytics, server sync, or employer access.
+- Store data locally in the browser. Brief text is processed client-side and is not uploaded by this feature; no login, analytics, server sync, or employer access.
 
-The app is intentionally not an assessment parser and does not upload briefs or work product. Do not store confidential employer materials or sensitive personal data.
+Brief importer limits: only pasted text and `.txt`, `.md` or `.html` files are supported. PDF and DOCX extraction are not included. The parser uses simple keyword patterns on text in the browser; candidates must review each excerpt and correct any false match. It does not follow brief links, crawl websites, summarise content with AI, or prove that a passage came from the employer. Avoid confidential instructions, personal data or material you are not permitted to copy. The app does not upload the pasted/file text or work product.
 
 **Backup note:** use Export all data to create a JSON backup and Import backup to restore it in another browser profile. Import adds records with new IDs and skips duplicate IDs; it does not replace existing records. Keep an additional copy somewhere secure because browser storage can be cleared.
 
@@ -85,7 +88,7 @@ Measure missing-field frequency, expected-vs-actual effort, repeat use, clarific
 
 ## Files
 
-- `index.html` — local-first reference application.
+- `index.html` — local-first reference application with a candidate-reviewed brief importer.
 - `openbrief-assessment.schema.json` — JSON Schema draft 0.1.
 
 ## License
