@@ -147,15 +147,15 @@ const disclosureLabels={
 };
 const fields=["purpose","deliverables","rubric","ai_policy","compensation","ip_rights","data_use","feedback","contact"];
 const briefFieldRules=[
- {key:"purpose",label:"Purpose / skill tested",pattern:/\b(assess(?:ment)?|evaluate|evaluation of|test(?:ing)?|demonstrate|skills? being assessed|we are looking for)\b/i},
- {key:"deliverables",label:"Scope / deliverables",pattern:/\b(submit|submission|deliverable|deliver|build|create|implement|develop|provide|prepare|upload|repository|github|presentation|report|prototype|working demo)\b/i},
+ {key:"purpose",label:"Purpose / skill tested",pattern:/\b(evaluat(?:e|es|ed|ing)|test(?:s|ed|ing)?|demonstrat(?:e|es|ed|ing)|skills? (?:being )?assessed|we are looking for|designed to assess|purpose of this (?:exercise|assessment))\b/i},
+ {key:"deliverables",label:"Scope / deliverables",pattern:/\b(submission|deliverable|deliver|build|create|implement|develop|provide|prepare|upload|repository|github|presentation|report|prototype|working demo|submit (?:a|the|your)\b)\b/i},
  {key:"rubric",label:"Evaluation criteria",pattern:/\b(rubric|evaluation criteria|criteria|scored|grading|graded|assessed on|we will assess|we evaluate|weightage|weights)\b/i},
- {key:"ai_policy",label:"Permitted tools / AI policy",pattern:/\b(ai|artificial intelligence|chatgpt|copilot|llm|generative|tools? (?:are )?(?:allowed|permitted|prohibited)|do not use|must not use)\b/i},
+ {key:"ai_policy",label:"Permitted tools / AI policy",pattern:/\b(ai tools?|artificial intelligence tools?|chatgpt|copilot|llm|generative ai|use of ai|ai (?:is )?(?:allowed|permitted|prohibited|banned|not allowed|not permitted)|tools? (?:are )?(?:allowed|permitted|prohibited)|do not use|must not use)\b/i},
  {key:"compensation",label:"Compensation",pattern:/\b(paid|unpaid|stipend|compensation|remuneration|₹|inr\b|usd\b|payment|honorarium)\b/i},
  {key:"ip_rights",label:"IP / reuse rights",pattern:/\b(intellectual property|ownership|own the work|work product|reuse|portfolio|licen[cs]e|assign(?:ment)? of rights|copyright)\b/i},
  {key:"data_use",label:"Data use / AI evaluation",pattern:/\b(data retention|retain|retention|delete|deletion|store|stored|recording|automated evaluation|ai evaluation|personal data|privacy|third[- ]party)\b/i},
  {key:"feedback",label:"Feedback / decision timeline",pattern:/\b(feedback|hear back|decision|within \d+ days?|business days?|working days?|response timeline|results by)\b/i},
- {key:"contact",label:"Clarification contact",pattern:/\b(contact|reach out|questions? (?:to|at)|recruiter|hiring team|email)\b|[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i}
+ {key:"contact",label:"Clarification contact",pattern:/\b(contact|reach out|questions? (?:to|at)|recruiter|hiring team)\b|\bemail\s*[:\-]|[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i}
 ];
 let pendingBriefImport=null;
 let briefProposals=[];
@@ -171,12 +171,17 @@ const dateText=value=>{if(!value)return "Not recorded";const d=new Date(value);r
 const safe=value=>String(value==null?"":value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 function safeHttpUrl(value){try{const u=new URL(String(value||""));return u.protocol==="http:"||u.protocol==="https:"?u.href:null;}catch(e){return null;}}
 function cleanBriefText(value){const text=String(value||"").replace(/\u0000/g,"").replace(/\r\n?/g,"\n");return text.length>250000?text.slice(0,250000):text;}
-function briefSegments(value){return cleanBriefText(value).split(/\n+/).flatMap(line=>(line.match(/[^.!?]+[.!?]?/g)||[line]).map(part=>part.trim())).filter(part=>part.length>12);}
+function briefSegments(value){return cleanBriefText(value).split(/\n+/).flatMap(line=>line.split(/(?<=[.!?])\s+(?=[A-Z0-9])/).map(part=>part.trim())).filter(part=>part.length>12);}
 function clippedExcerpt(value){const t=value.trim();return t.length>420?t.slice(0,417)+"…":t;}
 function extractBriefTerms(value){
  const segments=briefSegments(value),results=[];
  briefFieldRules.forEach(rule=>{
-  const hits=segments.filter(line=>rule.pattern.test(line)).slice(0,2);
+  const hits=segments.filter(line=>{
+   if(!rule.pattern.test(line))return false;
+   if(rule.key==="deliverables"&&/\b(deadline|due date|submit by|submission by|no later than|due by)\b/i.test(line))return false;
+   if(rule.key==="ai_policy"&&/\b(automated|AI evaluation|evaluated by AI|screened by AI)\b/i.test(line)&&! /\b(chatgpt|copilot|generative|AI tools?|use of AI|permitted|prohibited|allowed|must not|do not use)\b/i.test(line))return false;
+   return true;
+  }).slice(0,2);
   if(hits.length)results.push({key:rule.key,label:rule.label,kind:"disclosure",excerpt:hits.map(clippedExcerpt).join("\n"),count:hits.length});
  });
  const effortLine=segments.find(line=>/\b\d+(?:\.\d+)?\s*(?:(?:-|–|to)\s*\d+(?:\.\d+)?\s*)?(?:hours?|hrs?)\b/i.test(line)&&/\b(expected|estimated|take|takes|effort|complete|approximately|about|up to|time commitment|hours?|hrs?)\b/i.test(line));
