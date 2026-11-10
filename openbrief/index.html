@@ -170,11 +170,11 @@ function renderBriefResults(){
   host.innerHTML='<div class="privacy-note"><strong>NO CLEAR MATCHES FOUND</strong><p>Try including the complete brief text, including headings and email instructions. You can still create a record manually.</p></div>';
   $("useBriefImportBtn").disabled=true;return;
  }
- host.innerHTML='<div class="brief-section-title">Possible disclosure matches · review each excerpt</div>'+
- disclosures.map(p=>'<label class="brief-match"><input type="checkbox" data-brief-key="'+safe(p.key)+'" checked><span><strong>'+safe(p.label)+'</strong><p>'+safe(p.excerpt)+'</p><small>Keyword match · '+p.count+' source passage(s) · not verified by the employer</small></span></label>').join("")+
- (extras.length?'<div class="brief-section-title">Other details to review manually</div>'+extras.map(p=>'<div class="brief-match"><span></span><span><strong>'+safe(p.label)+'</strong><p>'+safe(p.excerpt)+'</p><small>'+(p.kind==="effort"?(p.hours==null?"Range or upper limit detected; enter a number manually in the next form.":"Single numeric value detected: "+p.hours+" hours. Review it before saving."):"The date/time is not auto-converted. Enter the deadline manually in the next form.")+'</small></span></div>').join(""):"");
- $("useBriefImportBtn").disabled=disclosures.length===0;
- $("briefScanStatus").textContent=disclosures.length+" possible disclosure categories found. Select only accurate excerpts.";
+ host.innerHTML=(disclosures.length?'<div class="brief-section-title">Possible disclosure matches · review each excerpt</div>'+
+ disclosures.map(p=>'<label class="brief-match"><input type="checkbox" data-brief-key="'+safe(p.key)+'" checked><span><strong>'+safe(p.label)+'</strong><p>'+safe(p.excerpt)+'</p><small>Keyword match · '+p.count+' source passage(s) · candidate review required</small></span></label>').join(""):"")+
+ (extras.length?'<div class="brief-section-title">Timing and other details · review each excerpt</div>'+extras.map(p=>'<label class="brief-match"><input type="checkbox" data-brief-key="'+safe(p.key)+'" checked><span><strong>'+safe(p.label)+'</strong><p>'+safe(p.excerpt)+'</p><small>'+(p.kind==="effort"?(p.hours==null?"Range, upper limit or approximate time. The original wording will be saved; enter a number only if the brief states an exact value.":"Single numeric effort detected: "+p.hours+" hours. Review it before saving."):(p.kind==="window"?"This is the time allowed to submit, separate from hours of actual work. Stored as employer wording, not converted into an exact deadline.":"Date/deadline wording is kept verbatim; set an exact date manually when possible." )+'</small></span></label>').join(""):"");
+ $("useBriefImportBtn").disabled=briefProposals.length===0;
+ $("briefScanStatus").textContent=disclosures.length+" disclosure categories and "+extras.length+" timing note(s) found. Select only details that match the source.";
 }
 function openBriefImporter(){briefProposals=[];$("briefResults").innerHTML="";$("briefScanStatus").textContent="Nothing is saved until you review and create the record.";$("useBriefImportBtn").disabled=true;$("briefModal").classList.add("open");$("briefTextInput").focus();}
 function closeBriefImporter(){
@@ -202,17 +202,24 @@ function useSelectedBriefTerms(){
  const urlRaw=$("briefSourceUrl").value.trim(),sourceUrl=urlRaw?safeHttpUrl(urlRaw):null;
  if(urlRaw&&!sourceUrl){toast("The original brief URL must start with http:// or https://.");return;}
  const selectedKeys=new Set(Array.from($("briefResults").querySelectorAll("[data-brief-key]:checked")).map(el=>el.dataset.briefKey));
- const chosen=briefProposals.filter(p=>selectedKeys.has(p.key)&&p.kind==="disclosure");
+ const chosen=briefProposals.filter(p=>selectedKeys.has(p.key));
  if(!chosen.length){toast("Select at least one excerpt you have reviewed.");return;}
- pendingBriefImport={sourceUrl,disclosures:{},expectedEffortHours:null};
- chosen.forEach(p=>{pendingBriefImport.disclosures[p.key]=p.excerpt;});
- const effort=briefProposals.find(p=>p.key==="expected_effort_hours"&&p.kind==="effort");
- if(effort&&effort.hours!=null)pendingBriefImport.expectedEffortHours=effort.hours;
+ pendingBriefImport={sourceUrl,disclosures:{},expectedEffortHours:null,expectedEffortText:null,submissionWindowText:null,deadlineText:null};
+ chosen.filter(p=>p.kind==="disclosure").forEach(p=>{pendingBriefImport.disclosures[p.key]=p.excerpt;});
+ const effort=chosen.find(p=>p.key==="expected_effort_hours"&&p.kind==="effort");
+ if(effort){pendingBriefImport.expectedEffortText=effort.excerpt;if(effort.hours!=null)pendingBriefImport.expectedEffortHours=effort.hours;}
+ const window=chosen.find(p=>p.key==="submission_window_text"&&p.kind==="window");
+ if(window)pendingBriefImport.submissionWindowText=window.excerpt;
+ const deadline=chosen.find(p=>p.key==="deadline_note"&&p.kind==="note");
+ if(deadline)pendingBriefImport.deadlineText=deadline.excerpt;
  openModal(false);$("title").value="Assessment imported from brief";$("briefUrl").value=sourceUrl||"";$("sourceMode").value="unknown";
  const inputMap={purpose:"purpose",deliverables:"deliverables",rubric:"rubric",ai_policy:"aiPolicy",compensation:"compensation",ip_rights:"ipRights",data_use:"dataUse",feedback:"feedback",contact:"contact"};
  Object.entries(inputMap).forEach(([key,id])=>{if(pendingBriefImport.disclosures[key])$(id).value=pendingBriefImport.disclosures[key];});
  if(pendingBriefImport.expectedEffortHours!=null)$("hours").value=pendingBriefImport.expectedEffortHours;
- closeBriefImporter();toast("Review the imported terms, company and role before creating the passport.");
+ if(pendingBriefImport.expectedEffortText)$("effortNote").value=pendingBriefImport.expectedEffortText;
+ if(pendingBriefImport.submissionWindowText)$("submissionWindow").value=pendingBriefImport.submissionWindowText;
+ if(pendingBriefImport.deadlineText)$("deadlineNote").value=pendingBriefImport.deadlineText;
+ closeBriefImporter();toast("Review the imported terms, source wording, company and role before creating the passport.");
 }
 function toast(message){$("toast").textContent=message;$("toast").classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>$("toast").classList.remove("show"),2400);}
 function persist(){localStorage.setItem(STORAGE_KEY,JSON.stringify(records));}
