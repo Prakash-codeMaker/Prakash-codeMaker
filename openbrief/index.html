@@ -202,7 +202,12 @@ function renderBriefResults(){
  $("briefScanStatus").textContent=disclosures.length+" possible disclosure categories found. Select only accurate excerpts.";
 }
 function openBriefImporter(){briefProposals=[];$("briefResults").innerHTML="";$("briefScanStatus").textContent="Nothing is saved until you review and create the record.";$("useBriefImportBtn").disabled=true;$("briefModal").classList.add("open");$("briefTextInput").focus();}
-function closeBriefImporter(){$("briefModal").classList.remove("open");}
+function closeBriefImporter(){
+ $("briefModal").classList.remove("open");
+ $("briefTextInput").value="";$("briefSourceUrl").value="";$("briefFile").value="";
+ $("briefResults").innerHTML="";$("briefScanStatus").textContent="Nothing is saved until you review and create the record.";
+ briefProposals=[];$("useBriefImportBtn").disabled=true;
+}
 function scanBrief(){const raw=$("briefTextInput").value;if(!raw.trim()){toast("Paste the assessment brief text first.");return;}if(raw.length>250000){toast("The brief is too long. Keep it under 250,000 characters.");return;}briefProposals=extractBriefTerms(raw);renderBriefResults();}
 function loadBriefFile(event){
  const file=event.target.files&&event.target.files[0];if(!file)return;
@@ -228,7 +233,7 @@ function useSelectedBriefTerms(){
  chosen.forEach(p=>{pendingBriefImport.disclosures[p.key]=p.excerpt;});
  const effort=briefProposals.find(p=>p.key==="expected_effort_hours"&&p.kind==="effort");
  if(effort&&effort.hours!=null)pendingBriefImport.expectedEffortHours=effort.hours;
- openModal(false);$("title").value="Assessment imported from brief";$("briefUrl").value=sourceUrl||"";$("sourceMode").value="candidate_transcribed";
+ openModal(false);$("title").value="Assessment imported from brief";$("briefUrl").value=sourceUrl||"";$("sourceMode").value="unknown";
  const inputMap={purpose:"purpose",deliverables:"deliverables",rubric:"rubric",ai_policy:"aiPolicy",compensation:"compensation",ip_rights:"ipRights",data_use:"dataUse",feedback:"feedback",contact:"contact"};
  Object.entries(inputMap).forEach(([key,id])=>{if(pendingBriefImport.disclosures[key])$(id).value=pendingBriefImport.disclosures[key];});
  if(pendingBriefImport.expectedEffortHours!=null)$("hours").value=pendingBriefImport.expectedEffortHours;
@@ -265,7 +270,12 @@ function createFromForm(event){
  const t=now(),id=uid();
  const map={purpose:"purpose",deliverables:"deliverables",rubric:"rubric",aiPolicy:"ai_policy",compensation:"compensation",ipRights:"ip_rights",dataUse:"data_use",feedback:"feedback",contact:"contact"};
  const disclosures={};
- Object.keys(map).forEach(inputId=>{const value=$(inputId).value.trim();const key=map[inputId];disclosures[key]={status:value?"disclosed":"not_disclosed",value:value||null,source:value?disclosureSource:"unknown",recorded_at:t};});
+ Object.keys(map).forEach(inputId=>{
+  const value=$(inputId).value.trim(),key=map[inputId];
+  const importedValue=pendingBriefImport&&pendingBriefImport.disclosures[key];
+  const source=value?(importedValue&&value===importedValue?"candidate_transcribed":disclosureSource):"unknown";
+  disclosures[key]={status:value?"disclosed":"not_disclosed",value:value||null,source,recorded_at:t};
+ });
  const hours=$("hours").value;
  const deadline=$("deadline").value?new Date($("deadline").value).toISOString():null;
  const existing=editingId?records.find(x=>x.assessment_id===editingId):null;
