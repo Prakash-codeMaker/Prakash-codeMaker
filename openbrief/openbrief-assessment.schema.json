@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "urn:openbrief:assessment:0.1.0",
   "title": "OpenBrief Assessment Record",
-  "description": "Community draft 0.1 schema for a candidate-owned hiring assessment record. It does not assert employer verification or independent timestamp integrity.",
+  "description": "Community draft 0.1 schema for a candidate-owned hiring assessment record. It does not assert employer verification or independent timestamp integrity. Timing notes keep expected effort, submission window and exact deadline distinct.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -100,6 +100,69 @@
             "null"
           ],
           "format": "date-time"
+        },
+        "expected_effort_note": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Original wording describing expected active work effort. Preserve ranges and approximate language verbatim."
+        },
+        "expected_effort_note_source": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "employer_declared",
+            "candidate_transcribed",
+            "candidate_inferred",
+            "unknown",
+            null
+          ],
+          "description": "Provenance of the expected-effort wording."
+        },
+        "submission_window_note": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Original wording describing the time allowed from receiving the task to submitting it. Distinct from expected active work effort and exact deadline."
+        },
+        "submission_window_note_source": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "employer_declared",
+            "candidate_transcribed",
+            "candidate_inferred",
+            "unknown",
+            null
+          ],
+          "description": "Provenance of the submission-window wording."
+        },
+        "deadline_note": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Original deadline wording when no exact local date/time has been established."
+        },
+        "deadline_note_source": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "employer_declared",
+            "candidate_transcribed",
+            "candidate_inferred",
+            "unknown",
+            null
+          ],
+          "description": "Provenance of the deadline wording."
         }
       }
     },
