@@ -14,22 +14,26 @@ OpenBrief makes those terms explicit and portable. It is not a review site, job 
 
 The reference app currently supports:
 
-- Create a structured assessment record.
-- Mark each disclosure as present or “Not disclosed in this record”.
-- Preserve the source/provenance distinction for entered values.
+- Create and edit a structured assessment record.
+- Track 11 assessment terms, including expected effort and deadline, and clearly show which are missing.
+- Label populated disclosures as copied from an employer source, candidate-inferred/paraphrased, or unknown; the detail view keeps this source label visible.
 - Record candidate work sessions and elapsed time.
-- Record a candidate-reported submission event.
-- Export one record or the full passport as JSON.
-- Copy a concise clarification request for missing terms.
+- Record candidate-reported submission, receipt acknowledgement, feedback, and outcome milestones. These are not treated as employer-verified events.
+- See a suggested next step based on the current assessment lifecycle.
+- Export one record or the full passport as JSON; import a backup without overwriting records already in the browser.
+- Copy a clarification request for missing terms and a follow-up message after submission.
+- Accept only HTTP(S) brief links and validate imported records before adding them.
 - Store data locally in the browser. No login, analytics, server sync, or employer access.
 
 The app is intentionally not an assessment parser and does not upload briefs or work product. Do not store confidential employer materials or sensitive personal data.
+
+**Backup note:** use Export all data to create a JSON backup and Import backup to restore it in another browser profile. Import adds records with new IDs and skips duplicate IDs; it does not replace existing records. Keep an additional copy somewhere secure because browser storage can be cleared.
 
 ## Core disclosure vocabulary
 
 The draft tracks: purpose/skill tested; scope and deliverables; expected effort; deadline; evaluation criteria; permitted tools and AI policy; compensation; intellectual-property and reuse rights; data use and automated evaluation; feedback/decision timeline; and a clarification contact.
 
-A missing field means **not disclosed in this record**. It is not proof that an employer did not disclose the information elsewhere. Values transcribed by a candidate must not be represented as independently employer-certified.
+A missing field means **not disclosed in this record**. It is not proof that an employer did not disclose the information elsewhere. Values transcribed by a candidate must not be represented as independently employer-certified. The reference app asks the candidate to classify entered terms as copied from an employer-provided source, inferred/paraphrased, or unknown; this is still a candidate-selected provenance label, not an employer attestation.
 
 ## Provenance model
 
