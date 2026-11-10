@@ -31,7 +31,7 @@
 
   <section class="hero">
     <div>
-      <div class="eyebrow">Candidate-first app pilot 0.3 · Open protocol draft 0.1</div>
+      <div class="eyebrow">Candidate-first app pilot 0.4 · Open protocol draft 0.1</div>
       <h1>Do the work.<br><span>Know the terms.</span></h1>
       <p>A private record of what an assessment asks, what was disclosed, how much time it took, and what happened next. You own the record.</p>
     </div>
@@ -75,7 +75,7 @@
     </aside>
   </main>
 
-  <footer class="footer"><span>OPENBRIEF · COMMUNITY DRAFT 0.1 · Built for candidate control</span><div class="footer-links"><a href="https://github.com/Prakash-codeMaker/Prakash-codeMaker/tree/openbrief/passport-v0.3/openbrief" target="_blank" rel="noreferrer">Source & spec ↗</a><a href="#" id="privacyLink">Privacy notes</a></div></footer>
+  <footer class="footer"><span>OPENBRIEF · COMMUNITY DRAFT 0.1 · Built for candidate control</span><div class="footer-links"><a href="https://github.com/Prakash-codeMaker/Prakash-codeMaker/tree/openbrief/passport-v0.4/openbrief" target="_blank" rel="noreferrer">Source & spec ↗</a><a href="#" id="privacyLink">Privacy notes</a></div></footer>
 </div>
 
 <div class="modal-backdrop brief-backdrop" id="briefModal">
@@ -110,8 +110,11 @@
           <div class="field full"><label for="title">Assessment name *</label><input id="title" required maxlength="160" placeholder="e.g. Backend API take-home"></div>
           <div class="field full"><label for="briefUrl">Original brief URL (optional)</label><input id="briefUrl" type="url" maxlength="500" placeholder="https://…"><small>Keep the original source link. Do not upload confidential employer material here.</small></div>
           <div class="field full"><label for="sourceMode">Source of the terms entered below</label><select id="sourceMode"><option value="unknown">Mixed, unsure, or my own notes</option><option value="candidate_transcribed">Copied from an employer-provided brief, email, or page</option><option value="candidate_inferred">Inferred or paraphrased, not copied directly</option></select><small>This applies to all populated disclosure fields. Choose “copied” only when it accurately describes every filled term.</small></div>
-          <div class="field"><label for="hours">Expected effort (hours)</label><input id="hours" type="number" min="0" max="500" step=".25" placeholder="Not disclosed"></div>
-          <div class="field"><label for="deadline">Submission deadline</label><input id="deadline" type="datetime-local"></div>
+          <div class="field"><label for="hours">Expected effort (hours, if exact)</label><input id="hours" type="number" min="0" max="500" step=".25" placeholder="Not disclosed"></div>
+          <div class="field"><label for="deadline">Exact submission deadline</label><input id="deadline" type="datetime-local"></div>
+          <div class="field full"><label for="effortNote">Expected effort wording (optional)</label><input id="effortNote" maxlength="500" placeholder="e.g. 3–4 focused hours; up to 6 hours"><small>Keep ranges and approximations as written. OpenBrief will not turn them into a false exact number.</small></div>
+          <div class="field full"><label for="submissionWindow">Submission window (optional)</label><input id="submissionWindow" maxlength="500" placeholder="e.g. Submit within 48–72 hours of receiving the task"></div>
+          <div class="field full"><label for="deadlineNote">Deadline wording as written (optional)</label><input id="deadlineNote" maxlength="500" placeholder="e.g. Submit by 20 November; within two working days">
           <div class="form-section">Terms disclosed in the brief</div>
           <div class="field full"><label for="purpose">Purpose / skill being assessed</label><textarea id="purpose" placeholder="What skill or capability is this meant to evaluate?"></textarea></div>
           <div class="field full"><label for="deliverables">Scope and expected deliverables</label><textarea id="deliverables" placeholder="What exactly must be produced or submitted?"></textarea></div>
@@ -130,6 +133,7 @@
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<script src="./brief-parser.js"></script>
 <script>
 (function(){
 "use strict";
@@ -146,17 +150,7 @@ const disclosureLabels={
  contact:"Clarification contact"
 };
 const fields=["purpose","deliverables","rubric","ai_policy","compensation","ip_rights","data_use","feedback","contact"];
-const briefFieldRules=[
- {key:"purpose",label:"Purpose / skill tested",pattern:/\b(evaluat(?:e|es|ed|ing)|assess(?:es|ing)?\s+(?:your|the|a|candidate|practical|technical|problem|engineering|backend|software|coding)|demonstrat(?:e|es|ed|ing)|skills? (?:being )?assessed|we are looking for|designed to assess|purpose of this (?:exercise|assessment))\b/i},
- {key:"deliverables",label:"Scope / deliverables",pattern:/\b(submission|deliverable|deliver|build|create|implement|develop|provide|prepare|upload|repository|github|presentation|report|prototype|working demo|submit (?:a|the|your)\b)\b/i},
- {key:"rubric",label:"Evaluation criteria",pattern:/\b(rubric|evaluation criteria|criteria|scored|grading|graded|assessed on|we will assess|we evaluate|weightage|weights)\b/i},
- {key:"ai_policy",label:"Permitted tools / AI policy",pattern:/\b(ai tools?|artificial intelligence tools?|chatgpt|copilot|llm|generative ai|use of ai|ai (?:is )?(?:allowed|permitted|prohibited|banned|not allowed|not permitted)|tools? (?:are )?(?:allowed|permitted|prohibited)|do not use|must not use)\b/i},
- {key:"compensation",label:"Compensation",pattern:/\b(paid|unpaid|stipend|compensation|remuneration|₹|inr\b|usd\b|payment|honorarium)\b/i},
- {key:"ip_rights",label:"IP / reuse rights",pattern:/\b(intellectual property|ownership|own the work|work product|reuse|portfolio|licen[cs]e|assign(?:ment)? of rights|copyright)\b/i},
- {key:"data_use",label:"Data use / AI evaluation",pattern:/\b(data retention|retain|retention|delete|deletion|store|stored|recording|automated evaluation|ai evaluation|personal data|privacy|third[- ]party)\b/i},
- {key:"feedback",label:"Feedback / decision timeline",pattern:/\b(feedback|hear back|decision|within \d+ days?|business days?|working days?|response timeline|results by)\b/i},
- {key:"contact",label:"Clarification contact",pattern:/\b(contact|reach out|questions? (?:to|at)|recruiter|hiring team)\b|\bemail\s*[:\-]|[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i}
-];
+const {cleanBriefText,extractBriefTerms}=window.OpenBriefBriefParser;
 let pendingBriefImport=null;
 let briefProposals=[];
 let records=[];
@@ -170,30 +164,6 @@ const uid=()=>("ob_"+Date.now().toString(36)+"_"+Math.random().toString(36).slic
 const dateText=value=>{if(!value)return "Not recorded";const d=new Date(value);return isNaN(d)?"Not recorded":d.toLocaleString([], {dateStyle:"medium",timeStyle:"short"});};
 const safe=value=>String(value==null?"":value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 function safeHttpUrl(value){try{const u=new URL(String(value||""));return u.protocol==="http:"||u.protocol==="https:"?u.href:null;}catch(e){return null;}}
-function cleanBriefText(value){const text=String(value||"").replace(/\u0000/g,"").replace(/\r\n?/g,"\n");return text.length>250000?text.slice(0,250000):text;}
-function briefSegments(value){return cleanBriefText(value).split(/\n+/).flatMap(line=>line.split(/(?<=[.!?])\s+(?=[A-Z0-9])/).map(part=>part.trim())).filter(part=>part.length>12);}
-function clippedExcerpt(value){const t=value.trim();return t.length>420?t.slice(0,417)+"…":t;}
-function extractBriefTerms(value){
- const segments=briefSegments(value),results=[];
- briefFieldRules.forEach(rule=>{
-  const hits=segments.filter(line=>{
-   if(!rule.pattern.test(line))return false;
-   if(rule.key==="deliverables"&&/\b(deadline|due date|submit by|submission by|no later than|due by)\b/i.test(line))return false;
-   if(rule.key==="ai_policy"&&/\b(automated|AI evaluation|evaluated by AI|screened by AI)\b/i.test(line)&&! /\b(chatgpt|copilot|generative ai|ai tools?|language model|llm|ai (?:is )?(?:allowed|permitted|prohibited|banned|not allowed|not permitted))\b/i.test(line))return false;
-   return true;
-  }).slice(0,2);
-  if(hits.length)results.push({key:rule.key,label:rule.label,kind:"disclosure",excerpt:hits.map(clippedExcerpt).join("\n"),count:hits.length});
- });
- const effortLine=segments.find(line=>/\b\d+(?:\.\d+)?\s*(?:(?:-|–|to)\s*\d+(?:\.\d+)?\s*)?(?:hours?|hrs?)\b/i.test(line)&&/\b(expected|estimated|take|takes|effort|complete|approximately|about|up to|time commitment|hours?|hrs?)\b/i.test(line));
- if(effortLine){
-  const match=effortLine.match(/\b(\d+(?:\.\d+)?)\s*(?:(?:-|–|to)\s*(\d+(?:\.\d+)?)\s*)?(?:hours?|hrs?)\b/i);
-  const range=!!(match&&match[2])||/\bup to\b/i.test(effortLine);
-  results.push({key:"expected_effort_hours",label:"Expected effort",kind:"effort",excerpt:clippedExcerpt(effortLine),hours:match&&!range?Number(match[1]):null,range});
- }
- const deadlineLine=segments.find(line=>/\b(deadline|due date|submit by|submission by|no later than|due by)\b/i.test(line));
- if(deadlineLine)results.push({key:"deadline_note",label:"Deadline wording (review manually)",kind:"note",excerpt:clippedExcerpt(deadlineLine)});
- return results;
-}
 function renderBriefResults(){
  const host=$("briefResults"),disclosures=briefProposals.filter(p=>p.kind==="disclosure"),extras=briefProposals.filter(p=>p.kind!=="disclosure");
  if(!briefProposals.length){
