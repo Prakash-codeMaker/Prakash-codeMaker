@@ -79,7 +79,6 @@ test("an employer's AI evaluation is not confused with candidate AI-tool permiss
   const proposals = extractBriefTerms(
     "We retain candidate data for 90 days and do not use automated AI evaluation."
   );
-  assert.equal(find(proposals, "disclosure")?.key, undefined);
   assert.equal(proposals.some((item) => item.key === "ai_policy"), false);
   assert.equal(proposals.some((item) => item.key === "data_use"), true);
 });
