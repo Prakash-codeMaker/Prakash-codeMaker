@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101311">
+<title>OpenBrief — Assessment Passport</title>
+<meta name="description" content="A private, portable record of the terms, effort and events behind a hiring assessment.">
+<style>
+:root{--bg:#101311;--panel:#171c19;--panel2:#1d2420;--line:#2a342e;--text:#edf3ed;--muted:#9ba99e;--soft:#c7d2c9;--lime:#c4f26b;--lime2:#d9ffa0;--amber:#f4c879;--red:#f08d83;--blue:#9ac3f4;--radius:18px;--shadow:0 24px 70px #0005}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 75% -10%,#24372a 0,transparent 38%),var(--bg);color:var(--text);font:14px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer}a{color:inherit}.shell{max-width:1180px;margin:auto;padding:0 28px}.topbar{height:76px;border-bottom:1px solid #ffffff12;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:11px;font-size:15px;font-weight:800;letter-spacing:.13em}.mark{width:33px;height:33px;border:1px solid #bce96c70;border-radius:10px;display:grid;place-items:center;color:var(--lime);font-weight:900;font-size:19px;box-shadow:inset 0 0 18px #c4f26b12}.top-right{display:flex;gap:15px;align-items:center;color:var(--muted);font-size:12px}.local-tag{border:1px solid var(--line);padding:7px 10px;border-radius:99px;color:#c9d8cb}.local-dot{display:inline-block;width:6px;height:6px;background:var(--lime);border-radius:50%;margin-right:7px;vertical-align:middle}
+.hero{padding:54px 0 28px;display:flex;justify-content:space-between;gap:30px;align-items:flex-end}.eyebrow{font-size:10px;letter-spacing:.19em;text-transform:uppercase;color:var(--lime);font-weight:800}.hero h1{font-size:clamp(34px,5vw,53px);line-height:1.04;letter-spacing:-.055em;margin:14px 0 13px;max-width:710px;font-weight:720}.hero h1 span{color:var(--lime)}.hero p{color:var(--muted);font-size:15px;max-width:580px;margin:0}.hero-actions{display:flex;gap:9px;flex-wrap:wrap;justify-content:flex-end}
+.btn{border:1px solid var(--line);background:#202822;color:var(--text);border-radius:10px;padding:11px 15px;font-weight:650;font-size:12px;transition:.18s}.btn:hover{border-color:#607b5d;background:#27342a;transform:translateY(-1px)}.btn.primary{background:var(--lime);color:#17200f;border-color:var(--lime);font-weight:800}.btn.primary:hover{background:var(--lime2)}.btn.subtle{background:transparent}.btn.danger{color:var(--red)}.btn.small{padding:7px 10px;font-size:11px}.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0 26px}.stat{border:1px solid var(--line);background:linear-gradient(135deg,#1b231e,#151a17);border-radius:14px;padding:15px 17px}.stat-label{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.12em}.stat-value{font-size:25px;font-weight:750;letter-spacing:-.04em;margin-top:5px}.stat-note{font-size:10px;color:#839187;margin-top:2px}
+.workspace{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(280px,.8fr);gap:16px;align-items:start;padding-bottom:60px}.panel{border:1px solid var(--line);background:linear-gradient(160deg,#1a211d,#151a17);border-radius:var(--radius);overflow:hidden}.panel-head{padding:19px 21px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px}.panel-title{font-size:14px;font-weight:750;letter-spacing:-.01em}.panel-sub{font-size:11px;color:var(--muted);margin-top:2px}.list-wrap{padding:13px}.assessment-card{padding:16px;border:1px solid transparent;border-radius:13px;display:flex;gap:14px;justify-content:space-between;cursor:pointer;transition:.16s}.assessment-card:hover{background:#ffffff06;border-color:#ffffff14}.assessment-card.active{background:#c4f26b0b;border-color:#c4f26b5c}.card-left{min-width:0}.card-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.card-title{font-size:13px;font-weight:730;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.company{font-size:11px;color:var(--muted);margin-top:5px}.card-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:11px;color:#98a59b;font-size:10px}.card-meta span{display:flex;gap:5px;align-items:center}.card-right{display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;gap:12px;flex-shrink:0}.pill{font-size:9px;letter-spacing:.04em;padding:4px 8px;border-radius:99px;border:1px solid #536351;color:#c5d5c2;white-space:nowrap}.pill.missing{border-color:#755c35;color:var(--amber)}.pill.sample{border-color:#496b8c;color:var(--blue)}.missing-count{font-size:10px;color:var(--amber)}.empty{padding:40px 24px;text-align:center}.empty-icon{width:50px;height:50px;margin:0 auto 15px;border:1px solid #506047;border-radius:16px;display:grid;place-items:center;color:var(--lime);font-size:23px;background:#c4f26b0b}.empty h3{font-size:16px;margin:0 0 6px}.empty p{color:var(--muted);max-width:360px;margin:0 auto 18px;font-size:12px}
+.side-stack{display:grid;gap:14px}.side-panel{padding:20px}.side-panel h3{font-size:13px;margin:0 0 7px}.side-panel p{font-size:11px;color:var(--muted);margin:0}.protocol-mark{display:flex;align-items:center;gap:9px;margin-bottom:14px}.protocol-dot{width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 12px #c4f26b88}.protocol-name{font-size:12px;font-weight:800;letter-spacing:.12em}.protocol-version{color:var(--muted);font-size:10px}.principles{display:grid;gap:12px;margin-top:18px}.principle{display:grid;grid-template-columns:24px 1fr;gap:9px}.principle-num{width:22px;height:22px;border:1px solid var(--line);border-radius:7px;display:grid;place-items:center;color:var(--lime);font-size:10px}.principle strong{display:block;font-size:11px}.principle span{font-size:10px;color:var(--muted)}.privacy-note{border:1px solid #536b42;background:#c4f26b09;border-radius:12px;padding:13px;margin-top:15px}.privacy-note strong{font-size:10px;color:var(--lime);display:block;margin-bottom:3px}.privacy-note p{font-size:10px;color:#aeb9ae}
+.detail{border-top:1px solid var(--line);padding:22px}.detail-header{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.detail-header h2{font-size:20px;letter-spacing:-.04em;margin:0}.detail-header p{font-size:11px;color:var(--muted);margin:4px 0}.detail-actions{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}.section-label{font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:800;margin:23px 0 10px}.disclosures{display:grid;grid-template-columns:1fr 1fr;gap:8px}.disclosure{background:#111613;border:1px solid #29332d;border-radius:10px;padding:11px 12px;min-width:0}.disclosure-top{display:flex;align-items:center;justify-content:space-between;gap:8px}.disclosure-label{font-size:10px;color:#cbd5cc;font-weight:700}.disclosure-state{font-size:9px;color:var(--amber)}.disclosure-state.good{color:var(--lime)}.disclosure-value{font-size:11px;color:#f0f5ef;margin-top:7px;overflow-wrap:anywhere}.disclosure-value.muted{color:#77857b;font-style:italic}.timeline{display:grid;gap:0}.event{display:grid;grid-template-columns:13px 1fr auto;gap:9px;position:relative;padding:0 0 13px}.event:not(:last-child):before{content:"";position:absolute;left:5px;top:13px;bottom:0;width:1px;background:#36433a}.event-dot{width:11px;height:11px;background:#1b251d;border:2px solid var(--lime);border-radius:50%;z-index:1;margin-top:2px}.event-title{font-size:10px;font-weight:700}.event-note{font-size:9px;color:var(--muted);margin-top:2px}.event-time{font-size:9px;color:#758379;white-space:nowrap}
+.modal-backdrop{position:fixed;inset:0;background:#050806c9;backdrop-filter:blur(7px);display:none;align-items:center;justify-content:center;padding:20px;z-index:20}.modal-backdrop.open{display:flex}.modal{width:min(730px,100%);max-height:90vh;overflow:auto;border:1px solid #3b493f;background:#171e19;border-radius:18px;box-shadow:var(--shadow)}.modal-head{padding:19px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.modal-head h2{font-size:16px;margin:0}.modal-body{padding:20px 22px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:10px;color:#cbd5cc;font-weight:700}.field small{font-size:9px;color:#87948a}.field input,.field textarea,.field select{width:100%;border:1px solid #354239;background:#101612;color:var(--text);border-radius:9px;padding:10px 11px;outline:none;font-size:11px}.field input:focus,.field textarea:focus,.field select:focus{border-color:#91bd51;box-shadow:0 0 0 3px #c4f26b13}.field textarea{min-height:65px;resize:vertical}.modal-foot{padding:15px 22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;align-items:center}.helper{font-size:9px;color:var(--muted);max-width:350px}.form-section{font-size:10px;text-transform:uppercase;letter-spacing:.14em;font-weight:800;color:var(--lime);grid-column:1/-1;margin-top:10px;padding-top:12px;border-top:1px solid var(--line)}
+.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,15px);opacity:0;pointer-events:none;background:#e2ffc0;color:#18210f;padding:10px 15px;border-radius:99px;font-size:11px;font-weight:800;box-shadow:var(--shadow);transition:.22s;z-index:40}.toast.show{opacity:1;transform:translate(-50%,0)}
+.footer{padding:20px 0 38px;border-top:1px solid #ffffff12;display:flex;justify-content:space-between;gap:15px;color:#78867c;font-size:10px}.footer-links{display:flex;gap:15px}.footer a{text-decoration:none}.footer a:hover{color:var(--lime)}
+@media(max-width:850px){.workspace{grid-template-columns:1fr}.side-stack{grid-template-columns:1fr 1fr}.hero{align-items:flex-start;flex-direction:column}.hero-actions{justify-content:flex-start}}
+@media(max-width:600px){.shell{padding:0 15px}.topbar{height:65px}.top-right .top-label{display:none}.hero{padding:38px 0 22px}.hero h1{font-size:38px}.stats{grid-template-columns:1fr 1fr}.side-stack{grid-template-columns:1fr}.disclosures{grid-template-columns:1fr}.detail{padding:16px}.detail-header{flex-direction:column}.detail-actions{justify-content:flex-start}.form-grid{grid-template-columns:1fr}.field.full,.form-section{grid-column:auto}.modal-body{padding:16px}.modal-head,.modal-foot{padding:15px 16px}.footer{flex-direction:column}.assessment-card{padding:13px}.card-title{white-space:normal}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <div class="brand"><div class="mark">O</div><span>OPENBRIEF</span></div>
+    <div class="top-right"><span class="top-label">ASSESSMENT PASSPORT</span><span class="local-tag"><i class="local-dot"></i>Private workspace</span></div>
+  </header>
+
+  <section class="hero">
+    <div>
+      <div class="eyebrow">A clearer standard for hiring assessments · Pilot 0.1</div>
+      <h1>Do the work.<br><span>Know the terms.</span></h1>
+      <p>A private record of what an assessment asks, what was disclosed, how much time it took, and what happened next. You own the record.</p>
+    </div>
+    <div class="hero-actions">
+      <button class="btn subtle" id="sampleBtn">Explore sample</button>
+      <button class="btn primary" id="newBtn">＋ Add assessment</button>
+    </div>
+  </section>
+
+  <section class="stats" aria-label="Passport summary">
+    <div class="stat"><div class="stat-label">Assessments</div><div class="stat-value" id="statCount">0</div><div class="stat-note">In this passport</div></div>
+    <div class="stat"><div class="stat-label">Terms disclosed</div><div class="stat-value" id="statDisclosure">—</div><div class="stat-note">Across selected record</div></div>
+    <div class="stat"><div class="stat-label">Time recorded</div><div class="stat-value" id="statHours">0h</div><div class="stat-note">Candidate-recorded effort</div></div>
+    <div class="stat"><div class="stat-label">Submissions</div><div class="stat-value" id="statSubmitted">0</div><div class="stat-note">Marked as submitted</div></div>
+  </section>
+
+  <main class="workspace">
+    <section class="panel">
+      <div class="panel-head"><div><div class="panel-title">Your assessments</div><div class="panel-sub">Records stay on this device until you export them.</div></div><button class="btn small" id="addInline">＋ New</button></div>
+      <div class="list-wrap" id="assessmentList"></div>
+      <div id="detailHost"></div>
+    </section>
+    <aside class="side-stack">
+      <section class="panel side-panel">
+        <div class="protocol-mark"><span class="protocol-dot"></span><span class="protocol-name">OPENBRIEF</span><span class="protocol-version">DRAFT 0.1</span></div>
+        <h3>Assessment transparency, made portable.</h3>
+        <p>OpenBrief is a proposed open format for the terms and lifecycle of a hiring assessment. This pilot tests the candidate-owned passport first.</p>
+        <div class="principles">
+          <div class="principle"><span class="principle-num">01</span><div><strong>Disclose before work</strong><span>Scope, effort, rubric, AI rules, pay, IP and feedback timeline.</span></div></div>
+          <div class="principle"><span class="principle-num">02</span><div><strong>Keep evidence distinct</strong><span>Employer-declared terms are not the same as candidate notes.</span></div></div>
+          <div class="principle"><span class="principle-num">03</span><div><strong>Carry your record</strong><span>Export the assessment as structured JSON. No platform lock-in.</span></div></div>
+        </div>
+        <div class="privacy-note"><strong>LOCAL-FIRST BY DESIGN</strong><p>Your records are stored in this browser using local storage. There is no account, server sync, analytics or employer access in this pilot. Clear browser data and the records may be lost, so export a backup.</p></div>
+      </section>
+      <section class="panel side-panel">
+        <h3>What this pilot does not claim</h3>
+        <p>Device timestamps are not independent proof. Candidate-entered details are not employer verification. An empty field means “not disclosed in this record,” not proof that an employer withheld it. OpenBrief is a community draft, not an adopted industry standard.</p>
+        <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn small" id="specBtn">View protocol notes ↗</button><button class="btn small" id="exportAllBtn">Export all data ↓</button></div>
+      </section>
+    </aside>
+  </main>
+
+  <footer class="footer"><span>OPENBRIEF · COMMUNITY DRAFT 0.1 · Built for candidate control</span><div class="footer-links"><a href="https://github.com/Prakash-codeMaker/Prakash-codeMaker/tree/openbrief/passport-v0.1/openbrief" target="_blank" rel="noreferrer">Source & spec ↗</a><a href="#" id="privacyLink">Privacy notes</a></div></footer>
+</div>
+
+<div class="modal-backdrop" id="modal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-head"><h2 id="modalTitle">Add an assessment</h2><button class="btn small subtle" id="closeModal" aria-label="Close">✕</button></div>
+    <form id="assessmentForm">
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="field"><label for="company">Company / organisation *</label><input id="company" required maxlength="120" placeholder="e.g. Acme Labs"></div>
+          <div class="field"><label for="role">Role / opportunity *</label><input id="role" required maxlength="120" placeholder="e.g. Software Engineering Intern"></div>
+          <div class="field full"><label for="title">Assessment name *</label><input id="title" required maxlength="160" placeholder="e.g. Backend API take-home"></div>
+          <div class="field full"><label for="briefUrl">Original brief URL (optional)</label><input id="briefUrl" type="url" maxlength="500" placeholder="https://…"><small>Keep the original source link. Do not upload confidential employer material here.</small></div>
+          <div class="field"><label for="hours">Expected effort (hours)</label><input id="hours" type="number" min="0" max="500" step=".25" placeholder="Not disclosed"></div>
+          <div class="field"><label for="deadline">Submission deadline</label><input id="deadline" type="datetime-local"></div>
+          <div class="form-section">Terms disclosed in the brief</div>
+          <div class="field full"><label for="purpose">Purpose / skill being assessed</label><textarea id="purpose" placeholder="What skill or capability is this meant to evaluate?"></textarea></div>
+          <div class="field full"><label for="deliverables">Scope and expected deliverables</label><textarea id="deliverables" placeholder="What exactly must be produced or submitted?"></textarea></div>
+          <div class="field full"><label for="rubric">Evaluation criteria / rubric</label><textarea id="rubric" placeholder="How will the work be evaluated?"></textarea></div>
+          <div class="field full"><label for="aiPolicy">Permitted tools and AI policy</label><textarea id="aiPolicy" placeholder="Which tools, libraries or AI tools are allowed?"></textarea></div>
+          <div class="field"><label for="compensation">Compensation</label><input id="compensation" placeholder="Paid / unpaid / amount / not stated"></div>
+          <div class="field"><label for="ipRights">IP and work reuse rights</label><input id="ipRights" placeholder="Ownership, reuse, licensing…"></div>
+          <div class="field"><label for="dataUse">Data retention / AI evaluation disclosure</label><input id="dataUse" placeholder="Data use, retention, automated evaluation…"></div>
+          <div class="field"><label for="feedback">Feedback / decision timeline</label><input id="feedback" placeholder="e.g. Feedback within 10 days"></div>
+          <div class="field full"><label for="contact">Contact for clarification</label><input id="contact" placeholder="Name, email or contact route"></div>
+        </div>
+      </div>
+      <div class="modal-foot"><span class="helper">Blank terms are stored as “Not disclosed”. You can update the record later. Only save details you are permitted to keep.</span><div style="display:flex;gap:8px"><button class="btn" type="button" id="cancelModal">Cancel</button><button class="btn primary" type="submit">Create passport record</button></div></div>
+    </form>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+"use strict";
+const STORAGE_KEY="openbrief.passport.v0.1";
+const disclosureLabels={
+ purpose:"Purpose / skill tested",
+ deliverables:"Scope / deliverables",
+ rubric:"Evaluation criteria",
+ ai_policy:"Permitted tools / AI policy",
+ compensation:"Compensation",
+ ip_rights:"IP / reuse rights",
+ data_use:"Data use / AI evaluation",
+ feedback:"Feedback / decision timeline",
+ contact:"Clarification contact"
+};
+const fields=["purpose","deliverables","rubric","ai_policy","compensation","ip_rights","data_use","feedback","contact"];
+let records=[];
+let selectedId=null;
+let activeTimer=null;
+let toastTimer=null;
+const $=id=>document.getElementById(id);
+const now=()=>new Date().toISOString();
+const uid=()=>("ob_"+Date.now().toString(36)+"_"+Math.random().toString(36).slice(2,8));
+const dateText=value=>{if(!value)return "Not recorded";const d=new Date(value);return isNaN(d)?"Not recorded":d.toLocaleString([], {dateStyle:"medium",timeStyle:"short"});};
+const safe=value=>String(value==null?"":value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function toast(message){$("toast").textContent=message;$("toast").classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>$("toast").classList.remove("show"),2400);}
+function persist(){localStorage.setItem(STORAGE_KEY,JSON.stringify(records));}
+function eventFor(type,note,provenance){return{id:uid(),type,happened_at:now(),recorded_at:now(),actor:"candidate",provenance:provenance||"candidate_device",note:note||""};}
+function saveRecord(record){const index=records.findIndex(x=>x.assessment_id===record.assessment_id);if(index>=0)records[index]=record;else records.unshift(record);persist();render();}
+function missingCount(record){return fields.filter(key=>!record.disclosures[key]||record.disclosures[key].status==="not_disclosed").length;}
+function disclosedCount(record){return fields.length-missingCount(record);}
+function allMinutes(record){return Number(record.candidate_record.actual_minutes||0);}
+function selected(){return records.find(x=>x.assessment_id===selectedId)||null;}
+function addSample(){
+ if(records.some(x=>x.is_sample)){selectedId=records.find(x=>x.is_sample).assessment_id;render();return;}
+ const t=now(),id=uid();
+ const values={purpose:"Assess practical API design and problem-solving.",deliverables:"Build a small REST API and provide setup instructions.",rubric:"Not stated in the sample brief.",ai_policy:"Not stated in the sample brief.",compensation:"Not stated in the sample brief.",ip_rights:"Not stated in the sample brief.",data_use:"Not stated in the sample brief.",feedback:"Not stated in the sample brief.",contact:"Not stated in the sample brief."};
+ const disclosures={};
+ Object.keys(values).forEach(key=>{const missing=values[key].startsWith("Not stated");disclosures[key]={status:missing?"not_disclosed":"disclosed",value:missing?null:values[key],source:missing?"unknown":"candidate_transcribed",recorded_at:t};});
+ const record={openbrief_version:"0.1.0",assessment_id:id,created_at:t,updated_at:t,is_sample:true,employer:{name:"Example Studio (sample)",website:null},role:{title:"Software Engineering Intern"},assessment:{title:"REST API take-home (sample)",brief_url:null,expected_effort_hours:4,deadline:null},disclosures,candidate_record:{started_at:null,submitted_at:null,actual_minutes:0,active_started_at:null},events:[eventFor("assessment_created","Synthetic sample record. Replace it with a real assessment or delete it.","candidate_device")]};
+ records.unshift(record);selectedId=id;persist();render();toast("Sample passport added. It is labelled as synthetic data.");
+}
+function createFromForm(event){
+ event.preventDefault();
+ const t=now(),id=uid();
+ const map={purpose:"purpose",deliverables:"deliverables",rubric:"rubric",aiPolicy:"ai_policy",compensation:"compensation",ipRights:"ip_rights",dataUse:"data_use",feedback:"feedback",contact:"contact"};
+ const disclosures={};
+ Object.keys(map).forEach(inputId=>{const value=$(inputId).value.trim();const key=map[inputId];disclosures[key]={status:value?"disclosed":"not_disclosed",value:value||null,source:value?"candidate_transcribed":"unknown",recorded_at:t};});
+ const hours=$("hours").value;
+ const deadline=$("deadline").value?new Date($("deadline").value).toISOString():null;
+ const record={openbrief_version:"0.1.0",assessment_id:id,created_at:t,updated_at:t,is_sample:false,employer:{name:$("company").value.trim(),website:null},role:{title:$("role").value.trim()},assessment:{title:$("title").value.trim(),brief_url:$("briefUrl").value.trim()||null,expected_effort_hours:hours===""?null:Number(hours),deadline},disclosures,candidate_record:{started_at:null,submitted_at:null,actual_minutes:0,active_started_at:null},events:[eventFor("assessment_created","Assessment details recorded by the candidate.","candidate_device")]};
+ records.unshift(record);selectedId=id;persist();$("assessmentForm").reset();closeModal();render();toast("Your passport record is ready.");
+}
+function openModal(){$("modal").classList.add("open");$("company").focus();}
+function closeModal(){$("modal").classList.remove("open");}
+function renderStats(){
+ $("statCount").textContent=records.filter(x=>!x.is_sample).length+(records.some(x=>x.is_sample)?" + sample":"");
+ const current=selected();$("statDisclosure").textContent=current?disclosedCount(current)+"/"+fields.length:"—";
+ const total=records.reduce((sum,r)=>sum+allMinutes(r),0);$("statHours").textContent=(total/60).toFixed(total%60?1:0)+"h";
+ $("statSubmitted").textContent=records.filter(x=>x.candidate_record.submitted_at).length;
+}
+function renderList(){
+ const host=$("assessmentList");
+ if(!records.length){host.innerHTML='<div class="empty"><div class="empty-icon">＋</div><h3>Your passport starts here.</h3><p>Add a real take-home, case study, assignment or skills test. OpenBrief will make missing terms visible before you invest your time.</p><button class="btn primary" id="emptyCreate">Add your first assessment</button></div>';$("emptyCreate").onclick=openModal;return;}
+ host.innerHTML=records.map(r=>{
+  const miss=missingCount(r),isSel=r.assessment_id===selectedId;
+  const state=r.candidate_record.submitted_at?"Submitted":r.candidate_record.active_started_at?"In progress":"Not started";
+  const meta=[];
+  if(r.assessment.expected_effort_hours!=null)meta.push("<span>◷ "+safe(r.assessment.expected_effort_hours)+"h expected</span>");
+  meta.push("<span>◷ "+(allMinutes(r)/60).toFixed(1)+"h recorded</span>");
+  if(r.assessment.deadline)meta.push("<span>⌁ "+safe(dateText(r.assessment.deadline))+"</span>");
+  return '<article class="assessment-card '+(isSel?"active":"")+'" data-id="'+safe(r.assessment_id)+'"><div class="card-left"><div class="card-top"><span class="card-title">'+safe(r.assessment.title)+'</span>'+(r.is_sample?'<span class="pill sample">SAMPLE DATA</span>':"")+'</div><div class="company">'+safe(r.employer.name)+' · '+safe(r.role.title)+'</div><div class="card-meta">'+meta.join("")+'</div></div><div class="card-right"><span class="pill '+(miss?"missing":"")+'">'+safe(state)+'</span><span class="missing-count">'+miss+' terms not disclosed</span></div></article>';
+ }).join("");
+ host.querySelectorAll("[data-id]").forEach(el=>el.addEventListener("click",()=>{selectedId=el.dataset.id;render();}));
+}
+function renderDetail(){
+ const host=$("detailHost"),r=selected();
+ if(!r){host.innerHTML="";return;}
+ const statusHTML=fields.map(key=>{
+  const d=r.disclosures[key]||{status:"not_disclosed",value:null,source:"unknown"};
+  const ok=d.status==="disclosed";
+  return '<div class="disclosure"><div class="disclosure-top"><span class="disclosure-label">'+safe(disclosureLabels[key])+'</span><span class="disclosure-state '+(ok?"good":"")+'">'+(ok?"● Disclosed":"○ Not disclosed")+'</span></div><div class="disclosure-value '+(ok?"":"muted")+'">'+(ok?safe(d.value):"No information recorded")+'</div></div>';
+ }).join("");
+ const events=(r.events||[]).slice().sort((a,b)=>new Date(b.recorded_at)-new Date(a.recorded_at)).map(e=>{
+  const names={assessment_created:"Assessment record created",work_started:"Work session started",work_stopped:"Work session logged",time_logged:"Time entry added",submission_sent:"Submission marked as sent",employer_acknowledgment_recorded:"Acknowledgement noted",feedback_received:"Feedback noted",outcome_received:"Outcome noted",disclosure_updated:"Disclosure updated"};
+  return '<div class="event"><span class="event-dot"></span><div><div class="event-title">'+safe(names[e.type]||e.type.replaceAll("_"," "))+'</div><div class="event-note">'+safe(e.note||"Candidate-recorded event")+' · '+safe(e.provenance||"candidate_device")+'</div></div><time class="event-time">'+safe(dateText(e.recorded_at))+'</time></div>';
+ }).join("");
+ const isActive=!!r.candidate_record.active_started_at;
+ host.innerHTML='<section class="detail"><div class="detail-header"><div><h2>'+safe(r.assessment.title)+'</h2><p>'+safe(r.employer.name)+' · '+safe(r.role.title)+'</p></div><div class="detail-actions"><button class="btn small" id="exportOne">Export JSON ↓</button><button class="btn small" id="askTerms">Copy questions ↗</button><button class="btn small danger" id="deleteOne">Delete</button></div></div>'+
+ '<div class="section-label">Assessment terms · '+disclosedCount(r)+' of '+fields.length+' disclosed</div><div class="disclosures"><div class="disclosure"><div class="disclosure-top"><span class="disclosure-label">Expected effort</span><span class="disclosure-state '+(r.assessment.expected_effort_hours!=null?"good":"")+'">'+(r.assessment.expected_effort_hours!=null?"● Disclosed":"○ Not disclosed")+'</span></div><div class="disclosure-value '+(r.assessment.expected_effort_hours!=null?"":"muted")+'">'+(r.assessment.expected_effort_hours!=null?safe(r.assessment.expected_effort_hours)+" hours":"No estimate recorded")+'</div></div><div class="disclosure"><div class="disclosure-top"><span class="disclosure-label">Deadline</span><span class="disclosure-state '+(r.assessment.deadline?"good":"")+'">'+(r.assessment.deadline?"● Disclosed":"○ Not disclosed")+'</span></div><div class="disclosure-value '+(r.assessment.deadline?"":"muted")+'">'+safe(dateText(r.assessment.deadline))+'</div></div>'+statusHTML+'</div>'+
+ '<div class="section-label">Your activity · candidate-recorded</div><div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px"><button class="btn small '+(isActive?"":"primary")+'" id="timerBtn">'+(isActive?"■ Stop & log session":"▶ Start work session")+'</button><button class="btn small" id="manualTime">＋ Log time</button><button class="btn small" id="submitBtn" '+(r.candidate_record.submitted_at?"disabled":"")+'>'+(r.candidate_record.submitted_at?"✓ Marked submitted":"Mark as submitted")+'</button><span style="color:var(--muted);font-size:10px">Total: '+(allMinutes(r)/60).toFixed(2)+' hours</span></div>'+
+ '<div class="event-note" style="margin:0 0 14px">Started: '+safe(dateText(r.candidate_record.started_at))+' · Submitted: '+safe(dateText(r.candidate_record.submitted_at))+'</div>'+
+ '<div class="section-label">Record history</div><div class="timeline">'+(events||'<span class="event-note">No events yet.</span>')+'</div>'+
+ (r.assessment.brief_url?'<div class="section-label">Original brief</div><a href="'+safe(r.assessment.brief_url)+'" target="_blank" rel="noreferrer" style="font-size:11px;color:var(--lime);overflow-wrap:anywhere">'+safe(r.assessment.brief_url)+' ↗</a>':"")+
+ '<div class="privacy-note"><strong>PROVENANCE CHECK</strong><p>This record distinguishes candidate-entered disclosures from missing information. Events are timestamped by your device and can be edited or deleted in this browser. They are not independently verified or cryptographically sealed.</p></div></section>';
+ $("exportOne").onclick=()=>downloadJSON(r,"openbrief-"+slug(r.assessment.title)+".json");
+ $("askTerms").onclick=()=>copyQuestions(r);
+ $("deleteOne").onclick=()=>deleteRecord(r);
+ $("timerBtn").onclick=()=>toggleTimer(r);
+ $("manualTime").onclick=()=>manualTime(r);
+ $("submitBtn").onclick=()=>markSubmitted(r);
+}
+function slug(s){return String(s||"assessment").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,45)||"assessment";}
+function render(){if(!selectedId&&records.length)selectedId=records[0].assessment_id;if(selectedId&&!records.some(x=>x.assessment_id===selectedId))selectedId=records[0]?records[0].assessment_id:null;renderStats();renderList();renderDetail();}
+function downloadJSON(obj,name){const data=JSON.stringify(obj,null,2);const blob=new Blob([data],{type:"application/json"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);toast("JSON export created.");}
+function toggleTimer(r){
+ const t=now();
+ if(!r.candidate_record.active_started_at){r.candidate_record.active_started_at=t;if(!r.candidate_record.started_at)r.candidate_record.started_at=t;r.events.push(eventFor("work_started","Candidate started a work session.","candidate_device"));}
+ else{const start=new Date(r.candidate_record.active_started_at).getTime();const mins=Math.max(1,Math.round((Date.now()-start)/60000));r.candidate_record.actual_minutes=allMinutes(r)+mins;r.candidate_record.active_started_at=null;r.events.push(eventFor("work_stopped",mins+" minutes recorded for this session.","candidate_device"));}
+ r.updated_at=t;saveRecord(r);toast(r.candidate_record.active_started_at?"Work session started.":"Work session saved.");
+}
+function manualTime(r){const raw=prompt("How many minutes did you spend?");if(raw===null)return;const n=Number(raw);if(!Number.isFinite(n)||n<=0||n>100000){toast("Enter a valid number of minutes.");return;}const mins=Math.round(n);r.candidate_record.actual_minutes=allMinutes(r)+mins;r.events.push(eventFor("time_logged",mins+" minutes added manually by the candidate.","candidate_device"));r.updated_at=now();saveRecord(r);toast("Time entry saved.");}
+function markSubmitted(r){if(!confirm("Record that you submitted this assessment? This is your own record, not employer confirmation."))return;r.candidate_record.submitted_at=now();r.events.push(eventFor("submission_sent","Candidate marked the assessment as submitted. This event is not employer-verified.","candidate_reported"));r.updated_at=now();saveRecord(r);toast("Submission recorded in your passport.");}
+async function copyQuestions(r){
+ const missing=fields.filter(k=>!r.disclosures[k]||r.disclosures[k].status!=="disclosed");
+ if(!missing.length){toast("All tracked terms have a value. You can still ask for written confirmation.");return;}
+ const names=missing.map(k=>"• "+disclosureLabels[k]).join("\n");
+ const message="Hello,\n\nThanks for sharing the assessment for "+r.role.title+". Before I begin, could you please clarify the following so I can plan the work appropriately?\n\n"+names+"\n\nThank you.";
+ try{await navigator.clipboard.writeText(message);toast("Clarification questions copied.");}catch(e){prompt("Copy this clarification request:",message);}
+}
+function deleteRecord(r){if(!confirm("Delete this passport record from this browser? Export it first if you need a copy."))return;records=records.filter(x=>x.assessment_id!==r.assessment_id);selectedId=null;persist();render();toast("Record deleted.");}
+function exportAll(){if(!records.length){toast("There are no records to export.");return;}downloadJSON({openbrief_export_version:"0.1.0",exported_at:now(),records:records},"openbrief-passport-export.json");}
+function showSpec(){const text="OPENBRIEF COMMUNITY DRAFT 0.1\n\nPurpose: portable, candidate-owned record of the terms and lifecycle of a hiring assessment.\n\nRequired disclosure topics: purpose, scope/deliverables, expected effort, deadline, evaluation criteria, permitted tools and AI policy, compensation, IP/reuse rights, data use and automated evaluation, feedback/decision timeline, clarification contact.\n\nProvenance labels: employer_declared (source explicitly published by employer); candidate_transcribed (candidate transcribed a source); candidate_reported (candidate records an action or statement); candidate_device (timestamp generated by the browser); third_party_verified (independent verifier, not implemented in this pilot); unknown.\n\nEvents: assessment_created, disclosure_updated, work_started, work_stopped, time_logged, submission_sent, employer_acknowledgment_recorded, feedback_received, outcome_received.\n\nNon-claims: no employer certification; no independent timestamping; no public employer ratings; no proof of fairness; no hosted storage; no automatic AI brief parsing.\n\nThe JSON schema and full draft are in the source repository under openbrief/. This app is an experimental reference implementation.";
+ alert(text);
+}
+function load(){try{const raw=localStorage.getItem(STORAGE_KEY);if(raw){const data=JSON.parse(raw);if(Array.isArray(data))records=data;}}catch(e){records=[];toast("Stored data could not be read. A new empty passport is ready.");}render();}
+$("newBtn").onclick=openModal;$("addInline").onclick=openModal;$("sampleBtn").onclick=addSample;$("closeModal").onclick=closeModal;$("cancelModal").onclick=closeModal;$("assessmentForm").addEventListener("submit",createFromForm);$("modal").addEventListener("click",e=>{if(e.target===$("modal"))closeModal();});$("exportAllBtn").onclick=exportAll;$("specBtn").onclick=showSpec;$("privacyLink").onclick=e=>{e.preventDefault();alert("OpenBrief pilot privacy: records are stored only in this browser's localStorage. No account, analytics, remote database, or employer access is implemented. Anyone with access to this browser profile may be able to access stored records. Export your records before clearing site data. Do not store confidential assessment content or sensitive personal data.");};
+load();
+})();
+</script>
+</body>
+</html>
