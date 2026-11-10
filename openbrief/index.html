@@ -218,12 +218,13 @@ function toast(message){$("toast").textContent=message;$("toast").classList.add(
 function persist(){localStorage.setItem(STORAGE_KEY,JSON.stringify(records));}
 function eventFor(type,note,provenance){return{id:uid(),type,happened_at:now(),recorded_at:now(),actor:"candidate",provenance:provenance||"candidate_device",note:note||""};}
 function saveRecord(record){const index=records.findIndex(x=>x.assessment_id===record.assessment_id);if(index>=0)records[index]=record;else records.unshift(record);persist();render();}
-const TRACKED_TERM_COUNT=fields.length+2;
+const TRACKED_TERM_COUNT=fields.length+3;
 function missingCount(record){
  const disclosureMissing=fields.filter(key=>!record.disclosures[key]||record.disclosures[key].status!=="disclosed").length;
- const effortMissing=record.assessment.expected_effort_hours==null?1:0;
- const deadlineMissing=record.assessment.deadline?0:1;
- return disclosureMissing+effortMissing+deadlineMissing;
+ const effortMissing=record.assessment.expected_effort_hours==null&&!record.assessment.expected_effort_note?1:0;
+ const deadlineMissing=!record.assessment.deadline&&!record.assessment.deadline_note?1:0;
+ const windowMissing=!record.assessment.submission_window_note?1:0;
+ return disclosureMissing+effortMissing+deadlineMissing+windowMissing;
 }
 function disclosedCount(record){return TRACKED_TERM_COUNT-missingCount(record);}
 function allMinutes(record){return Number(record.candidate_record.actual_minutes||0);}
@@ -234,7 +235,7 @@ function addSample(){
  const values={purpose:"Assess practical API design and problem-solving.",deliverables:"Build a small REST API and provide setup instructions.",rubric:"Not stated in the sample brief.",ai_policy:"Not stated in the sample brief.",compensation:"Not stated in the sample brief.",ip_rights:"Not stated in the sample brief.",data_use:"Not stated in the sample brief.",feedback:"Not stated in the sample brief.",contact:"Not stated in the sample brief."};
  const disclosures={};
  Object.keys(values).forEach(key=>{const missing=values[key].startsWith("Not stated");disclosures[key]={status:missing?"not_disclosed":"disclosed",value:missing?null:values[key],source:"unknown",recorded_at:t};});
- const record={openbrief_version:"0.1.0",assessment_id:id,created_at:t,updated_at:t,is_sample:true,employer:{name:"Example Studio (sample)",website:null},role:{title:"Software Engineering Intern"},assessment:{title:"REST API take-home (sample)",brief_url:null,expected_effort_hours:4,deadline:null},disclosures,candidate_record:{started_at:null,submitted_at:null,actual_minutes:0,active_started_at:null},events:[eventFor("assessment_created","Synthetic sample record. Replace it with a real assessment or delete it.","candidate_device")]};
+ const record={openbrief_version:"0.1.0",assessment_id:id,created_at:t,updated_at:t,is_sample:true,employer:{name:"Example Studio (sample)",website:null},role:{title:"Software Engineering Intern"},assessment:{title:"REST API take-home (sample)",brief_url:null,expected_effort_hours:4,deadline:null,expected_effort_note:"About 4 hours in the sample brief",expected_effort_note_source:"unknown",submission_window_note:null,submission_window_note_source:"unknown",deadline_note:null,deadline_note_source:"unknown"},disclosures,candidate_record:{started_at:null,submitted_at:null,actual_minutes:0,active_started_at:null},events:[eventFor("assessment_created","Synthetic sample record. Replace it with a real assessment or delete it.","candidate_device")]};
  records.unshift(record);selectedId=id;persist();render();toast("Sample passport added. It is labelled as synthetic data.");
 }
 function createFromForm(event){
@@ -293,7 +294,7 @@ function openModal(editing){
 function closeModal(){$("modal").classList.remove("open");editingId=null;pendingBriefImport=null;}
 function renderStats(){
  $("statCount").textContent=records.filter(x=>!x.is_sample).length+(records.some(x=>x.is_sample)?" + sample":"");
- const current=selected();$("statDisclosure").textContent=current?disclosedCount(current)+"/"+fields.length:"—";
+ const current=selected();$("statDisclosure").textContent=current?disclosedCount(current)+"/"+TRACKED_TERM_COUNT:"—";
  const total=records.reduce((sum,r)=>sum+allMinutes(r),0);$("statHours").textContent=(total/60).toFixed(total%60?1:0)+"h";
  $("statSubmitted").textContent=records.filter(x=>x.candidate_record.submitted_at).length;
 }
@@ -435,8 +436,9 @@ function manualTime(r){const raw=prompt("How many minutes did you spend?");if(ra
 function markSubmitted(r){if(!confirm("Record that you submitted this assessment? This is your own record, not employer confirmation."))return;r.candidate_record.submitted_at=now();r.events.push(eventFor("submission_sent","Candidate marked the assessment as submitted. This event is not employer-verified.","candidate_reported"));r.updated_at=now();saveRecord(r);toast("Submission recorded in your passport.");}
 async function copyQuestions(r){
  const missing=fields.filter(k=>!r.disclosures[k]||r.disclosures[k].status!=="disclosed").map(k=>disclosureLabels[k]);
- if(r.assessment.expected_effort_hours==null)missing.push("Expected effort");
- if(!r.assessment.deadline)missing.push("Submission deadline");
+ if(r.assessment.expected_effort_hours==null&&!r.assessment.expected_effort_note)missing.push("Expected effort");
+ if(!r.assessment.submission_window_note)missing.push("Submission window");
+ if(!r.assessment.deadline&&!r.assessment.deadline_note)missing.push("Submission deadline");
  if(!missing.length){toast("All tracked terms have a value. You can still ask for written confirmation.");return;}
  const names=missing.map(name=>"• "+name).join("\n");
  const message="Hello,\n\nThanks for sharing the assessment for "+r.role.title+". Before I begin, could you please clarify the following so I can plan the work appropriately?\n\n"+names+"\n\nThank you.";
