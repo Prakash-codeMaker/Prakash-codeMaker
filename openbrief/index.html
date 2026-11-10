@@ -69,7 +69,7 @@
       <section class="panel side-panel">
         <h3>What this pilot does not claim</h3>
         <p>Device timestamps are not independent proof. Candidate-entered details are not employer verification. An empty field means “not disclosed in this record,” not proof that an employer withheld it. OpenBrief is a community draft, not an adopted industry standard.</p>
-        <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn small" id="specBtn">View protocol notes ↗</button><button class="btn small" id="exportAllBtn">Export all data ↓</button></div>
+        <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn small" id="specBtn">View protocol notes ↗</button><button class="btn small" id="exportAllBtn">Export all data ↓</button><button class="btn small" id="importBtn">Import backup ↑</button><input id="importFile" type="file" accept="application/json,.json" hidden></div>
       </section>
     </aside>
   </main>
@@ -87,6 +87,7 @@
           <div class="field"><label for="role">Role / opportunity *</label><input id="role" required maxlength="120" placeholder="e.g. Software Engineering Intern"></div>
           <div class="field full"><label for="title">Assessment name *</label><input id="title" required maxlength="160" placeholder="e.g. Backend API take-home"></div>
           <div class="field full"><label for="briefUrl">Original brief URL (optional)</label><input id="briefUrl" type="url" maxlength="500" placeholder="https://…"><small>Keep the original source link. Do not upload confidential employer material here.</small></div>
+          <div class="field full"><label for="sourceMode">Source of the terms entered below</label><select id="sourceMode"><option value="unknown">Mixed, unsure, or my own notes</option><option value="candidate_transcribed">Copied from an employer-provided brief, email, or page</option><option value="candidate_inferred">Inferred or paraphrased, not copied directly</option></select><small>This applies to all populated disclosure fields. Choose “copied” only when it accurately describes every filled term.</small></div>
           <div class="field"><label for="hours">Expected effort (hours)</label><input id="hours" type="number" min="0" max="500" step=".25" placeholder="Not disclosed"></div>
           <div class="field"><label for="deadline">Submission deadline</label><input id="deadline" type="datetime-local"></div>
           <div class="form-section">Terms disclosed in the brief</div>
@@ -133,6 +134,7 @@ const now=()=>new Date().toISOString();
 const uid=()=>("ob_"+Date.now().toString(36)+"_"+Math.random().toString(36).slice(2,8));
 const dateText=value=>{if(!value)return "Not recorded";const d=new Date(value);return isNaN(d)?"Not recorded":d.toLocaleString([], {dateStyle:"medium",timeStyle:"short"});};
 const safe=value=>String(value==null?"":value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function safeHttpUrl(value){try{const u=new URL(String(value||""));return u.protocol==="http:"||u.protocol==="https:"?u.href:null;}catch(e){return null;}}
 function toast(message){$("toast").textContent=message;$("toast").classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>$("toast").classList.remove("show"),2400);}
 function persist(){localStorage.setItem(STORAGE_KEY,JSON.stringify(records));}
 function eventFor(type,note,provenance){return{id:uid(),type,happened_at:now(),recorded_at:now(),actor:"candidate",provenance:provenance||"candidate_device",note:note||""};}
@@ -152,17 +154,20 @@ function addSample(){
 }
 function createFromForm(event){
  event.preventDefault();
+ const briefUrlRaw=$("briefUrl").value.trim();
+ if(briefUrlRaw&&!safeHttpUrl(briefUrlRaw)){toast("Use a valid http or https brief URL.");return;}
+ const disclosureSource=$("sourceMode").value;
  const t=now(),id=uid();
  const map={purpose:"purpose",deliverables:"deliverables",rubric:"rubric",aiPolicy:"ai_policy",compensation:"compensation",ipRights:"ip_rights",dataUse:"data_use",feedback:"feedback",contact:"contact"};
  const disclosures={};
- Object.keys(map).forEach(inputId=>{const value=$(inputId).value.trim();const key=map[inputId];disclosures[key]={status:value?"disclosed":"not_disclosed",value:value||null,source:value?"candidate_transcribed":"unknown",recorded_at:t};});
+ Object.keys(map).forEach(inputId=>{const value=$(inputId).value.trim();const key=map[inputId];disclosures[key]={status:value?"disclosed":"not_disclosed",value:value||null,source:value?disclosureSource:"unknown",recorded_at:t};});
  const hours=$("hours").value;
  const deadline=$("deadline").value?new Date($("deadline").value).toISOString():null;
  const existing=editingId?records.find(x=>x.assessment_id===editingId):null;
  if(existing){
   existing.employer.name=$("company").value.trim();
   existing.role.title=$("role").value.trim();
-  existing.assessment={title:$("title").value.trim(),brief_url:$("briefUrl").value.trim()||null,expected_effort_hours:hours===""?null:Number(hours),deadline};
+  existing.assessment={title:$("title").value.trim(),brief_url:safeHttpUrl($("briefUrl").value.trim()),expected_effort_hours:hours===""?null:Number(hours),deadline};
   existing.disclosures=disclosures;
   existing.updated_at=t;
   existing.events.push(eventFor("disclosure_updated","Candidate edited assessment details and recorded terms.","candidate_device"));
@@ -181,6 +186,8 @@ function openModal(editing){
   $("deadline").value=r.assessment.deadline?new Date(r.assessment.deadline).toISOString().slice(0,16):"";
   const ids={purpose:"purpose",deliverables:"deliverables",rubric:"rubric",ai_policy:"aiPolicy",compensation:"compensation",ip_rights:"ipRights",data_use:"dataUse",feedback:"feedback",contact:"contact"};
   Object.keys(ids).forEach(k=>{$(ids[k]).value=(r.disclosures[k]&&r.disclosures[k].value)||"";});
+  const populatedSources=Object.keys(ids).map(k=>r.disclosures[k]).filter(d=>d&&d.status==="disclosed").map(d=>d.source||"unknown");
+  $("sourceMode").value=populatedSources.length&&populatedSources.every(source=>source===populatedSources[0])?populatedSources[0]:"unknown";
  }
  $("modal").classList.add("open");$("company").focus();
 }
@@ -196,7 +203,7 @@ function renderList(){
  if(!records.length){host.innerHTML='<div class="empty"><div class="empty-icon">＋</div><h3>Your passport starts here.</h3><p>Add a real take-home, case study, assignment or skills test. OpenBrief will make missing terms visible before you invest your time.</p><button class="btn primary" id="emptyCreate">Add your first assessment</button></div>';$("emptyCreate").onclick=()=>openModal(false);return;}
  host.innerHTML=records.map(r=>{
   const miss=missingCount(r),isSel=r.assessment_id===selectedId;
-  const state=r.candidate_record.submitted_at?"Submitted":r.candidate_record.active_started_at?"In progress":"Not started";
+  const state=workflowState(r);
   const meta=[];
   if(r.assessment.expected_effort_hours!=null)meta.push("<span>◷ "+safe(r.assessment.expected_effort_hours)+"h expected</span>");
   meta.push("<span>◷ "+(allMinutes(r)/60).toFixed(1)+"h recorded</span>");
@@ -218,20 +225,95 @@ function renderDetail(){
   return '<div class="event"><span class="event-dot"></span><div><div class="event-title">'+safe(names[e.type]||e.type.replaceAll("_"," "))+'</div><div class="event-note">'+safe(e.note||"Candidate-recorded event")+' · '+safe(e.provenance||"candidate_device")+'</div></div><time class="event-time">'+safe(dateText(e.recorded_at))+'</time></div>';
  }).join("");
  const isActive=!!r.candidate_record.active_started_at;
- host.innerHTML='<section class="detail"><div class="detail-header"><div><h2>'+safe(r.assessment.title)+'</h2><p>'+safe(r.employer.name)+' · '+safe(r.role.title)+'</p></div><div class="detail-actions"><button class="btn small" id="editOne">Edit details</button><button class="btn small" id="exportOne">Export JSON ↓</button><button class="btn small" id="askTerms">Copy questions ↗</button><button class="btn small danger" id="deleteOne">Delete</button></div></div>'+
+ const briefLink=safeHttpUrl(r.assessment.brief_url);
+ host.innerHTML='<section class="detail"><div class="detail-header"><div><h2>'+safe(r.assessment.title)+'</h2><p>'+safe(r.employer.name)+' · '+safe(r.role.title)+'</p></div><div class="detail-actions"><button class="btn small" id="editOne">Edit details</button><button class="btn small" id="exportOne">Export JSON ↓</button><button class="btn small" id="askTerms">Copy questions ↗</button><button class="btn small" id="copyFollowup">Copy follow-up ↗</button><button class="btn small danger" id="deleteOne">Delete</button></div></div>'+
+ '<div class="privacy-note"><strong>NEXT STEP</strong><p>'+safe(nextStep(r))+'</p></div>'+
  '<div class="section-label">Assessment terms · '+disclosedCount(r)+' of '+fields.length+' disclosed</div><div class="disclosures"><div class="disclosure"><div class="disclosure-top"><span class="disclosure-label">Expected effort</span><span class="disclosure-state '+(r.assessment.expected_effort_hours!=null?"good":"")+'">'+(r.assessment.expected_effort_hours!=null?"● Disclosed":"○ Not disclosed")+'</span></div><div class="disclosure-value '+(r.assessment.expected_effort_hours!=null?"":"muted")+'">'+(r.assessment.expected_effort_hours!=null?safe(r.assessment.expected_effort_hours)+" hours":"No estimate recorded")+'</div></div><div class="disclosure"><div class="disclosure-top"><span class="disclosure-label">Deadline</span><span class="disclosure-state '+(r.assessment.deadline?"good":"")+'">'+(r.assessment.deadline?"● Disclosed":"○ Not disclosed")+'</span></div><div class="disclosure-value '+(r.assessment.deadline?"":"muted")+'">'+safe(dateText(r.assessment.deadline))+'</div></div>'+statusHTML+'</div>'+
  '<div class="section-label">Your activity · candidate-recorded</div><div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px"><button class="btn small '+(isActive?"":"primary")+'" id="timerBtn">'+(isActive?"■ Stop & log session":"▶ Start work session")+'</button><button class="btn small" id="manualTime">＋ Log time</button><button class="btn small" id="submitBtn" '+(r.candidate_record.submitted_at?"disabled":"")+'>'+(r.candidate_record.submitted_at?"✓ Marked submitted":"Mark as submitted")+'</button><span style="color:var(--muted);font-size:10px">Total: '+(allMinutes(r)/60).toFixed(2)+' hours</span></div>'+
  '<div class="event-note" style="margin:0 0 14px">Started: '+safe(dateText(r.candidate_record.started_at))+' · Submitted: '+safe(dateText(r.candidate_record.submitted_at))+'</div>'+
+ '<div class="section-label">After submission · candidate-reported notes</div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px"><button class="btn small" id="ackBtn" '+(r.candidate_record.submitted_at?"":"disabled")+'>Log receipt</button><button class="btn small" id="feedbackBtn" '+(r.candidate_record.submitted_at?"":"disabled")+'>Log feedback</button><button class="btn small" id="outcomeBtn" '+(r.candidate_record.submitted_at?"":"disabled")+'>Log outcome</button></div>'+
  '<div class="section-label">Record history</div><div class="timeline">'+(events||'<span class="event-note">No events yet.</span>')+'</div>'+
- (r.assessment.brief_url?'<div class="section-label">Original brief</div><a href="'+safe(r.assessment.brief_url)+'" target="_blank" rel="noreferrer" style="font-size:11px;color:var(--lime);overflow-wrap:anywhere">'+safe(r.assessment.brief_url)+' ↗</a>':"")+
+ (briefLink?'<div class="section-label">Original brief</div><a href="'+safe(briefLink)+'" target="_blank" rel="noreferrer" style="font-size:11px;color:var(--lime);overflow-wrap:anywhere">'+safe(briefLink)+' ↗</a>':"")+
  '<div class="privacy-note"><strong>PROVENANCE CHECK</strong><p>This record distinguishes candidate-entered disclosures from missing information. Events are timestamped by your device and can be edited or deleted in this browser. They are not independently verified or cryptographically sealed.</p></div></section>';
  $("editOne").onclick=()=>openModal(true);
  $("exportOne").onclick=()=>downloadJSON(r,"openbrief-"+slug(r.assessment.title)+".json");
  $("askTerms").onclick=()=>copyQuestions(r);
+ $("copyFollowup").onclick=()=>copyFollowup(r);
+ $("ackBtn").onclick=()=>recordMilestone(r,"employer_acknowledgment_recorded");
+ $("feedbackBtn").onclick=()=>recordMilestone(r,"feedback_received");
+ $("outcomeBtn").onclick=()=>recordMilestone(r,"outcome_received");
  $("deleteOne").onclick=()=>deleteRecord(r);
  $("timerBtn").onclick=()=>toggleTimer(r);
  $("manualTime").onclick=()=>manualTime(r);
  $("submitBtn").onclick=()=>markSubmitted(r);
+}
+function workflowState(r){
+ const types=new Set((r.events||[]).map(e=>e.type));
+ if(types.has("outcome_received"))return "Outcome recorded";
+ if(types.has("feedback_received"))return "Feedback received";
+ if(types.has("employer_acknowledgment_recorded"))return "Receipt noted";
+ if(r.candidate_record.submitted_at)return "Submitted · awaiting response";
+ if(r.candidate_record.active_started_at)return "In progress";
+ return "Not started";
+}
+function nextStep(r){
+ const types=new Set((r.events||[]).map(e=>e.type));
+ if(types.has("outcome_received"))return "This assessment has a recorded outcome. Export your passport to keep a personal copy.";
+ if(types.has("feedback_received"))return "Feedback is recorded. Add the outcome when the employer communicates a decision.";
+ if(types.has("employer_acknowledgment_recorded"))return "Receipt is noted. Follow the feedback or decision timeline stated by the employer; record the next update when it arrives.";
+ if(r.candidate_record.submitted_at)return "Your submission is marked in this passport. Wait for the stated response timeline; use Copy follow-up if that timeline passes.";
+ if(r.candidate_record.active_started_at)return "Your work timer is running. Stop it when you pause or finish so your effort estimate stays useful.";
+ if(r.candidate_record.started_at)return "Work has started. Track your time and clarify any important missing terms before investing more effort.";
+ return "Before starting, review missing terms—especially scope, expected effort, evaluation criteria, AI rules, compensation and work reuse.";
+}
+function recordMilestone(r,type){
+ if(!r.candidate_record.submitted_at){toast("Mark the assessment as submitted first.");return;}
+ const prompts={
+  employer_acknowledgment_recorded:"Summarise the receipt acknowledgement you received. Do not paste confidential email content.",
+  feedback_received:"Summarise the feedback you received. Do not paste confidential or personal information.",
+  outcome_received:"Record the outcome communicated to you (for example, moved forward, rejected, or withdrawn)."
+ };
+ const note=prompt(prompts[type]||"Add a short note:");
+ if(note===null)return;
+ if(!note.trim()){toast("Add a short summary, or cancel.");return;}
+ r.events.push(eventFor(type,"Candidate-reported: "+note.trim(),"candidate_reported"));
+ r.updated_at=now();saveRecord(r);toast("Update recorded as candidate-reported, not employer-verified.");
+}
+async function copyFollowup(r){
+ if(!r.candidate_record.submitted_at){toast("Mark the assessment as submitted before preparing a follow-up.");return;}
+ const sent=dateText(r.candidate_record.submitted_at);
+ const message="Hello,\n\nI’m following up on the "+r.assessment.title+" assessment for the "+r.role.title+" role, which I marked as submitted on "+sent+". Could you please confirm the current status and share the expected timeline for feedback or a decision?\n\nThank you.";
+ try{await navigator.clipboard.writeText(message);toast("Follow-up message copied.");}
+ catch(e){prompt("Copy this follow-up message:",message);}
+}
+function isValidImportedRecord(r){
+ return !!(r&&r.openbrief_version==="0.1.0"&&typeof r.assessment_id==="string"&&r.employer&&typeof r.employer.name==="string"&&r.role&&typeof r.role.title==="string"&&r.assessment&&typeof r.assessment.title==="string"&&r.disclosures&&typeof r.disclosures==="object"&&r.candidate_record&&Array.isArray(r.events));
+}
+function handleImport(event){
+ const file=event.target.files&&event.target.files[0];
+ if(!file)return;
+ const reader=new FileReader();
+ reader.onload=()=>{
+  try{
+   const parsed=JSON.parse(String(reader.result||""));
+   const incoming=Array.isArray(parsed)?parsed:(Array.isArray(parsed.records)?parsed.records:(parsed.assessment_id?[parsed]:[]));
+   if(!incoming.length)throw new Error("No OpenBrief records found in this JSON file.");
+   const valid=incoming.filter(isValidImportedRecord);
+   const invalid=incoming.length-valid.length;
+   const known=new Set(records.map(r=>r.assessment_id));
+   let added=0,duplicates=0;
+   valid.forEach(r=>{
+    if(known.has(r.assessment_id)){duplicates++;return;}
+    records.unshift(r);known.add(r.assessment_id);added++;
+   });
+   if(!added&&!duplicates)throw new Error("The file did not contain a valid OpenBrief 0.1 record.");
+   if(added){selectedId=records[0].assessment_id;persist();render();}
+   toast("Imported "+added+" record(s); skipped "+duplicates+" duplicate(s) and "+invalid+" invalid record(s).");
+  }catch(error){toast("Import failed: "+(error&&error.message?error.message:"Invalid JSON file."));}
+  event.target.value="";
+ };
+ reader.onerror=()=>{toast("The backup file could not be read.");event.target.value="";};
+ reader.readAsText(file);
 }
 function slug(s){return String(s||"assessment").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,45)||"assessment";}
 function render(){if(!selectedId&&records.length)selectedId=records[0].assessment_id;if(selectedId&&!records.some(x=>x.assessment_id===selectedId))selectedId=records[0]?records[0].assessment_id:null;renderStats();renderList();renderDetail();}
@@ -257,7 +339,7 @@ function showSpec(){const text="OPENBRIEF COMMUNITY DRAFT 0.1\n\nPurpose: portab
  alert(text);
 }
 function load(){try{const raw=localStorage.getItem(STORAGE_KEY);if(raw){const data=JSON.parse(raw);if(Array.isArray(data))records=data;}}catch(e){records=[];toast("Stored data could not be read. A new empty passport is ready.");}render();}
-$("newBtn").onclick=()=>openModal(false);$("addInline").onclick=()=>openModal(false);$("sampleBtn").onclick=addSample;$("closeModal").onclick=closeModal;$("cancelModal").onclick=closeModal;$("assessmentForm").addEventListener("submit",createFromForm);$("modal").addEventListener("click",e=>{if(e.target===$("modal"))closeModal();});$("exportAllBtn").onclick=exportAll;$("specBtn").onclick=showSpec;$("privacyLink").onclick=e=>{e.preventDefault();alert("OpenBrief pilot privacy: records are stored only in this browser's localStorage. No account, analytics, remote database, or employer access is implemented. Anyone with access to this browser profile may be able to access stored records. Export your records before clearing site data. Do not store confidential assessment content or sensitive personal data.");};
+$("newBtn").onclick=()=>openModal(false);$("addInline").onclick=()=>openModal(false);$("sampleBtn").onclick=addSample;$("closeModal").onclick=closeModal;$("cancelModal").onclick=closeModal;$("assessmentForm").addEventListener("submit",createFromForm);$("modal").addEventListener("click",e=>{if(e.target===$("modal"))closeModal();});$("exportAllBtn").onclick=exportAll;$("importBtn").onclick=()=>$("importFile").click();$("importFile").addEventListener("change",handleImport);$("specBtn").onclick=showSpec;$("privacyLink").onclick=e=>{e.preventDefault();alert("OpenBrief pilot privacy: records are stored only in this browser's localStorage. No account, analytics, remote database, or employer access is implemented. Anyone with access to this browser profile may be able to access stored records. Export your records before clearing site data. Do not store confidential assessment content or sensitive personal data.");};
 load();
 })();
 </script>
