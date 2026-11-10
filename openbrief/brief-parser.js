@@ -5,10 +5,10 @@
 })(typeof globalThis==="object"?globalThis:this,function(){
   "use strict";
   const fieldRules=[
-    {key:"purpose",label:"Purpose / skill tested",pattern:/\b(evaluat(?:e|es|ed|ing)|assess(?:es|ing)?\s+(?:your|the|a|candidate|practical|technical|problem|engineering|backend|software|coding)|demonstrat(?:e|es|ed|ing)|skills? (?:being )?assessed|we are looking for|designed to assess|purpose of this (?:exercise|assessment)|test(?:s|ed|ing)?\s+(?:your|the|practical|technical|coding|design|analytical))\b/i},
-    {key:"deliverables",label:"Scope / deliverables",pattern:/\b(submission|deliverable|deliver|build|create|implement|develop|provide|prepare|upload|repository|github|presentation|report|prototype|working demo|deploy|live url|source code|one-page note|walkthrough|demo link|loom|video recording|submit (?:a|the|your)\b)\b/i},
+    {key:"purpose",label:"Purpose / skill tested",pattern:/\b(evaluat(?:e|es|ed|ing)|assess(?:es|ing)?\s+(?:your|the|a|candidate|practical|technical|problem|engineering|backend|software|coding)|demonstrat(?:e|es|ed|ing)|skills? (?:being )?assessed|we are looking for|designed to assess|purpose of this (?:exercise|assessment)|checks? whether|case study|test(?:s|ed|ing)?\s+(?:your|the|practical|technical|coding|design|analytical))\b/i},
+    {key:"deliverables",label:"Scope / deliverables",pattern:/\b(submission|deliverable|deliver|build|create|implement|develop|provide|prepare|upload|repository|github|presentation|report|prototype|working demo|deploy|live url|source code|one-page note|walkthrough|demo link|loom|video recording|case study|submit (?:a|the|your)\b)\b/i},
     {key:"rubric",label:"Evaluation criteria",pattern:/\b(rubric|evaluation criteria|assessment criteria|criteria|scored|grading|graded|assessed on|we will assess|we evaluate|weightage|weights|selection criteria|percentage|quality of thinking|code quality|creativity|correctness)\b/i},
-    {key:"ai_policy",label:"Permitted tools / AI policy",pattern:/\b(ai tools?|artificial intelligence tools?|chatgpt|copilot|cursor|claude|llm|generative ai|use of ai|ai (?:is )?(?:allowed|permitted|prohibited|banned|not allowed|not permitted|welcome|fine)|tools? (?:are )?(?:allowed|permitted|prohibited)|do not use (?:ai|chatgpt|copilot)|must not use (?:ai|chatgpt|copilot)|ai help is (?:welcome|fine)|use ai as much as you like)\b/i},
+    {key:"ai_policy",label:"Permitted tools / AI policy",pattern:/\b(ai tools?|artificial intelligence tools?|chatgpt|copilot|cursor|claude|llm|generative ai|use of ai|ai (?:is )?(?:allowed|permitted|prohibited|banned|not allowed|not permitted|welcome|fine)|tools? (?:are )?(?:allowed|permitted|prohibited)|do not use (?:ai|chatgpt|copilot)|must not use (?:ai|chatgpt|copilot)|ai help is (?:welcome|fine)|ai tools? (?:may|can) be used|ai assistance (?:is )?(?:allowed|permitted|welcome)|use ai as much as you like)\b/i},
     {key:"compensation",label:"Compensation",pattern:/(?:\b(paid|unpaid|stipend|compensation|remuneration|inr\b|rs\.?\s?\d|rupees?|payment|honorarium|paid on submission|paid upon submission)\b|₹\s?\d)/i},
     {key:"ip_rights",label:"IP / reuse rights",pattern:/\b(intellectual property|ownership|own the work|work product|reuse|portfolio|licen[cs]e|assign(?:ment)? of rights|copyright|nda|non-disclosure|confidentiality|ip assignment)\b/i},
     {key:"data_use",label:"Data use / AI evaluation",pattern:/\b(data retention|retain|retention|delete|deletion|store|stored|recording|automated evaluation|ai evaluation|evaluated by ai|personal data|privacy|third[- ]party|answers? (?:are )?not (?:retained|stored|shared))\b/i},
@@ -36,7 +36,12 @@
     if(match)return {min:Number(match[1]),max:null,unit:"hours"};
     match=line.match(/\b(\d+(?:\.\d+)?)\s*(?:(?:-|–|—|to)\s*(\d+(?:\.\d+)?)\s*)?(days?|weeks?)\b/i);
     if(match)return {min:Number(match[1]),max:match[2]?Number(match[2]):null,unit:match[3].toLowerCase().startsWith("week")?"weeks":"days"};
-    const wordMatch=line.match(/\b(one|two|three|four|five|six|seven|eight|nine|ten|twelve|twentyfour)\s+(hours?|hrs?|days?|weeks?)\b/i);
+    const words="one|two|three|four|five|six|seven|eight|nine|ten|twelve|twentyfour";
+    const wordRange=line.match(new RegExp("\\b("+words+")\\s*(?:-|–|—|to)\\s*("+words+")\\s+(hours?|hrs?|days?|weeks?)\\b","i"));
+    if(wordRange)return {min:numberWords[wordRange[1].toLowerCase()],max:numberWords[wordRange[2].toLowerCase()],unit:/^h/i.test(wordRange[3])?"hours":/^w/i.test(wordRange[3])?"weeks":"days"};
+    const wordHourHyphen=line.match(new RegExp("\\b("+words+")[-–](hours?|hrs?)\\b","i"));
+    if(wordHourHyphen)return {min:numberWords[wordHourHyphen[1].toLowerCase()],max:null,unit:"hours"};
+    const wordMatch=line.match(new RegExp("\\b("+words+")\\s+(hours?|hrs?|days?|weeks?)\\b","i"));
     if(wordMatch)return {min:numberWords[wordMatch[1].toLowerCase()],max:null,unit:/^h/i.test(wordMatch[2])?"hours":/^w/i.test(wordMatch[2])?"weeks":"days"};
     return null;
   }
@@ -47,7 +52,7 @@
   }
   function isSubmissionWindowLine(line){
     if(/\b(feedback|response|reply|decision|hear back|results?|outcome|interview)\b/i.test(line))return false;
-    return /\b(submit|submission|deadline|due date|within|no later than|from receipt|after receiving|after receipt|turnaround|submission window|return by|send back)\b/i.test(line);
+    return /\b(submit|submission|deadline|due date|within|no later than|from receipt|after receiving|after receipt|turnaround|submission window|return by|return (?:it|the|your)|to (?:submit|return)|send back)\b/i.test(line);
   }
   function extractBriefTerms(value){
     const segments=briefSegments(value),results=[];
