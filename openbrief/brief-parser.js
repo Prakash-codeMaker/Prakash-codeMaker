@@ -68,7 +68,8 @@
     const effortLine=segments.find(line=>isWorkEffortLine(line)&&parseDuration(line)&&parseDuration(line).unit==="hours");
     if(effortLine){
       const duration=parseDuration(effortLine);
-      results.push({key:"expected_effort_hours",label:"Expected effort",kind:"effort",excerpt:clippedExcerpt(effortLine),hours:duration.max==null?duration.min:null,range:duration.max!=null,unit:"hours"});
+      const nonExact=/\b(up to|at most|no more than|not more than|less than|approximately|about|around|roughly)\b|~/i.test(effortLine);
+      results.push({key:"expected_effort_hours",label:"Expected effort",kind:"effort",excerpt:clippedExcerpt(effortLine),hours:duration.max==null&&!nonExact?duration.min:null,range:duration.max!=null||nonExact,approximate:/\b(approximately|about|around|roughly)\b|~/i.test(effortLine),unit:"hours"});
     }
     const vagueEffortLine=segments.find(line=>isWorkEffortLine(line)&&/\b(a few|few|several|half a day|half-day|full day)\b/i.test(line));
     if(vagueEffortLine&&!results.some(p=>p.kind==="effort")){
