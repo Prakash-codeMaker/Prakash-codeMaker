@@ -300,6 +300,7 @@
     "text": "The candidate has three to five days to complete and submit the technical task. Selected interns later sign an NDA and an IP assignment before receiving repository access.",
     "expected": {
       "disclosures": [
+        "deliverables",
         "ip_rights"
       ],
       "effort": null,
@@ -404,7 +405,6 @@
     "text": "The selection process includes a case study or take-home data assignment followed by a short presentation of the findings to product and business stakeholders.",
     "expected": {
       "disclosures": [
-        "purpose",
         "deliverables"
       ],
       "effort": null,
