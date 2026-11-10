@@ -18,7 +18,8 @@ The reference app currently supports:
 - Track 11 assessment terms, including expected effort and deadline, and clearly show which are missing.
 - Paste an assessment brief or load a text-based `.txt`, `.md` or `.html` file for local keyword-assisted extraction.
 - Review exact source excerpts matched to purpose, deliverables, rubric, AI/tool policy, compensation, IP/reuse, data use, feedback and contact fields; select which passages to use before they enter the record.
-- Suggest a numeric expected-effort value only when a single explicit number of hours is found; ranges and deadlines remain manual-review items.
+- Keep **expected active work effort**, **submission window**, and **exact deadline** in separate fields. Preserve range/approximate wording such as “3–4 focused hours” or “submit within 48–72 hours”; do not silently convert it to a single precise number or date.
+- Handle Indian hiring vocabulary such as ₹ / INR / Rs., stipend, per-month pay, take-home task, live exercise, case study, work sample, NDA, IP assignment, repository links and AI coding-tool policies.
 - Label imported passages as `candidate_transcribed`, not employer-certified facts. The parser is heuristic, not an AI model, and may miss or misclassify passages.
 - Record candidate work sessions and elapsed time.
 - Record candidate-reported submission, receipt acknowledgement, feedback, and outcome milestones. These are not treated as employer-verified events.
@@ -28,7 +29,19 @@ The reference app currently supports:
 - Accept only HTTP(S) brief links and validate imported records before adding them.
 - Store data locally in the browser. Brief text is processed client-side and is not uploaded by this feature; no login, analytics, server sync, or employer access.
 
-Brief importer limits: only pasted text and `.txt`, `.md` or `.html` files are supported. PDF and DOCX extraction are not included. The parser uses simple keyword patterns on text in the browser; candidates must review each excerpt and correct any false match. It does not follow brief links, crawl websites, summarise content with AI, or prove that a passage came from the employer. Avoid confidential instructions, personal data or material you are not permitted to copy. The app does not upload the pasted/file text or work product.
+Brief importer limits: only pasted text and `.txt`, `.md` or `.html` files are supported. PDF and DOCX extraction are not included. The parser uses keyword patterns on text in the browser; candidates must review each excerpt and correct any false match. It does not follow brief links, crawl websites, summarise content with AI, or prove that a passage came from the employer. Avoid confidential instructions, personal data or material you are not permitted to copy. The app does not upload the pasted/file text or work product.
+
+## Parser regression benchmark
+
+Run the local tests from the repository root with:
+
+```bash
+node --test openbrief/tests/brief-parser.test.js
+```
+
+The regression set contains **30 paraphrased examples** based on public Indian internship hiring pages and task specifications across engineering, QA, AI/ML, product, design, data, operations, content and legal roles. It includes public task repositories, published hiring-process descriptions, a negative example where a company states it has no take-home, and a schedule-hours negative control. Source URLs and source-type labels are in `tests/public-benchmark.cases.json`.
+
+This is a **public-process regression corpus, not a permissioned collection of 30 full employer briefs**. Most source pages describe a hiring process rather than disclose the complete assignment. One linked task artifact was shared publicly by a candidate and is explicitly labelled as such, not employer-authorised. Inputs in the test set are paraphrased for regression testing; they are not presented as original company documents. Obtain explicit permission before adding private employer briefs or candidate-submitted confidential assignments to a future gold-standard dataset.
 
 **Backup note:** use Export all data to create a JSON backup and Import backup to restore it in another browser profile. Import adds records with new IDs and skips duplicate IDs; it does not replace existing records. Keep an additional copy somewhere secure because browser storage can be cleared.
 
@@ -89,6 +102,9 @@ Measure missing-field frequency, expected-vs-actual effort, repeat use, clarific
 ## Files
 
 - `index.html` — local-first reference application with a candidate-reviewed brief importer.
+- `brief-parser.js` — separately testable local keyword parser.
+- `tests/brief-parser.test.js` — Node.js regression tests.
+- `tests/public-benchmark.cases.json` — 30 paraphrased public-source test cases and source links.
 - `openbrief-assessment.schema.json` — JSON Schema draft 0.1.
 
 ## License
