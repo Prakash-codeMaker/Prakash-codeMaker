@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenBrief · Candidate Pilot Feedback</title>
+<style>
+:root{color-scheme:dark;--bg:#0e1310;--panel:#171e19;--line:#354239;--text:#edf3ed;--muted:#9aa89d;--lime:#c4f26b;--danger:#f1b0a7}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 0%,#243326 0,transparent 38%),var(--bg);color:var(--text);font:15px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:850px;margin:0 auto;padding:36px 20px 70px}.eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--lime);font-weight:800}.hero{padding:12px 0 26px}.hero h1{font-size:clamp(30px,6vw,48px);line-height:1.04;letter-spacing:-.04em;margin:12px 0}.hero p{max-width:680px;color:var(--muted);font-size:15px}.panel{border:1px solid var(--line);background:#171e19eF;border-radius:17px;padding:22px;margin:16px 0;box-shadow:0 18px 50px #0002}.panel h2{font-size:17px;margin:0 0 6px}.hint{color:var(--muted);font-size:12px;margin:0 0 17px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}label{font-size:12px;color:#d7e0d8;font-weight:700}input,select,textarea{width:100%;border:1px solid #425046;border-radius:9px;background:#101612;color:var(--text);padding:11px 12px;font:inherit;font-size:14px;outline:none}input:focus,select:focus,textarea:focus{border-color:var(--lime);box-shadow:0 0 0 3px #c4f26b16}textarea{min-height:104px;resize:vertical}.small{font-size:11px;color:var(--muted)}.consent{display:flex;gap:10px;align-items:flex-start;font-weight:500;font-size:13px}.consent input{width:auto;margin-top:3px;accent-color:var(--lime)}.btn{appearance:none;border:1px solid var(--line);border-radius:10px;padding:12px 16px;background:#202b22;color:var(--text);font-weight:800;font-size:13px;cursor:pointer}.btn.primary{background:var(--lime);color:#11180f;border-color:var(--lime)}.btn:disabled{opacity:.45;cursor:not-allowed}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.status{margin-top:14px;font-size:13px;color:var(--lime);min-height:22px}.metric{font-variant-numeric:tabular-nums}.callout{border-left:3px solid var(--lime);padding:10px 13px;background:#1d281e;border-radius:0 9px 9px 0;color:#dbe5dc;font-size:12px}.footer{margin-top:28px;color:var(--muted);font-size:11px}.footer a{color:var(--lime)}@media(max-width:620px){main{padding:24px 14px 52px}.panel{padding:17px}.grid{grid-template-columns:1fr}.field.full{grid-column:auto}}
+</style>
+</head>
+<body>
+<main>
+  <header class="hero">
+    <div class="eyebrow">OpenBrief · Candidate pilot 0.4</div>
+    <h1>Did the passport actually save you time?</h1>
+    <p>This short feedback sheet helps evaluate whether OpenBrief makes real internship assessments easier to understand and record. Please report what happened—not what you think the product ought to do.</p>
+  </header>
+
+  <div class="callout"><strong>Privacy:</strong> This page does not send or save your answers to a server. It creates a JSON file only when you press Export. Do not include assessment text, company names, personal details, confidential work or screenshots in this feedback.</div>
+
+  <section class="panel">
+    <h2>1. About the assessment</h2>
+    <p class="hint">Use an assessment you are allowed to discuss, or a public/sanitised example. Do not paste the brief here.</p>
+    <div class="grid">
+      <div class="field"><label for="role">Your area</label><select id="role" required><option value="">Choose one</option><option>Software / engineering</option><option>QA / testing</option><option>Data / analytics</option><option>AI / machine learning</option><option>Product / project</option><option>UI / UX / design</option><option>Content / marketing</option><option>Operations / business</option><option>Research</option><option>Other</option></select></div>
+      <div class="field"><label for="assessmentType">Assessment type</label><select id="assessmentType" required><option value="">Choose one</option><option>Take-home coding task</option><option>Case study</option><option>Work sample / portfolio task</option><option>Design task</option><option>Data / analytics task</option><option>Live practical exercise</option><option>Multi-stage process</option><option>Other</option></select></div>
+      <div class="field"><label for="experience">How familiar were you with this type of assessment?</label><select id="experience" required><option value="">Choose one</option><option>First time</option><option>Some experience</option><option>Very familiar</option></select></div>
+      <div class="field"><label for="sourceKind">Brief source</label><select id="sourceKind" required><option value="">Choose one</option><option>Current assessment I received</option><option>Past assessment I received</option><option>Public assessment brief</option><option>Sanitised / paraphrased example</option></select></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>2. Compare the two ways of creating a passport</h2>
+    <p class="hint">Use the same brief for both runs. Clear the first test record before starting the second. Flip a coin to decide which method to try first; this helps reduce order bias.</p>
+    <div class="grid">
+      <div class="field"><label for="order">Which method did you try first?</label><select id="order" required><option value="">Choose one</option><option>Manual entry first</option><option>Brief importer first</option></select></div>
+      <div class="field"><label for="manualMinutes">Manual entry time (minutes)</label><input id="manualMinutes" type="number" min="0" max="240" step="0.5" placeholder="e.g. 8" required></div>
+      <div class="field"><label for="importMinutes">Importer-assisted time (minutes)</label><input id="importMinutes" type="number" min="0" max="240" step="0.5" placeholder="e.g. 4.5" required></div>
+      <div class="field"><label for="suggested">How many field suggestions did the importer show?</label><input id="suggested" type="number" min="0" max="20" step="1" required></div>
+      <div class="field"><label for="correct">How many suggestions were accurate and useful?</label><input id="correct" type="number" min="0" max="20" step="1" required></div>
+      <div class="field"><label for="wrong">How many suggestions were wrong or misleading?</label><input id="wrong" type="number" min="0" max="20" step="1" required></div>
+      <div class="field"><label for="missed">How many clearly stated terms did it miss?</label><input id="missed" type="number" min="0" max="20" step="1" required></div>
+      <div class="field"><label for="edited">How many suggestions did you have to correct substantially?</label><input id="edited" type="number" min="0" max="20" step="1" required></div>
+    </div>
+    <p class="small">Count only disclosure/timing suggestions. A blank field is not a false positive. A term that was clearly stated but not found is a miss. Accuracy here is a human judgement, not a claim that the employer verified the passport.</p>
+  </section>
+
+  <section class="panel">
+    <h2>3. Your experience</h2>
+    <p class="hint">1 = very poor / not at all; 5 = excellent / definitely.</p>
+    <div class="grid">
+      <div class="field"><label for="usefulness">How useful was the passport overall?</label><select id="usefulness" required><option value="">Rate 1–5</option><option value="1">1 — Not useful</option><option value="2">2</option><option value="3">3 — Somewhat useful</option><option value="4">4</option><option value="5">5 — Very useful</option></select></div>
+      <div class="field"><label for="clarity">Did it make missing assessment terms clearer?</label><select id="clarity" required><option value="">Rate 1–5</option><option value="1">1 — Not clearer</option><option value="2">2</option><option value="3">3 — Somewhat clearer</option><option value="4">4</option><option value="5">5 — Much clearer</option></select></div>
+      <div class="field"><label for="trust">How much did you trust the extracted suggestions after reviewing them?</label><select id="trust" required><option value="">Rate 1–5</option><option value="1">1 — Not at all</option><option value="2">2</option><option value="3">3 — Neutral</option><option value="4">4</option><option value="5">5 — Completely</option></select></div>
+      <div class="field"><label for="reuse">Would you use OpenBrief for another assessment?</label><select id="reuse" required><option value="">Rate 1–5</option><option value="1">1 — Definitely not</option><option value="2">2</option><option value="3">3 — Unsure</option><option value="4">4</option><option value="5">5 — Definitely</option></select></div>
+      <div class="field full"><label for="mostUseful">What was the most useful part?</label><textarea id="mostUseful" maxlength="1200" placeholder="Describe the outcome, not the confidential brief…"></textarea></div>
+      <div class="field full"><label for="failure">What was confusing, wrong or missing?</label><textarea id="failure" maxlength="1200" placeholder="Mention the field or type of error. Do not paste source text…"></textarea></div>
+      <div class="field full"><label for="change">What one change would make you use it again?</label><textarea id="change" maxlength="1200" placeholder="Your most important improvement…"></textarea></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>4. Permission to share this feedback</h2>
+    <p class="hint">Participation is voluntary. Only export and share the file if you agree. The organiser should use it to improve the pilot, not to evaluate your job application.</p>
+    <label class="consent"><input id="consent" type="checkbox" required><span>I agree to share this feedback JSON with the person who invited me to the OpenBrief pilot. I have not included confidential assessment text, employer names, or personal information in my answers.</span></label>
+    <div class="actions"><button type="button" class="btn primary" id="exportBtn">Export feedback JSON</button><button type="button" class="btn" id="resetBtn">Clear this form</button></div>
+    <div class="status" id="status" aria-live="polite"></div>
+  </section>
+  <div class="footer">OpenBrief is an experimental community draft. Candidate-entered feedback is self-reported and is not an employer endorsement. <a href="./index.html">Return to Assessment Passport ↗</a></div>
+</main>
+<script>
+(function(){
+ const $=id=>document.getElementById(id);
+ const required=["role","assessmentType","experience","sourceKind","order","manualMinutes","importMinutes","suggested","correct","wrong","missed","edited","usefulness","clarity","trust","reuse","consent"];
+ const numeric=["manualMinutes","importMinutes","suggested","correct","wrong","missed","edited"];
+ function number(id){return Number($(id).value);}
+ function validate(){
+  for(const id of required){
+   const el=$(id);
+   if(id==="consent"){if(!el.checked){el.focus();return "Please confirm the consent statement before exporting.";}}
+   else if(!el.value.trim()||!el.checkValidity()){el.focus();return "Please complete the required fields and use valid non-negative numbers.";}
+  }
+  if(number("correct")+number("wrong")>number("suggested"))return "Accurate plus wrong suggestions cannot exceed the total suggestions.";
+  if(number("edited")>number("suggested"))return "Corrected suggestions cannot exceed the total suggestions.";
+  for(const id of numeric)if(number(id)<0)return "Times and counts must be zero or greater.";
+  return null;
+ }
+ function exportFeedback(){
+  const error=validate();if(error){$("status").textContent=error;return;}
+  const data={
+   openbrief_pilot_feedback_version:"0.4",
+   exported_at:new Date().toISOString(),
+   consent_to_share:true,
+   privacy_note:"This report intentionally excludes raw brief text, employer name, source URL and personal contact details.",
+   assessment_context:{
+    role_area:$("role").value,
+    assessment_type:$("assessmentType").value,
+    familiarity:$("experience").value,
+    brief_source_category:$("sourceKind").value
+   },
+   method_comparison:{
+    first_method:$("order").value,
+    manual_entry_minutes:number("manualMinutes"),
+    importer_assisted_minutes:number("importMinutes")
+   },
+   extraction_review:{
+    suggestions_shown:number("suggested"),
+    accurate_and_useful:number("correct"),
+    wrong_or_misleading:number("wrong"),
+    clearly_stated_terms_missed:number("missed"),
+    substantially_corrected:number("edited")
+   },
+   ratings:{
+    usefulness:number("usefulness"),
+    clarity_of_missing_terms:number("clarity"),
+    trust_after_human_review:number("trust"),
+    likelihood_of_reuse:number("reuse")
+   },
+   comments:{
+    most_useful:$("mostUseful").value.trim(),
+    confusing_wrong_or_missing:$("failure").value.trim(),
+    highest_priority_change:$("change").value.trim()
+   }
+  };
+  const blob=new Blob([JSON.stringify(data,null,2)+"\n"],{type:"application/json"});
+  const url=URL.createObjectURL(blob),a=document.createElement("a");
+  a.href=url;a.download="openbrief-pilot-feedback-"+new Date().toISOString().slice(0,10)+".json";
+  document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+  $("status").textContent="Feedback file exported. Send it only to the person who invited you.";
+ }
+ $("exportBtn").addEventListener("click",exportFeedback);
+ $("resetBtn").addEventListener("click",()=>{if(confirm("Clear all answers from this page?")){$("status").textContent="";document.querySelectorAll("input,select,textarea").forEach(el=>{if(el.type==="checkbox")el.checked=false;else el.value="";});}});
+})();
+</script>
+</body>
+</html>
