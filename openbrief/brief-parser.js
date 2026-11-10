@@ -5,14 +5,14 @@
 })(typeof globalThis==="object"?globalThis:this,function(){
   "use strict";
   const fieldRules=[
-    {key:"purpose",label:"Purpose / skill tested",pattern:/\b(evaluat(?:e|es|ed|ing)|assess(?:es|ing)?\s+(?:your|the|a|candidate|practical|technical|problem|engineering|backend|software|coding)|demonstrat(?:e|es|ed|ing)|skills? (?:being )?assessed|we are looking for|designed to assess|purpose of this (?:exercise|assessment)|checks? whether|case study|test(?:s|ed|ing)?\s+(?:your|the|practical|technical|coding|design|analytical))\b/i},
-    {key:"deliverables",label:"Scope / deliverables",pattern:/\b(submission|deliverable|deliver|build|create|implement|develop|provide|prepare|upload|repository|github|presentation|report|prototype|working demo|deploy|live url|source code|one-page note|walkthrough|demo link|loom|video recording|case study|submit (?:a|the|your)\b)\b/i},
+    {key:"purpose",label:"Purpose / skill tested",pattern:/\b(evaluat(?:e|es|ed|ing)|assess(?:es|ing)?\s+(?:your|the|a|candidate|practical|technical|problem|engineering|backend|software|coding)|demonstrat(?:e|es|ed|ing)|skills? (?:being )?assessed|we are looking for|designed to assess|purpose of this (?:exercise|assessment)|checks? whether|test(?:s|ed|ing)?\s+(?:your|the|practical|technical|coding|design|analytical))\b/i},
+    {key:"deliverables",label:"Scope / deliverables",pattern:/\b(submission|deliverable|deliver|build|create|implement|develop|provide|prepare|upload|github|(?:repo|repository) (?:link|url)|presentation|report|prototype|working demo|deploy|live url|source code|one-page note|walkthrough|demo link|loom|video recording|case study|submit (?:a|the|your)\b)\b/i},
     {key:"rubric",label:"Evaluation criteria",pattern:/\b(rubric|evaluation criteria|assessment criteria|criteria|scored|grading|graded|assessed on|we will assess|we evaluate|weightage|weights|selection criteria|percentage|quality of thinking|code quality|creativity|correctness)\b/i},
-    {key:"ai_policy",label:"Permitted tools / AI policy",pattern:/\b(ai tools?|artificial intelligence tools?|chatgpt|copilot|cursor|claude|llm|generative ai|use of ai|ai (?:is )?(?:allowed|permitted|prohibited|banned|not allowed|not permitted|welcome|fine)|tools? (?:are )?(?:allowed|permitted|prohibited)|do not use (?:ai|chatgpt|copilot)|must not use (?:ai|chatgpt|copilot)|ai help is (?:welcome|fine)|ai tools? (?:may|can) be used|ai assistance (?:is )?(?:allowed|permitted|welcome)|use ai as much as you like)\b/i},
+    {key:"ai_policy",label:"Permitted tools / AI policy",pattern:/\b(ai (?:coding )?tools?|artificial intelligence tools?|chatgpt|copilot|cursor|claude|llm|generative ai|use of ai|ai (?:is )?(?:allowed|permitted|prohibited|banned|not allowed|not permitted|welcome|fine)|tools? (?:are )?(?:allowed|permitted|prohibited)|do not use (?:ai|chatgpt|copilot)|must not use (?:ai|chatgpt|copilot)|ai help is (?:welcome|fine)|ai tools? (?:may|can) be used|ai tools? are expected|we expect (?:candidates )?to use ai|may use ai as much as (?:you|they) like|ai assistance (?:is )?(?:allowed|permitted|welcome)|use ai as much as you like)\b/i},
     {key:"compensation",label:"Compensation",pattern:/(?:\b(paid|unpaid|stipend|compensation|remuneration|inr\b|rs\.?\s?\d|rupees?|payment|honorarium|paid on submission|paid upon submission)\b|₹\s?\d)/i},
     {key:"ip_rights",label:"IP / reuse rights",pattern:/\b(intellectual property|ownership|own the work|work product|reuse|portfolio|licen[cs]e|assign(?:ment)? of rights|copyright|nda|non-disclosure|confidentiality|ip assignment)\b/i},
-    {key:"data_use",label:"Data use / AI evaluation",pattern:/\b(data retention|retain|retention|delete|deletion|store|stored|recording|automated evaluation|ai evaluation|evaluated by ai|personal data|privacy|third[- ]party|answers? (?:are )?not (?:retained|stored|shared))\b/i},
-    {key:"feedback",label:"Feedback / decision timeline",pattern:/\b(feedback|hear back|decision|response timeline|results by|reply within|respond within|outcome|next steps|every applicant hears|share the outcome)\b/i},
+    {key:"data_use",label:"Data use / AI evaluation",pattern:/\b(data retention|retain|retention|delete|deletion|store|stored|recording|automated evaluation|ai evaluation|evaluated by ai|personal data|privacy|third[- ]party|answers? (?:are )?not (?:retained|stored|shared)|answers?[^.]{0,120}not (?:retained|stored|shared))\b/i},
+    {key:"feedback",label:"Feedback / decision timeline",pattern:/\b(feedback|hear back|decision|response timeline|results by|reply within|respond within|outcome|next steps|updates? (?:at|throughout|after) each stage|every applicant hears|final answer|final result|share the outcome)\b/i},
     {key:"contact",label:"Clarification contact",pattern:/\b(contact|reach out|questions? (?:to|at)|recruiter|hiring team|email us|write to us|call us|whatsapp)\b|\bemail\s*[:\-]|[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i}
   ];
   const numberWords={one:1,a:1,an:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,twelve:12,twentyfour:24};
@@ -21,7 +21,7 @@
     return text.length>250000?text.slice(0,250000):text;
   }
   function briefSegments(value){
-    return cleanBriefText(value).split(/\n+/).flatMap(line=>line.split(/(?<=[.!?])\s+(?=[A-Z0-9])/).map(part=>part.trim())).filter(part=>part.length>12);
+    return cleanBriefText(value).split(/\n+/).flatMap(line=>line.split(/;\s+|(?<=[.!?])\s+(?=[A-Z0-9])/).map(part=>part.trim())).filter(part=>part.length>12);
   }
   function clippedExcerpt(value){
     const text=value.trim();
@@ -47,12 +47,12 @@
   }
   function isWorkEffortLine(line){
     if(/\b(?:per day|a day|each day|daily|per week|a week|each week|weekly|hours?\s*\/\s*day|hours? a day|hours? per day|work shift|office hours|availability)\b/i.test(line))return false;
-    if(/\b(submit(?:ted)?|submission|deadline|due date|within|no later than|from receipt|after receiving|after receipt|turnaround)\b/i.test(line))return false;
+    if(/\b(submit(?:ted)?|submission|deadline|due date|within|no later than|from receipt|after receiving|after receipt|to return|turnaround)\b/i.test(line))return false;
     return /\b(expected|estimated|time expected|time commitment|focused|dedicated|effort|takes?|take-home|take home|work sample|assignment|case study|assessment|exercise|task|complete|approximately|about|up to|designed to take|timebox|time-box)\b/i.test(line);
   }
   function isSubmissionWindowLine(line){
     if(/\b(feedback|response|reply|decision|hear back|results?|outcome|interview)\b/i.test(line))return false;
-    return /\b(submit|submission|deadline|due date|within|no later than|from receipt|after receiving|after receipt|turnaround|submission window|return by|return (?:it|the|your)|to (?:submit|return)|send back)\b/i.test(line);
+    return /\b(submit|deadline|due date|within|no later than|from receipt|after receiving|after receipt|turnaround|submission window|return by|return (?:it|the|your)|to (?:submit|return)|send back)\b/i.test(line);
   }
   function extractBriefTerms(value){
     const segments=briefSegments(value),results=[];
