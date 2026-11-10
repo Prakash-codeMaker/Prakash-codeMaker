@@ -241,29 +241,36 @@ function createFromForm(event){
  event.preventDefault();
  const briefUrlRaw=$("briefUrl").value.trim();
  if(briefUrlRaw&&!safeHttpUrl(briefUrlRaw)){toast("Use a valid http or https brief URL.");return;}
- const disclosureSource=$("sourceMode").value;
- const t=now(),id=uid();
+ const disclosureSource=$("sourceMode").value,t=now(),id=uid();
+ const sourceFor=(value,importedValue)=>value?(importedValue&&value===importedValue?"candidate_transcribed":disclosureSource):"unknown";
  const map={purpose:"purpose",deliverables:"deliverables",rubric:"rubric",aiPolicy:"ai_policy",compensation:"compensation",ipRights:"ip_rights",dataUse:"data_use",feedback:"feedback",contact:"contact"};
  const disclosures={};
  Object.keys(map).forEach(inputId=>{
-  const value=$(inputId).value.trim(),key=map[inputId];
-  const importedValue=pendingBriefImport&&pendingBriefImport.disclosures[key];
-  const source=value?(importedValue&&value===importedValue?"candidate_transcribed":disclosureSource):"unknown";
-  disclosures[key]={status:value?"disclosed":"not_disclosed",value:value||null,source,recorded_at:t};
+  const value=$(inputId).value.trim(),key=map[inputId],importedValue=pendingBriefImport&&pendingBriefImport.disclosures[key];
+  disclosures[key]={status:value?"disclosed":"not_disclosed",value:value||null,source:sourceFor(value,importedValue),recorded_at:t};
  });
- const hours=$("hours").value;
- const deadline=$("deadline").value?new Date($("deadline").value).toISOString():null;
+ const hours=$("hours").value,deadline=$("deadline").value?new Date($("deadline").value).toISOString():null;
+ const effortNote=$("effortNote").value.trim(),submissionWindowNote=$("submissionWindow").value.trim(),deadlineNote=$("deadlineNote").value.trim();
+ const assessment={
+  title:$("title").value.trim(),
+  brief_url:safeHttpUrl($("briefUrl").value.trim()),
+  expected_effort_hours:hours===""?null:Number(hours),
+  deadline,
+  expected_effort_note:effortNote||null,
+  expected_effort_note_source:sourceFor(effortNote,pendingBriefImport&&pendingBriefImport.expectedEffortText),
+  submission_window_note:submissionWindowNote||null,
+  submission_window_note_source:sourceFor(submissionWindowNote,pendingBriefImport&&pendingBriefImport.submissionWindowText),
+  deadline_note:deadlineNote||null,
+  deadline_note_source:sourceFor(deadlineNote,pendingBriefImport&&pendingBriefImport.deadlineText)
+ };
  const existing=editingId?records.find(x=>x.assessment_id===editingId):null;
  if(existing){
-  existing.employer.name=$("company").value.trim();
-  existing.role.title=$("role").value.trim();
-  existing.assessment={title:$("title").value.trim(),brief_url:safeHttpUrl($("briefUrl").value.trim()),expected_effort_hours:hours===""?null:Number(hours),deadline};
-  existing.disclosures=disclosures;
-  existing.updated_at=t;
+  existing.employer.name=$("company").value.trim();existing.role.title=$("role").value.trim();
+  existing.assessment=assessment;existing.disclosures=disclosures;existing.updated_at=t;
   existing.events.push(eventFor("disclosure_updated","Candidate edited assessment details and recorded terms.","candidate_device"));
   selectedId=existing.assessment_id;editingId=null;persist();$("assessmentForm").reset();closeModal();render();toast("Passport record updated.");return;
  }
- const record={openbrief_version:"0.1.0",assessment_id:id,created_at:t,updated_at:t,is_sample:false,employer:{name:$("company").value.trim(),website:null},role:{title:$("role").value.trim()},assessment:{title:$("title").value.trim(),brief_url:safeHttpUrl($("briefUrl").value.trim()),expected_effort_hours:hours===""?null:Number(hours),deadline},disclosures,candidate_record:{started_at:null,submitted_at:null,actual_minutes:0,active_started_at:null},events:[eventFor("assessment_created",pendingBriefImport?"Created after candidate review of locally extracted brief passages. Imported values are candidate-transcribed, not employer-verified.":"Assessment details recorded by the candidate.","candidate_device")]};
+ const record={openbrief_version:"0.1.0",assessment_id:id,created_at:t,updated_at:t,is_sample:false,employer:{name:$("company").value.trim(),website:null},role:{title:$("role").value.trim()},assessment,disclosures,candidate_record:{started_at:null,submitted_at:null,actual_minutes:0,active_started_at:null},events:[eventFor("assessment_created",pendingBriefImport?"Created after candidate review of locally extracted brief passages. Imported wording is candidate-transcribed, not employer-verified.":"Assessment details recorded by the candidate.","candidate_device")]};
  records.unshift(record);selectedId=id;pendingBriefImport=null;persist();$("assessmentForm").reset();closeModal();render();toast("Your passport record is ready.");
 }
 function openModal(editing){
@@ -273,10 +280,12 @@ function openModal(editing){
  if(r){
   $("company").value=r.employer.name||"";$("role").value=r.role.title||"";$("title").value=r.assessment.title||"";
   $("briefUrl").value=r.assessment.brief_url||"";$("hours").value=r.assessment.expected_effort_hours==null?"":r.assessment.expected_effort_hours;
+  $("effortNote").value=r.assessment.expected_effort_note||"";$("submissionWindow").value=r.assessment.submission_window_note||"";$("deadlineNote").value=r.assessment.deadline_note||"";
   $("deadline").value=r.assessment.deadline?new Date(r.assessment.deadline).toISOString().slice(0,16):"";
   const ids={purpose:"purpose",deliverables:"deliverables",rubric:"rubric",ai_policy:"aiPolicy",compensation:"compensation",ip_rights:"ipRights",data_use:"dataUse",feedback:"feedback",contact:"contact"};
   Object.keys(ids).forEach(k=>{$(ids[k]).value=(r.disclosures[k]&&r.disclosures[k].value)||"";});
   const populatedSources=Object.keys(ids).map(k=>r.disclosures[k]).filter(d=>d&&d.status==="disclosed").map(d=>d.source||"unknown");
+  ["expected_effort_note_source","submission_window_note_source","deadline_note_source"].forEach(k=>{if(r.assessment[k])populatedSources.push(r.assessment[k]);});
   $("sourceMode").value=populatedSources.length&&populatedSources.every(source=>source===populatedSources[0])?populatedSources[0]:"unknown";
  }
  $("modal").classList.add("open");$("company").focus();
