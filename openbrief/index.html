@@ -139,8 +139,14 @@ function toast(message){$("toast").textContent=message;$("toast").classList.add(
 function persist(){localStorage.setItem(STORAGE_KEY,JSON.stringify(records));}
 function eventFor(type,note,provenance){return{id:uid(),type,happened_at:now(),recorded_at:now(),actor:"candidate",provenance:provenance||"candidate_device",note:note||""};}
 function saveRecord(record){const index=records.findIndex(x=>x.assessment_id===record.assessment_id);if(index>=0)records[index]=record;else records.unshift(record);persist();render();}
-function missingCount(record){return fields.filter(key=>!record.disclosures[key]||record.disclosures[key].status==="not_disclosed").length;}
-function disclosedCount(record){return fields.length-missingCount(record);}
+const TRACKED_TERM_COUNT=fields.length+2;
+function missingCount(record){
+ const disclosureMissing=fields.filter(key=>!record.disclosures[key]||record.disclosures[key].status!=="disclosed").length;
+ const effortMissing=record.assessment.expected_effort_hours==null?1:0;
+ const deadlineMissing=record.assessment.deadline?0:1;
+ return disclosureMissing+effortMissing+deadlineMissing;
+}
+function disclosedCount(record){return TRACKED_TERM_COUNT-missingCount(record);}
 function allMinutes(record){return Number(record.candidate_record.actual_minutes||0);}
 function selected(){return records.find(x=>x.assessment_id===selectedId)||null;}
 function addSample(){
@@ -218,7 +224,9 @@ function renderDetail(){
  const statusHTML=fields.map(key=>{
   const d=r.disclosures[key]||{status:"not_disclosed",value:null,source:"unknown"};
   const ok=d.status==="disclosed";
-  return '<div class="disclosure"><div class="disclosure-top"><span class="disclosure-label">'+safe(disclosureLabels[key])+'</span><span class="disclosure-state '+(ok?"good":"")+'">'+(ok?"● Disclosed":"○ Not disclosed")+'</span></div><div class="disclosure-value '+(ok?"":"muted")+'">'+(ok?safe(d.value):"No information recorded")+'</div></div>';
+  const sourceNames={employer_declared:"Employer-declared source",candidate_transcribed:"Candidate copied from source",candidate_inferred:"Candidate inference / paraphrase",unknown:"Source unknown"};
+  const sourceText=sourceNames[d.source]||"Source unknown";
+  return '<div class="disclosure"><div class="disclosure-top"><span class="disclosure-label">'+safe(disclosureLabels[key])+'</span><span class="disclosure-state '+(ok?"good":"")+'">'+(ok?"● Disclosed":"○ Not disclosed")+'</span></div><div class="disclosure-value '+(ok?"":"muted")+'">'+(ok?safe(d.value):"No information recorded")+'</div><div class="event-note" style="margin-top:6px">Source: '+safe(ok?sourceText:"Not recorded")+'</div></div>';
  }).join("");
  const events=(r.events||[]).slice().sort((a,b)=>new Date(b.recorded_at)-new Date(a.recorded_at)).map(e=>{
   const names={assessment_created:"Assessment record created",work_started:"Work session started",work_stopped:"Work session logged",time_logged:"Time entry added",submission_sent:"Submission marked as sent",employer_acknowledgment_recorded:"Acknowledgement noted",feedback_received:"Feedback noted",outcome_received:"Outcome noted",disclosure_updated:"Disclosure updated"};
@@ -228,7 +236,7 @@ function renderDetail(){
  const briefLink=safeHttpUrl(r.assessment.brief_url);
  host.innerHTML='<section class="detail"><div class="detail-header"><div><h2>'+safe(r.assessment.title)+'</h2><p>'+safe(r.employer.name)+' · '+safe(r.role.title)+'</p></div><div class="detail-actions"><button class="btn small" id="editOne">Edit details</button><button class="btn small" id="exportOne">Export JSON ↓</button><button class="btn small" id="askTerms">Copy questions ↗</button><button class="btn small" id="copyFollowup">Copy follow-up ↗</button><button class="btn small danger" id="deleteOne">Delete</button></div></div>'+
  '<div class="privacy-note"><strong>NEXT STEP</strong><p>'+safe(nextStep(r))+'</p></div>'+
- '<div class="section-label">Assessment terms · '+disclosedCount(r)+' of '+fields.length+' disclosed</div><div class="disclosures"><div class="disclosure"><div class="disclosure-top"><span class="disclosure-label">Expected effort</span><span class="disclosure-state '+(r.assessment.expected_effort_hours!=null?"good":"")+'">'+(r.assessment.expected_effort_hours!=null?"● Disclosed":"○ Not disclosed")+'</span></div><div class="disclosure-value '+(r.assessment.expected_effort_hours!=null?"":"muted")+'">'+(r.assessment.expected_effort_hours!=null?safe(r.assessment.expected_effort_hours)+" hours":"No estimate recorded")+'</div></div><div class="disclosure"><div class="disclosure-top"><span class="disclosure-label">Deadline</span><span class="disclosure-state '+(r.assessment.deadline?"good":"")+'">'+(r.assessment.deadline?"● Disclosed":"○ Not disclosed")+'</span></div><div class="disclosure-value '+(r.assessment.deadline?"":"muted")+'">'+safe(dateText(r.assessment.deadline))+'</div></div>'+statusHTML+'</div>'+
+ '<div class="section-label">Assessment terms · '+disclosedCount(r)+' of '+TRACKED_TERM_COUNT+' tracked terms disclosed</div><div class="disclosures"><div class="disclosure"><div class="disclosure-top"><span class="disclosure-label">Expected effort</span><span class="disclosure-state '+(r.assessment.expected_effort_hours!=null?"good":"")+'">'+(r.assessment.expected_effort_hours!=null?"● Disclosed":"○ Not disclosed")+'</span></div><div class="disclosure-value '+(r.assessment.expected_effort_hours!=null?"":"muted")+'">'+(r.assessment.expected_effort_hours!=null?safe(r.assessment.expected_effort_hours)+" hours":"No estimate recorded")+'</div></div><div class="disclosure"><div class="disclosure-top"><span class="disclosure-label">Deadline</span><span class="disclosure-state '+(r.assessment.deadline?"good":"")+'">'+(r.assessment.deadline?"● Disclosed":"○ Not disclosed")+'</span></div><div class="disclosure-value '+(r.assessment.deadline?"":"muted")+'">'+safe(dateText(r.assessment.deadline))+'</div></div>'+statusHTML+'</div>'+
  '<div class="section-label">Your activity · candidate-recorded</div><div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px"><button class="btn small '+(isActive?"":"primary")+'" id="timerBtn">'+(isActive?"■ Stop & log session":"▶ Start work session")+'</button><button class="btn small" id="manualTime">＋ Log time</button><button class="btn small" id="submitBtn" '+(r.candidate_record.submitted_at?"disabled":"")+'>'+(r.candidate_record.submitted_at?"✓ Marked submitted":"Mark as submitted")+'</button><span style="color:var(--muted);font-size:10px">Total: '+(allMinutes(r)/60).toFixed(2)+' hours</span></div>'+
  '<div class="event-note" style="margin:0 0 14px">Started: '+safe(dateText(r.candidate_record.started_at))+' · Submitted: '+safe(dateText(r.candidate_record.submitted_at))+'</div>'+
  '<div class="section-label">After submission · candidate-reported notes</div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px"><button class="btn small" id="ackBtn" '+(r.candidate_record.submitted_at?"":"disabled")+'>Log receipt</button><button class="btn small" id="feedbackBtn" '+(r.candidate_record.submitted_at?"":"disabled")+'>Log feedback</button><button class="btn small" id="outcomeBtn" '+(r.candidate_record.submitted_at?"":"disabled")+'>Log outcome</button></div>'+
@@ -287,7 +295,13 @@ async function copyFollowup(r){
  catch(e){prompt("Copy this follow-up message:",message);}
 }
 function isValidImportedRecord(r){
- return !!(r&&r.openbrief_version==="0.1.0"&&typeof r.assessment_id==="string"&&r.employer&&typeof r.employer.name==="string"&&r.role&&typeof r.role.title==="string"&&r.assessment&&typeof r.assessment.title==="string"&&r.disclosures&&typeof r.disclosures==="object"&&r.candidate_record&&Array.isArray(r.events));
+ if(!r||r.openbrief_version!=="0.1.0"||typeof r.assessment_id!=="string"||!r.assessment_id.trim())return false;
+ if(!r.employer||typeof r.employer.name!=="string"||!r.role||typeof r.role.title!=="string")return false;
+ if(!r.assessment||typeof r.assessment.title!=="string"||!r.candidate_record||!Array.isArray(r.events))return false;
+ if(!Number.isInteger(r.candidate_record.actual_minutes)||r.candidate_record.actual_minutes<0)return false;
+ if(!fields.every(key=>r.disclosures&&r.disclosures[key]&&["disclosed","not_disclosed","not_applicable"].includes(r.disclosures[key].status)))return false;
+ const eventTypes=["assessment_created","disclosure_updated","work_started","work_stopped","time_logged","submission_sent","employer_acknowledgment_recorded","feedback_received","outcome_received"];
+ return r.events.every(e=>e&&typeof e.id==="string"&&eventTypes.includes(e.type)&&typeof e.note==="string"&&["employer_system","candidate_device","candidate_reported","third_party_verified","unknown"].includes(e.provenance));
 }
 function handleImport(event){
  const file=event.target.files&&event.target.files[0];
@@ -327,9 +341,11 @@ function toggleTimer(r){
 function manualTime(r){const raw=prompt("How many minutes did you spend?");if(raw===null)return;const n=Number(raw);if(!Number.isFinite(n)||n<=0||n>100000){toast("Enter a valid number of minutes.");return;}const mins=Math.round(n);r.candidate_record.actual_minutes=allMinutes(r)+mins;r.events.push(eventFor("time_logged",mins+" minutes added manually by the candidate.","candidate_device"));r.updated_at=now();saveRecord(r);toast("Time entry saved.");}
 function markSubmitted(r){if(!confirm("Record that you submitted this assessment? This is your own record, not employer confirmation."))return;r.candidate_record.submitted_at=now();r.events.push(eventFor("submission_sent","Candidate marked the assessment as submitted. This event is not employer-verified.","candidate_reported"));r.updated_at=now();saveRecord(r);toast("Submission recorded in your passport.");}
 async function copyQuestions(r){
- const missing=fields.filter(k=>!r.disclosures[k]||r.disclosures[k].status!=="disclosed");
+ const missing=fields.filter(k=>!r.disclosures[k]||r.disclosures[k].status!=="disclosed").map(k=>disclosureLabels[k]);
+ if(r.assessment.expected_effort_hours==null)missing.push("Expected effort");
+ if(!r.assessment.deadline)missing.push("Submission deadline");
  if(!missing.length){toast("All tracked terms have a value. You can still ask for written confirmation.");return;}
- const names=missing.map(k=>"• "+disclosureLabels[k]).join("\n");
+ const names=missing.map(name=>"• "+name).join("\n");
  const message="Hello,\n\nThanks for sharing the assessment for "+r.role.title+". Before I begin, could you please clarify the following so I can plan the work appropriately?\n\n"+names+"\n\nThank you.";
  try{await navigator.clipboard.writeText(message);toast("Clarification questions copied.");}catch(e){prompt("Copy this clarification request:",message);}
 }
