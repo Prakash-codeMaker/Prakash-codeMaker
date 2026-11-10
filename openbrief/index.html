@@ -287,7 +287,7 @@ function recordMilestone(r,type){
  r.events.push(eventFor(type,"Candidate-reported: "+note.trim(),"candidate_reported"));
  r.updated_at=now();saveRecord(r);toast("Update recorded as candidate-reported, not employer-verified.");
 }
-async async function copyFollowup(r){
+async function copyFollowup(r){
  if(!r.candidate_record.submitted_at){toast("Mark the assessment as submitted before preparing a follow-up.");return;}
  const sent=dateText(r.candidate_record.submitted_at);
  const message="Hello,\n\nI’m following up on the "+r.assessment.title+" assessment for the "+r.role.title+" role, which I marked as submitted on "+sent+". Could you please confirm the current status and share the expected timeline for feedback or a decision?\n\nThank you.";
