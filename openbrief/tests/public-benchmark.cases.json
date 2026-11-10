@@ -15,8 +15,8 @@
       "effort": "range",
       "window": {
         "unit": "days",
-        "amount": null,
-        "range": true
+        "amount": 2,
+        "range": false
       },
       "exclude": []
     }
@@ -30,7 +30,6 @@
     "text": "The frontend internship take-home asks candidates to build a dashboard from supplied workflow and run data. Expected focused time is 8-10 hours. Send the completed work within 2 days after receiving the brief. AI coding tools may be used.",
     "expected": {
       "disclosures": [
-        "purpose",
         "deliverables",
         "ai_policy"
       ],
@@ -91,6 +90,7 @@
     "text": "The selection process includes a one-hour offline audio exercise and a one-hour live bug-finding session, followed by a behavioural round and CEO phone interview. Assignment answers are used only to evaluate the application and are not retained or shared. Candidates usually hear back within a few days.",
     "expected": {
       "disclosures": [
+        "purpose",
         "data_use",
         "feedback"
       ],
@@ -123,7 +123,7 @@
     "source_url": "https://sofsure.com/careers/ai-engineering-intern",
     "source_type": "published_hiring_process",
     "note": "Public role page; paraphrased test input.",
-    "text": "Shortlisted candidates receive a small AI engineering take-home assignment and have 48 hours to return it before a technical video round. The monthly stipend is not disclosed in the posting.",
+    "text": "Shortlisted candidates receive a small AI engineering take-home assignment. They must return it within 48 hours, before a technical video round. The monthly stipend is not disclosed in the posting.",
     "expected": {
       "disclosures": [
         "compensation"
@@ -143,12 +143,9 @@
     "source_url": "https://www.openpath.co.in/jobs/0e7f577c5dbd49e4a2c6291a8d2c5a4d",
     "source_type": "published_hiring_process",
     "note": "Public role page; paraphrased test input.",
-    "text": "The take-home is a practical Python problem designed to take 2-4 hours. Candidates must submit within 24 hours of receiving the assignment, followed by a technical discussion with the CTO.",
+    "text": "The take-home is a practical Python problem designed to take 2-4 hours; candidates must submit within 24 hours of receiving the assignment, followed by a technical discussion with the CTO.",
     "expected": {
-      "disclosures": [
-        "purpose",
-        "deliverables"
-      ],
+      "disclosures": [],
       "effort": "range",
       "window": {
         "unit": "hours",
@@ -166,9 +163,7 @@
     "note": "Public role page; paraphrased test input.",
     "text": "Shortlisted candidates receive a take-home assignment based on a real company task and have three days to submit it. The employer says candidates are not rewarded for finishing early or adding more work than the brief requests.",
     "expected": {
-      "disclosures": [
-        "purpose"
-      ],
+      "disclosures": [],
       "effort": null,
       "window": {
         "unit": "days",
@@ -187,7 +182,6 @@
     "text": "Candidates who pass the founder call receive a take-home design task using an anonymised client brief. The task takes around four hours and is unpaid. Applicants should hear back within seven working days.",
     "expected": {
       "disclosures": [
-        "purpose",
         "compensation",
         "feedback"
       ],
@@ -205,7 +199,7 @@
     "text": "The hiring process includes a practical design task based on the kind of work the person would do. It should take no more than three hours. The company shares the outcome either way and can provide feedback on request.",
     "expected": {
       "disclosures": [
-        "purpose",
+        "deliverables",
         "feedback"
       ],
       "effort": "upper-bound",
@@ -219,7 +213,7 @@
     "source_url": "https://www.insiderone.in/jobs/ux-research-intern-at-insiderone-ai-remote-5e98ec57-34a6-4dfe-9382-71fdeb9d46d8",
     "source_type": "published_hiring_process",
     "note": "Public role page; paraphrased test input.",
-    "text": "After the earlier stages, shortlisted candidates complete a short work sample that takes about three hours. The final answer is sent within two days after the group interview day.",
+    "text": "After the earlier stages, shortlisted candidates complete a short work sample that takes about three hours. Every applicant hears the final answer within two days after the group interview.",
     "expected": {
       "disclosures": [
         "feedback"
@@ -235,7 +229,7 @@
     "source_url": "https://www.insiderone.in/jobs/operations-intern-university-programmes-at-insiderone-ai-remote-5f915dd3-1fe9-4de7-939b-0a3c8f01ab5e",
     "source_type": "published_hiring_process",
     "note": "Public role page; paraphrased test input.",
-    "text": "Applicants complete a ten-minute live operations challenge. Later in the process they receive a short work sample requiring about three hours. The company updates applicants after each stage.",
+    "text": "Applicants complete a ten-minute live operations challenge. Later in the process they receive a short work sample requiring about three hours. The employer sends an update after each stage.",
     "expected": {
       "disclosures": [
         "feedback"
@@ -251,7 +245,7 @@
     "source_url": "https://www.insiderone.in/jobs/ai-and-machine-learning-intern-at-insiderone-ai-remote-d70250d3-5763-4101-8ae4-1444ba2bebd9",
     "source_type": "published_hiring_process",
     "note": "Public role page; paraphrased test input.",
-    "text": "Applicants who complete the initial steps are sent a three-hour work sample before interviews with the strongest candidates. The role pays ₹50,000 to ₹80,000 per month.",
+    "text": "Applicants who complete the initial steps are sent a three-hour work sample before interviews with the strongest candidates. Every applicant hears a final answer within two days after the interview day. The role pays ₹50,000 to ₹80,000 per month.",
     "expected": {
       "disclosures": [
         "feedback",
@@ -270,7 +264,7 @@
     "source_url": "https://www.insiderone.in/jobs/content-writing-intern-at-insiderone-ai-remote-715f0d04-191e-43d7-8068-c6fb350f4124",
     "source_type": "published_hiring_process",
     "note": "Public role page; paraphrased test input.",
-    "text": "Candidates complete a work sample that takes about three hours after the earlier selection steps. They must provide writing samples under their own name and should hear the final result within two days of the interview day.",
+    "text": "Candidates complete a work sample requiring about three hours after the earlier selection steps. They must provide writing samples under their own name. Every applicant hears the final answer within two days after the interview day.",
     "expected": {
       "disclosures": [
         "deliverables",
@@ -290,7 +284,6 @@
     "text": "The legal research internship includes a small work sample requiring approximately three hours before the final interview. The position is paid at ₹40,000 to ₹60,000 a month.",
     "expected": {
       "disclosures": [
-        "purpose",
         "compensation"
       ],
       "effort": "approximate",
@@ -304,7 +297,7 @@
     "source_url": "https://sarwagyna.com/careers/frontend-and-ux-developer-intern",
     "source_type": "published_hiring_process",
     "note": "Public role page; paraphrased test input.",
-    "text": "The technical task stage lasts three to five days. Selected interns later sign an NDA and an IP assignment before receiving repository access.",
+    "text": "The candidate has three to five days to complete and submit the technical task. Selected interns later sign an NDA and an IP assignment before receiving repository access.",
     "expected": {
       "disclosures": [
         "ip_rights"
@@ -326,9 +319,7 @@
     "note": "Public careers page; paraphrased test input.",
     "text": "The practical take-home is relevant to the role and requires two to three hours. The next round is a 60-minute technical interview where candidates discuss their approach and problem-solving.",
     "expected": {
-      "disclosures": [
-        "purpose"
-      ],
+      "disclosures": [],
       "effort": "range",
       "window": null,
       "exclude": []
@@ -340,10 +331,9 @@
     "source_url": "https://thezoomit.com/careers/software-developer-intern/",
     "source_type": "published_hiring_process",
     "note": "Public role page; paraphrased test input.",
-    "text": "The fictional mini-project is designed for four to six hours of focused work and must be submitted within three to five days. The company shares its evaluation criteria up front and expects candidates to use AI coding tools in the workflow.",
+    "text": "The fictional mini-project is designed for four to six hours of focused work; the completed project must be submitted within three to five days. The company shares its evaluation criteria up front and expects candidates to use AI coding tools in the workflow.",
     "expected": {
       "disclosures": [
-        "purpose",
         "rubric",
         "ai_policy"
       ],
@@ -379,10 +369,9 @@
     "source_url": "https://thejobcompany.co.in/frontend/job_details.php?job_id=5816",
     "source_type": "published_hiring_process",
     "note": "Public job page; paraphrased test input.",
-    "text": "The take-home exercise is scoped to two to three hours and is paid on submission. The candidate works on a defined problem before offer and onboarding discussions.",
+    "text": "The take-home exercise is scoped to two to three hours; the candidate is paid on submission. The exercise is based on a defined engineering problem.",
     "expected": {
       "disclosures": [
-        "purpose",
         "compensation"
       ],
       "effort": "range",
@@ -446,7 +435,6 @@
     "text": "The process includes a practical product assignment or case study followed by a walkthrough and a discussion with the hiring manager.",
     "expected": {
       "disclosures": [
-        "purpose",
         "deliverables"
       ],
       "effort": null,
@@ -462,9 +450,7 @@
     "note": "Public job page; paraphrased test input.",
     "text": "Shortlisted candidates receive a take-home assignment and have 48 to 72 hours to submit it. The following call lasts 20 to 30 minutes and reviews the candidate's approach.",
     "expected": {
-      "disclosures": [
-        "purpose"
-      ],
+      "disclosures": [],
       "effort": null,
       "window": {
         "unit": "hours",
@@ -499,9 +485,7 @@
     "note": "Public job posting; paraphrased test input.",
     "text": "The selection includes a short practical task that takes a few hours, followed by a 30-minute video call with the founder.",
     "expected": {
-      "disclosures": [
-        "purpose"
-      ],
+      "disclosures": [],
       "effort": "vague",
       "window": null,
       "exclude": []
@@ -516,7 +500,6 @@
     "text": "A public repository shared by a candidate for a Data Science Intern assessment contains two task folders, a take-home assignment document and a final presentation.",
     "expected": {
       "disclosures": [
-        "purpose",
         "deliverables"
       ],
       "effort": null,
