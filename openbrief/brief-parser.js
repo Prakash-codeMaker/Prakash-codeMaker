@@ -60,6 +60,7 @@
       const hits=segments.filter(line=>{
         if(!rule.pattern.test(line))return false;
         if(rule.key==="deliverables"&&/\b(deadline|due date|submit by|submission by|no later than|due by|submit within)\b/i.test(line))return false;
+        if(rule.key==="deliverables"&&/\bpaid (?:on|upon) submission\b/i.test(line)&&! /\b(build|create|implement|develop|provide|prepare|upload|submit (?:a|the|your)|presentation|report|prototype|demo|source code|github|deliverable)\b/i.test(line.replace(/\bpaid (?:on|upon) submission\b/ig,"")))return false;
         if(rule.key==="ai_policy"&&/\b(automated|AI evaluation|evaluated by AI|screened by AI)\b/i.test(line)&&! /\b(chatgpt|copilot|claude|cursor|generative ai|ai tools?|language model|llm|ai (?:is )?(?:allowed|permitted|prohibited|banned|not allowed|not permitted|welcome|fine))\b/i.test(line))return false;
         return true;
       }).slice(0,2);
