@@ -311,7 +311,7 @@ function openModal(editing){
  }
  $("modal").classList.add("open");$("company").focus();
 }
-function closeModal(){$("modal").classList.remove("open");editingId=null;}
+function closeModal(){$("modal").classList.remove("open");editingId=null;pendingBriefImport=null;}
 function renderStats(){
  $("statCount").textContent=records.filter(x=>!x.is_sample).length+(records.some(x=>x.is_sample)?" + sample":"");
  const current=selected();$("statDisclosure").textContent=current?disclosedCount(current)+"/"+fields.length:"—";
