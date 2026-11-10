@@ -15,7 +15,7 @@ OpenBrief makes those terms explicit and portable. It is not a review site, job 
 The reference app currently supports:
 
 - Create and edit a structured assessment record.
-- Track 11 assessment terms, including expected effort and deadline, and clearly show which are missing.
+- Track 12 terms: nine assessment disclosures plus expected effort, submission window and deadline, and clearly show which are missing.
 - Paste an assessment brief or load a text-based `.txt`, `.md` or `.html` file for local keyword-assisted extraction.
 - Review exact source excerpts matched to purpose, deliverables, rubric, AI/tool policy, compensation, IP/reuse, data use, feedback and contact fields; select which passages to use before they enter the record.
 - Keep **expected active work effort**, **submission window**, and **exact deadline** in separate fields. Preserve range/approximate wording such as “3–4 focused hours” or “submit within 48–72 hours”; do not silently convert it to a single precise number or date.
@@ -30,6 +30,18 @@ The reference app currently supports:
 - Store data locally in the browser. Brief text is processed client-side and is not uploaded by this feature; no login, analytics, server sync, or employer access.
 
 Brief importer limits: only pasted text and `.txt`, `.md` or `.html` files are supported. PDF and DOCX extraction are not included. The parser uses keyword patterns on text in the browser; candidates must review each excerpt and correct any false match. It does not follow brief links, crawl websites, summarise content with AI, or prove that a passage came from the employer. Avoid confidential instructions, personal data or material you are not permitted to copy. The app does not upload the pasted/file text or work product.
+
+## Candidate pilot
+
+A voluntary 15–20 minute candidate feedback flow is available at `pilot-feedback.html`. It exports a consented JSON report locally and does not transmit feedback to a server. The facilitator protocol, invitation copy and aggregation script are in `pilot/`.
+
+The first cohort target is 8–10 candidates across technical and non-technical assessment types. Compare manual entry and importer-assisted entry with the same sanitised brief, counterbalance the order, and collect elapsed times plus candidate-reviewed extraction accuracy. Never request confidential briefs or raw assessment submissions.
+
+Run the feedback analysis script against a folder of consented JSON reports:
+
+```bash
+node openbrief/pilot/analyse-feedback.js openbrief/pilot/feedback-files
+```
 
 ## Parser regression benchmark
 
@@ -103,6 +115,10 @@ Measure missing-field frequency, expected-vs-actual effort, repeat use, clarific
 
 - `index.html` — local-first reference application with a candidate-reviewed brief importer.
 - `brief-parser.js` — separately testable local keyword parser.
+- `pilot-feedback.html` — local-only candidate feedback export page.
+- `pilot/README.md` — consent, recruitment, session protocol and metrics.
+- `pilot/invitation.md` — candidate invitation copy.
+- `pilot/analyse-feedback.js` — summary analysis for consented JSON feedback files.
 - `tests/brief-parser.test.js` — Node.js regression tests.
 - `tests/public-benchmark.cases.json` — 30 paraphrased public-source test cases and source links.
 - `openbrief-assessment.schema.json` — JSON Schema draft 0.1.
