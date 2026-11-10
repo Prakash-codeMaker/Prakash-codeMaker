@@ -146,7 +146,7 @@ function addSample(){
  const t=now(),id=uid();
  const values={purpose:"Assess practical API design and problem-solving.",deliverables:"Build a small REST API and provide setup instructions.",rubric:"Not stated in the sample brief.",ai_policy:"Not stated in the sample brief.",compensation:"Not stated in the sample brief.",ip_rights:"Not stated in the sample brief.",data_use:"Not stated in the sample brief.",feedback:"Not stated in the sample brief.",contact:"Not stated in the sample brief."};
  const disclosures={};
- Object.keys(values).forEach(key=>{const missing=values[key].startsWith("Not stated");disclosures[key]={status:missing?"not_disclosed":"disclosed",value:missing?null:values[key],source:missing?"unknown":"candidate_transcribed",recorded_at:t};});
+ Object.keys(values).forEach(key=>{const missing=values[key].startsWith("Not stated");disclosures[key]={status:missing?"not_disclosed":"disclosed",value:missing?null:values[key],source:"unknown",recorded_at:t};});
  const record={openbrief_version:"0.1.0",assessment_id:id,created_at:t,updated_at:t,is_sample:true,employer:{name:"Example Studio (sample)",website:null},role:{title:"Software Engineering Intern"},assessment:{title:"REST API take-home (sample)",brief_url:null,expected_effort_hours:4,deadline:null},disclosures,candidate_record:{started_at:null,submitted_at:null,actual_minutes:0,active_started_at:null},events:[eventFor("assessment_created","Synthetic sample record. Replace it with a real assessment or delete it.","candidate_device")]};
  records.unshift(record);selectedId=id;persist();render();toast("Sample passport added. It is labelled as synthetic data.");
 }
@@ -193,7 +193,7 @@ function renderStats(){
 }
 function renderList(){
  const host=$("assessmentList");
- if(!records.length){host.innerHTML='<div class="empty"><div class="empty-icon">＋</div><h3>Your passport starts here.</h3><p>Add a real take-home, case study, assignment or skills test. OpenBrief will make missing terms visible before you invest your time.</p><button class="btn primary" id="emptyCreate">Add your first assessment</button></div>';$("emptyCreate").onclick=openModal;return;}
+ if(!records.length){host.innerHTML='<div class="empty"><div class="empty-icon">＋</div><h3>Your passport starts here.</h3><p>Add a real take-home, case study, assignment or skills test. OpenBrief will make missing terms visible before you invest your time.</p><button class="btn primary" id="emptyCreate">Add your first assessment</button></div>';$("emptyCreate").onclick=()=>openModal(false);return;}
  host.innerHTML=records.map(r=>{
   const miss=missingCount(r),isSel=r.assessment_id===selectedId;
   const state=r.candidate_record.submitted_at?"Submitted":r.candidate_record.active_started_at?"In progress":"Not started";
@@ -257,7 +257,7 @@ function showSpec(){const text="OPENBRIEF COMMUNITY DRAFT 0.1\n\nPurpose: portab
  alert(text);
 }
 function load(){try{const raw=localStorage.getItem(STORAGE_KEY);if(raw){const data=JSON.parse(raw);if(Array.isArray(data))records=data;}}catch(e){records=[];toast("Stored data could not be read. A new empty passport is ready.");}render();}
-$("newBtn").onclick=openModal;$("addInline").onclick=openModal;$("sampleBtn").onclick=addSample;$("closeModal").onclick=closeModal;$("cancelModal").onclick=closeModal;$("assessmentForm").addEventListener("submit",createFromForm);$("modal").addEventListener("click",e=>{if(e.target===$("modal"))closeModal();});$("exportAllBtn").onclick=exportAll;$("specBtn").onclick=showSpec;$("privacyLink").onclick=e=>{e.preventDefault();alert("OpenBrief pilot privacy: records are stored only in this browser's localStorage. No account, analytics, remote database, or employer access is implemented. Anyone with access to this browser profile may be able to access stored records. Export your records before clearing site data. Do not store confidential assessment content or sensitive personal data.");};
+$("newBtn").onclick=()=>openModal(false);$("addInline").onclick=()=>openModal(false);$("sampleBtn").onclick=addSample;$("closeModal").onclick=closeModal;$("cancelModal").onclick=closeModal;$("assessmentForm").addEventListener("submit",createFromForm);$("modal").addEventListener("click",e=>{if(e.target===$("modal"))closeModal();});$("exportAllBtn").onclick=exportAll;$("specBtn").onclick=showSpec;$("privacyLink").onclick=e=>{e.preventDefault();alert("OpenBrief pilot privacy: records are stored only in this browser's localStorage. No account, analytics, remote database, or employer access is implemented. Anyone with access to this browser profile may be able to access stored records. Export your records before clearing site data. Do not store confidential assessment content or sensitive personal data.");};
 load();
 })();
 </script>
