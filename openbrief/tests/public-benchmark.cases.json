@@ -525,22 +525,6 @@
     }
   },
   {
-    "id": "insiderone-ui-ux-design",
-    "source_title": "insiderOne UI/UX Design Intern",
-    "source_url": "https://www.insiderone.in/jobs/ui-ux-design-intern-at-insiderone-ai-remote-ef26d395-21ef-4ecc-a18e-167935bae08e",
-    "source_type": "published_hiring_process",
-    "note": "Public role page; paraphrased test input.",
-    "text": "Applicants first complete a ten-minute live design challenge. Later, shortlisted candidates complete a work sample that takes about three hours. The company issues a signed receipt for the live challenge.",
-    "expected": {
-      "disclosures": [
-        "deliverables"
-      ],
-      "effort": "approximate",
-      "window": null,
-      "exclude": []
-    }
-  },
-  {
     "id": "tekhnologia-negative-daily-hours",
     "source_title": "Synthetic control based on Tekhnologia internship schedule wording",
     "source_url": "https://tekhnologiaindia.com/careers.html",
