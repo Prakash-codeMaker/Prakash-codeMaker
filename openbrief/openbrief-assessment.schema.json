@@ -1,0 +1,295 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:openbrief:assessment:0.1.0",
+  "title": "OpenBrief Assessment Record",
+  "description": "Community draft 0.1 schema for a candidate-owned hiring assessment record. It does not assert employer verification or independent timestamp integrity.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "openbrief_version",
+    "assessment_id",
+    "created_at",
+    "updated_at",
+    "employer",
+    "role",
+    "assessment",
+    "disclosures",
+    "candidate_record",
+    "events"
+  ],
+  "properties": {
+    "openbrief_version": {
+      "const": "0.1.0"
+    },
+    "assessment_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "employer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "website": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        }
+      }
+    },
+    "role": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "assessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "brief_url",
+        "expected_effort_hours",
+        "deadline"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "brief_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        },
+        "expected_effort_hours": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "deadline": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        }
+      }
+    },
+    "disclosures": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "purpose",
+        "deliverables",
+        "rubric",
+        "ai_policy",
+        "compensation",
+        "ip_rights",
+        "data_use",
+        "feedback",
+        "contact"
+      ],
+      "properties": {
+        "purpose": {
+          "$ref": "#/$defs/disclosure"
+        },
+        "deliverables": {
+          "$ref": "#/$defs/disclosure"
+        },
+        "rubric": {
+          "$ref": "#/$defs/disclosure"
+        },
+        "ai_policy": {
+          "$ref": "#/$defs/disclosure"
+        },
+        "compensation": {
+          "$ref": "#/$defs/disclosure"
+        },
+        "ip_rights": {
+          "$ref": "#/$defs/disclosure"
+        },
+        "data_use": {
+          "$ref": "#/$defs/disclosure"
+        },
+        "feedback": {
+          "$ref": "#/$defs/disclosure"
+        },
+        "contact": {
+          "$ref": "#/$defs/disclosure"
+        }
+      }
+    },
+    "candidate_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "started_at",
+        "submitted_at",
+        "actual_minutes"
+      ],
+      "properties": {
+        "started_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "submitted_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "actual_minutes": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/event"
+      }
+    },
+    "is_sample": {
+      "type": "boolean"
+    }
+  },
+  "$defs": {
+    "disclosure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "value",
+        "source",
+        "recorded_at"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "disclosed",
+            "not_disclosed",
+            "not_applicable"
+          ]
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source": {
+          "enum": [
+            "employer_declared",
+            "candidate_transcribed",
+            "candidate_inferred",
+            "unknown"
+          ]
+        },
+        "recorded_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "happened_at",
+        "recorded_at",
+        "actor",
+        "provenance",
+        "note"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "enum": [
+            "assessment_created",
+            "disclosure_updated",
+            "work_started",
+            "work_stopped",
+            "time_logged",
+            "submission_sent",
+            "employer_acknowledgment_recorded",
+            "feedback_received",
+            "outcome_received"
+          ]
+        },
+        "happened_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "recorded_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "actor": {
+          "enum": [
+            "candidate",
+            "employer",
+            "system",
+            "third_party"
+          ]
+        },
+        "provenance": {
+          "enum": [
+            "employer_system",
+            "candidate_device",
+            "candidate_reported",
+            "third_party_verified",
+            "unknown"
+          ]
+        },
+        "note": {
+          "type": "string"
+        },
+        "evidence_reference": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        }
+      }
+    }
+  }
+}
