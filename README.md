@@ -10,7 +10,7 @@
 
 <a href="https://github.com/Prakash-codeMaker"><img src="https://img.shields.io/badge/GitHub-111827?style=for-the-badge&logo=github&logoColor=white"/></a>
 <a href="https://www.linkedin.com/in/prakash-chand-jain-coder015675328/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/></a>
-<a href="https://prakash-portfolio.vercel.app/"><img src="https://img.shields.io/badge/Portfolio-111827?style=for-the-badge&logo=vercel&logoColor=white"/></a>
+<a href="https://pcj-portfolio.vercel.app/"><img src="https://img.shields.io/badge/Portfolio-111827?style=for-the-badge&logo=vercel&logoColor=white"/></a>
 <a href="mailto:p9340297@gmail.com"><img src="https://img.shields.io/badge/Email-DB4437?style=for-the-badge&logo=gmail&logoColor=white"/></a>
 
 </div>
@@ -24,6 +24,31 @@
 <td align="center"><b>1K+</b><br/><sub>StoryLens signups</sub></td>
 <td align="center"><b>85%</b><br/><sub>evaluator detection</sub></td>
 <td align="center"><b>100K+</b><br/><sub>LHC-style samples</sub></td>
+</tr>
+
+<tr>
+<td width="50%" valign="top">
+
+<a href="https://pcj-portfolio.vercel.app/fleetscope.html">
+<img src="https://raw.githubusercontent.com/Prakash-codeMaker/Prakash-codeMaker/main/assets/fleetscope-preview.svg" width="100%" alt="FleetScope telemetry reliability lab architecture preview"/>
+</a>
+
+**FleetScope** · telemetry reliability lab  
+<span>event freshness · retry/replay integrity · offset continuity · signal cadence</span>
+
+<a href="https://pcj-portfolio.vercel.app/fleetscope.html">Engineering case study ↗</a> · <a href="https://fleetscope-telemetry-lab.vercel.app/">Live showcase ↗</a>
+
+</td>
+<td width="50%" valign="top">
+
+<a href="https://github.com/Prakash-codeMaker/lhc-anomaly-detection">
+<img src="https://raw.githubusercontent.com/Prakash-codeMaker/PCJ-Portfolio/main/Portfolio-main/assets/storylens-ui.png" width="100%" alt="Scientific signal analysis and anomaly detection project"/>
+</a>
+
+**LHC anomaly detection** · scientific data analysis  
+<span>simulated signals · anomaly detection · scientific ML · visualization</span>
+
+</td>
 </tr>
 </table>
 
@@ -100,6 +125,8 @@
 <img src="./assets/research-divider-v9.svg" width="100%" alt=""/>
 
 ## Research
+
+**FleetScope telemetry reliability** — [Engineering case study](https://pcj-portfolio.vercel.app/fleetscope.html) and [live scenario showcase](https://fleetscope-telemetry-lab.vercel.app/) exploring event freshness, retries, replay integrity, observed offsets and estimated signal-cadence gaps with synthetic data. Independent prototype; not affiliated with Tesla.
 
 **Research index** — [Methods, experiments, results and limitations](./research/README.md).
 
