@@ -26,30 +26,6 @@
 <td align="center"><b>100K+</b><br/><sub>LHC-style samples</sub></td>
 </tr>
 
-<tr>
-<td width="50%" valign="top">
-
-<a href="https://pcj-portfolio.vercel.app/fleetscope.html">
-<img src="https://raw.githubusercontent.com/Prakash-codeMaker/Prakash-codeMaker/main/assets/fleetscope-preview.svg" width="100%" alt="FleetScope telemetry reliability lab architecture preview"/>
-</a>
-
-**FleetScope** · telemetry reliability lab  
-<span>event freshness · retry/replay integrity · offset continuity · signal cadence</span>
-
-<a href="https://pcj-portfolio.vercel.app/fleetscope.html">Engineering case study ↗</a> · <a href="https://fleetscope-telemetry-lab.vercel.app/">Live showcase ↗</a>
-
-</td>
-<td width="50%" valign="top">
-
-<a href="https://github.com/Prakash-codeMaker/lhc-anomaly-detection">
-<img src="https://raw.githubusercontent.com/Prakash-codeMaker/PCJ-Portfolio/main/Portfolio-main/assets/storylens-ui.png" width="100%" alt="Scientific signal analysis and anomaly detection project"/>
-</a>
-
-**LHC anomaly detection** · scientific data analysis  
-<span>simulated signals · anomaly detection · scientific ML · visualization</span>
-
-</td>
-</tr>
 </table>
 
 ---
@@ -104,7 +80,20 @@
 
 </td>
 </tr>
+
 </table>
+
+### Featured engineering lab — FleetScope
+
+<a href="https://pcj-portfolio.vercel.app/fleetscope.html"><img src="https://raw.githubusercontent.com/Prakash-codeMaker/Prakash-codeMaker/main/assets/fleetscope-preview.svg" width="100%" alt="FleetScope telemetry reliability lab architecture preview"/></a>
+
+**FleetScope** is an independent telemetry reliability lab built with synthetic vehicle events. It separates event freshness, retries, replay integrity, offset continuity and estimated signal-cadence gaps rather than collapsing them into one health score.
+
+[Read the engineering case study](https://pcj-portfolio.vercel.app/fleetscope.html) · [Open the live showcase](https://fleetscope-telemetry-lab.vercel.app/)
+
+All data is synthetic. FleetScope is not affiliated with Tesla and does not connect to Tesla systems.
+
+
 
 <div align="center">
 <sub>Real product visuals above · custom motion below · technical depth in the repositories.</sub>
