@@ -26,7 +26,19 @@
 <td align="center"><b>100K+</b><br/><sub>LHC-style samples</sub></td>
 </tr>
 
-</table>
+
+
+## Open for scoped paid engineering work
+
+I take on clearly-scoped paid builds and technical tasks across **API/backend integrations, AI workflows and evaluation tools, and reliability/testing automation**.
+
+- **See the work:** [Portfolio and live project demos](https://pcj-portfolio.vercel.app/)
+- **Commission a task:** [Send a project brief](https://pcj-portfolio.vercel.app/start-a-project.html)
+- **Discuss scope:** [p9340297@gmail.com](mailto:p9340297@gmail.com)
+
+Every engagement starts with written scope, deliverables, acceptance checks, fee and payment timing agreed before implementation.
+
+---
 
 ---
 
