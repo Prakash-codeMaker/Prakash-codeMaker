@@ -83,6 +83,42 @@
 
 </table>
 
+## Applied AI product engineering
+
+Two recent builds focus on making AI workflows easier to operate, inspect and improve.
+
+### BolKeResolve — voice-first support and evidence workspace
+
+A working MVP for organising payment/refund issue information through voice or chat, reviewed evidence, a case timeline, a Promise-to-Proof ledger and a portable Resolution Passport.
+
+- [Open the live application](https://bolkeresolve.vercel.app)
+- [Watch the product walkthrough](https://youtu.be/2REWdhKfT_I)
+- [Explore the source](https://github.com/Prakash-codeMaker/BolKeResolve)
+
+**Capability boundary:** BolKeResolve organises user-provided information. It does not access bank accounts, independently verify UPI transactions, contact merchants or move money. Public demo cases are fictional.
+
+### TaskOps — AI data and evaluation operations prototype
+
+An operations console for task intake, reviewer assignment, versioned rubrics, quality scoring, adjudication, trace ingestion and audit history.
+
+- [Open the live showcase](https://taskops-ai-data.hatchable.site)
+- [Explore the source](https://github.com/Prakash-codeMaker/taskops-ai-quality-operations)
+
+**Capability boundary:** the showcase uses synthetic sample records. The source export currently targets Hatchable's V8 runtime and SDK; it is not yet a drop-in standalone deployment.
+
+### Open-source engineering contributions in review
+
+- [TraceRoot PR #2972](https://github.com/traceroot-ai/traceroot/pull/2972) — Stripe usage-meter event outbox and retry handling. Open pull request; not merged.
+- [AgenTrust PR #132](https://github.com/agentrust-io/agentrust-telemetry/pull/132) — source-classification inheritance for derived data flows. Draft/open pull request; not merged.
+
+### Available for focused collaborations
+
+I'm open to small, clearly scoped paid engagements in AI-agent workflow testing, evaluation scenario design, regression coverage, full-stack integrations and product engineering.
+
+**Contact:** [p9340297@gmail.com](mailto:p9340297@gmail.com) · [LinkedIn](https://www.linkedin.com/in/prakash-chand-jain-coder015675328/)
+
+---
+
 ### Featured engineering lab — FleetScope
 
 <a href="https://pcj-portfolio.vercel.app/fleetscope.html"><img src="https://raw.githubusercontent.com/Prakash-codeMaker/Prakash-codeMaker/main/assets/fleetscope-preview.svg" width="100%" alt="FleetScope telemetry reliability lab architecture preview"/></a>
