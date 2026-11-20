@@ -32,6 +32,7 @@
 
 - [RecoverIT — Engineering an Auditable Payment-Recovery Workflow](https://p9340297.wordpress.com/2026/11/20/recoverit-auditable-payment-recovery-workflow/) — evidence handling, AI/deterministic boundaries, approvals and test-mode validation.
 - [FleetScope — Building a Reproducible Telemetry Reliability Lab](https://p9340297.wordpress.com/2026/11/20/fleetscope-reproducible-telemetry-reliability-lab/) — freshness, retries, replay integrity, offset continuity and synthetic scenario testing.
+- [Small-Team AI Follow-Through — independent implementation demo](https://pcj-portfolio.vercel.app/littlebird-small-team-demo.html) — a synthetic, vendor-aware workflow concept for meeting-to-action follow-through, human approval and team routines. Not a Littlebird integration or endorsement.
 
 ## Open for scoped paid engineering work
 
