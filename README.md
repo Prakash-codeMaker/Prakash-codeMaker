@@ -28,6 +28,11 @@
 
 
 
+## Public engineering notes
+
+- [RecoverIT — Engineering an Auditable Payment-Recovery Workflow](https://p9340297.wordpress.com/2026/11/20/recoverit-auditable-payment-recovery-workflow/) — evidence handling, AI/deterministic boundaries, approvals and test-mode validation.
+- [FleetScope — Building a Reproducible Telemetry Reliability Lab](https://p9340297.wordpress.com/2026/11/20/fleetscope-reproducible-telemetry-reliability-lab/) — freshness, retries, replay integrity, offset continuity and synthetic scenario testing.
+
 ## Open for scoped paid engineering work
 
 I take on clearly-scoped paid builds and technical tasks across **API/backend integrations, AI workflows and evaluation tools, and reliability/testing automation**.
